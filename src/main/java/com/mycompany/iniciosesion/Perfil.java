@@ -81,6 +81,7 @@ public class Perfil extends javax.swing.JFrame {
             }
         });
 
+        usuario.setIcon(new javax.swing.ImageIcon("C:\\Users\\Elissa\\Documents\\NetBeansProjects\\Facebook\\src\\main\\java\\Imagenes\\usuario.png")); // NOI18N
         usuario.setBorder(null);
         usuario.setBorderPainted(false);
         usuario.setContentAreaFilled(false);
