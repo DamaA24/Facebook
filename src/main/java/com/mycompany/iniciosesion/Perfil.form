@@ -23,7 +23,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="header" min="-2" max="-2" attributes="0"/>
+          <Component id="header" min="-2" pref="256" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -66,8 +66,11 @@
                           <Component id="notificaciones" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="modperfil" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="menu" alignment="1" min="-2" pref="24" max="-2" attributes="0"/>
+                              <Component id="modperfil" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="menu" min="-2" pref="24" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -163,6 +166,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="notificaciones">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="2" name="C:\Users\Elissa\Documents\NetBeansProjects\Facebook\src\main\java\Imagenes\notificaciones.png"/>
+            </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
             </Property>
@@ -173,6 +179,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="menu">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="2" name="C:\Users\Elissa\Documents\NetBeansProjects\Facebook\src\main\java\Imagenes\menu.png"/>
+            </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
             </Property>
@@ -246,7 +255,7 @@
                                   </Group>
                                   <Component id="buscaramigos" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="11" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jButton2" min="-2" max="-2" attributes="0"/>
