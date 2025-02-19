@@ -70,6 +70,7 @@ public class Perfil extends javax.swing.JFrame {
         });
 
         amigos.setForeground(new java.awt.Color(255, 255, 255));
+        amigos.setIcon(new javax.swing.ImageIcon("C:\\Users\\Elissa\\Documents\\NetBeansProjects\\Facebook\\src\\main\\java\\Imagenes\\amigos.png")); // NOI18N
         amigos.setBorder(null);
         amigos.setBorderPainted(false);
         amigos.setContentAreaFilled(false);
