@@ -31,7 +31,6 @@ public class Notificaciones extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
@@ -50,7 +49,6 @@ public class Notificaciones extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\IRENE\\OneDrive\\Documentos\\NetBeansProjects\\InicioSesion\\src\\main\\java\\Imagenes\\house.png")); // NOI18N
         jButton1.setBorderPainted(false);
         jButton1.setContentAreaFilled(false);
         jButton1.setFocusPainted(false);
@@ -60,7 +58,6 @@ public class Notificaciones extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setIcon(new javax.swing.ImageIcon("C:\\Users\\IRENE\\OneDrive\\Documentos\\NetBeansProjects\\InicioSesion\\src\\main\\java\\Imagenes\\friend.png")); // NOI18N
         jButton2.setBorderPainted(false);
         jButton2.setContentAreaFilled(false);
         jButton2.setFocusPainted(false);
@@ -70,12 +67,6 @@ public class Notificaciones extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setIcon(new javax.swing.ImageIcon("C:\\Users\\IRENE\\OneDrive\\Documentos\\NetBeansProjects\\InicioSesion\\src\\main\\java\\Imagenes\\bell.png")); // NOI18N
-        jButton4.setBorderPainted(false);
-        jButton4.setContentAreaFilled(false);
-        jButton4.setFocusPainted(false);
-
-        jButton5.setIcon(new javax.swing.ImageIcon("C:\\Users\\IRENE\\OneDrive\\Documentos\\NetBeansProjects\\InicioSesion\\src\\main\\java\\Imagenes\\lines.png")); // NOI18N
         jButton5.setBorderPainted(false);
         jButton5.setContentAreaFilled(false);
         jButton5.setFocusPainted(false);
@@ -89,11 +80,9 @@ public class Notificaciones extends javax.swing.JFrame {
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
                 .addComponent(jButton2)
-                .addGap(39, 39, 39)
-                .addComponent(jButton4)
-                .addGap(40, 40, 40)
+                .addGap(151, 151, 151)
                 .addComponent(jButton5)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,14 +91,12 @@ public class Notificaciones extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
-                    .addComponent(jButton4)
                     .addComponent(jButton5))
-                .addGap(86, 86, 86))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
-        jButton3.setIcon(new javax.swing.ImageIcon("C:\\Users\\IRENE\\OneDrive\\Documentos\\NetBeansProjects\\InicioSesion\\src\\main\\java\\Imagenes\\glass.png")); // NOI18N
         jButton3.setBorderPainted(false);
         jButton3.setContentAreaFilled(false);
         jButton3.setFocusPainted(false);
@@ -117,7 +104,6 @@ public class Notificaciones extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Notificaciones");
 
-        jButton6.setIcon(new javax.swing.ImageIcon("C:\\Users\\IRENE\\OneDrive\\Documentos\\NetBeansProjects\\InicioSesion\\src\\main\\java\\Imagenes\\me encanta.png")); // NOI18N
         jButton6.setBorderPainted(false);
         jButton6.setContentAreaFilled(false);
         jButton6.setFocusPainted(false);
@@ -127,7 +113,6 @@ public class Notificaciones extends javax.swing.JFrame {
             }
         });
 
-        jButton7.setIcon(new javax.swing.ImageIcon("C:\\Users\\IRENE\\OneDrive\\Documentos\\NetBeansProjects\\InicioSesion\\src\\main\\java\\Imagenes\\comentar.png")); // NOI18N
         jButton7.setBorderPainted(false);
         jButton7.setContentAreaFilled(false);
         jButton7.setFocusPainted(false);
@@ -137,27 +122,22 @@ public class Notificaciones extends javax.swing.JFrame {
             }
         });
 
-        jButton8.setIcon(new javax.swing.ImageIcon("C:\\Users\\IRENE\\OneDrive\\Documentos\\NetBeansProjects\\InicioSesion\\src\\main\\java\\Imagenes\\me enoja.png")); // NOI18N
         jButton8.setBorderPainted(false);
         jButton8.setContentAreaFilled(false);
         jButton8.setFocusPainted(false);
 
-        jButton9.setIcon(new javax.swing.ImageIcon("C:\\Users\\IRENE\\OneDrive\\Documentos\\NetBeansProjects\\InicioSesion\\src\\main\\java\\Imagenes\\me entristece.png")); // NOI18N
         jButton9.setBorderPainted(false);
         jButton9.setContentAreaFilled(false);
         jButton9.setFocusPainted(false);
 
-        jButton10.setIcon(new javax.swing.ImageIcon("C:\\Users\\IRENE\\OneDrive\\Documentos\\NetBeansProjects\\InicioSesion\\src\\main\\java\\Imagenes\\me importa.png")); // NOI18N
         jButton10.setBorderPainted(false);
         jButton10.setContentAreaFilled(false);
         jButton10.setFocusPainted(false);
 
-        jButton11.setIcon(new javax.swing.ImageIcon("C:\\Users\\IRENE\\OneDrive\\Documentos\\NetBeansProjects\\InicioSesion\\src\\main\\java\\Imagenes\\me divierte.png")); // NOI18N
         jButton11.setBorderPainted(false);
         jButton11.setContentAreaFilled(false);
         jButton11.setFocusPainted(false);
 
-        jButton12.setIcon(new javax.swing.ImageIcon("C:\\Users\\IRENE\\OneDrive\\Documentos\\NetBeansProjects\\InicioSesion\\src\\main\\java\\Imagenes\\me asombra.png")); // NOI18N
         jButton12.setBorderPainted(false);
         jButton12.setContentAreaFilled(false);
         jButton12.setFocusPainted(false);
@@ -167,32 +147,28 @@ public class Notificaciones extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
                                 .addComponent(jButton3))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jButton6)
                                     .addComponent(jButton7)
                                     .addComponent(jButton8)
-                                    .addComponent(jButton10))
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                                    .addComponent(jButton10)
+                                    .addComponent(jButton9))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton9)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton11)
-                    .addComponent(jButton12))
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton11)
+                            .addComponent(jButton12))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -215,25 +191,23 @@ public class Notificaciones extends javax.swing.JFrame {
                 .addComponent(jButton11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton12)
-                .addContainerGap(87, Short.MAX_VALUE))
+                .addContainerGap(287, Short.MAX_VALUE))
         );
-
-        jButton7.getAccessibleContext().setAccessibleName("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(275, Short.MAX_VALUE))
+                .addContainerGap(87, Short.MAX_VALUE))
         );
 
         pack();
@@ -300,7 +274,6 @@ public class Notificaciones extends javax.swing.JFrame {
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
