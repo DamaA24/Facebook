@@ -58,6 +58,7 @@ public class Perfil extends javax.swing.JFrame {
         header.setBackground(new java.awt.Color(255, 255, 255));
 
         inicio.setForeground(new java.awt.Color(255, 255, 255));
+        inicio.setIcon(new javax.swing.ImageIcon("C:\\Users\\Elissa\\Documents\\NetBeansProjects\\Facebook\\src\\main\\java\\Imagenes\\inicio.png")); // NOI18N
         inicio.setBorder(null);
         inicio.setBorderPainted(false);
         inicio.setContentAreaFilled(false);
