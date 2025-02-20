@@ -97,6 +97,10 @@ public class FacebookFriends extends javax.swing.JFrame {
         jButton20 = new javax.swing.JButton();
         jButton19 = new javax.swing.JButton();
         jButton21 = new javax.swing.JButton();
+        jButton22 = new javax.swing.JButton();
+        jButton23 = new javax.swing.JButton();
+        jButton24 = new javax.swing.JButton();
+        jButton25 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -111,7 +115,6 @@ public class FacebookFriends extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(204, 204, 204));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\IRENE\\OneDrive\\Documentos\\NetBeansProjects\\InicioSesion\\src\\main\\java\\Imagenes\\verdePunt.PNG")); // NOI18N
         jButton1.setText("299 online");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -211,8 +214,6 @@ public class FacebookFriends extends javax.swing.JFrame {
         jButton5.setBackground(new java.awt.Color(204, 204, 204));
         jButton5.setText("Eliminar");
 
-        jLabel31.setIcon(new javax.swing.ImageIcon("C:\\Users\\IRENE\\OneDrive\\Documentos\\NetBeansProjects\\InicioSesion\\src\\main\\java\\Imagenes\\Usu.PNG")); // NOI18N
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -256,8 +257,6 @@ public class FacebookFriends extends javax.swing.JFrame {
                 .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 18, Short.MAX_VALUE))
         );
 
-        jLabel31.getAccessibleContext().setAccessibleName("");
-
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
@@ -282,8 +281,6 @@ public class FacebookFriends extends javax.swing.JFrame {
                 jButton7ActionPerformed(evt);
             }
         });
-
-        jLabel32.setIcon(new javax.swing.ImageIcon("C:\\Users\\IRENE\\OneDrive\\Documentos\\NetBeansProjects\\InicioSesion\\src\\main\\java\\Imagenes\\Usu.PNG")); // NOI18N
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -334,8 +331,6 @@ public class FacebookFriends extends javax.swing.JFrame {
         );
 
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel12.setIcon(new javax.swing.ImageIcon("C:\\Users\\IRENE\\OneDrive\\Documentos\\NetBeansProjects\\InicioSesion\\src\\main\\java\\Imagenes\\UsuH.PNG")); // NOI18N
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         jLabel13.setText("Alan Mijares");
@@ -424,8 +419,6 @@ public class FacebookFriends extends javax.swing.JFrame {
             }
         });
 
-        jLabel33.setIcon(new javax.swing.ImageIcon("C:\\Users\\IRENE\\OneDrive\\Documentos\\NetBeansProjects\\InicioSesion\\src\\main\\java\\Imagenes\\Usu.PNG")); // NOI18N
-
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
@@ -468,8 +461,6 @@ public class FacebookFriends extends javax.swing.JFrame {
         );
 
         jPanel11.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel18.setIcon(new javax.swing.ImageIcon("C:\\Users\\IRENE\\OneDrive\\Documentos\\NetBeansProjects\\InicioSesion\\src\\main\\java\\Imagenes\\UsuH.PNG")); // NOI18N
 
         jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         jLabel19.setText("Diego Saucedo");
@@ -532,8 +523,6 @@ public class FacebookFriends extends javax.swing.JFrame {
         jPanel12.setBackground(new java.awt.Color(255, 255, 255));
         jPanel12.setPreferredSize(new java.awt.Dimension(400, 128));
 
-        jLabel21.setIcon(new javax.swing.ImageIcon("C:\\Users\\IRENE\\OneDrive\\Documentos\\NetBeansProjects\\InicioSesion\\src\\main\\java\\Imagenes\\Usu.PNG")); // NOI18N
-
         jLabel22.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         jLabel22.setText("Mariel Vitela");
 
@@ -593,8 +582,6 @@ public class FacebookFriends extends javax.swing.JFrame {
 
         jPanel13.setBackground(new java.awt.Color(255, 255, 255));
         jPanel13.setPreferredSize(new java.awt.Dimension(400, 128));
-
-        jLabel28.setIcon(new javax.swing.ImageIcon("C:\\Users\\IRENE\\OneDrive\\Documentos\\NetBeansProjects\\InicioSesion\\src\\main\\java\\Imagenes\\Usu.PNG")); // NOI18N
 
         jLabel29.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         jLabel29.setText("Dayana Arellano");
@@ -695,7 +682,6 @@ public class FacebookFriends extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(204, 204, 204));
         jLabel8.setText("inicio");
 
-        jButton18.setIcon(new javax.swing.ImageIcon("C:\\Users\\IRENE\\OneDrive\\Documentos\\NetBeansProjects\\InicioSesion\\src\\main\\java\\Imagenes\\Camp.PNG")); // NOI18N
         jButton18.setBorderPainted(false);
         jButton18.setContentAreaFilled(false);
         jButton18.setFocusPainted(false);
@@ -705,7 +691,6 @@ public class FacebookFriends extends javax.swing.JFrame {
             }
         });
 
-        jButton20.setIcon(new javax.swing.ImageIcon("C:\\Users\\IRENE\\OneDrive\\Documentos\\NetBeansProjects\\InicioSesion\\src\\main\\java\\Imagenes\\Cas.png")); // NOI18N
         jButton20.setBorderPainted(false);
         jButton20.setContentAreaFilled(false);
         jButton20.setFocusPainted(false);
@@ -715,7 +700,6 @@ public class FacebookFriends extends javax.swing.JFrame {
             }
         });
 
-        jButton19.setIcon(new javax.swing.ImageIcon("C:\\Users\\IRENE\\OneDrive\\Documentos\\NetBeansProjects\\InicioSesion\\src\\main\\java\\Imagenes\\Me.PNG")); // NOI18N
         jButton19.setBorderPainted(false);
         jButton19.setContentAreaFilled(false);
         jButton19.addActionListener(new java.awt.event.ActionListener() {
@@ -725,11 +709,25 @@ public class FacebookFriends extends javax.swing.JFrame {
         });
 
         jButton21.setForeground(new java.awt.Color(255, 255, 255));
-        jButton21.setIcon(new javax.swing.ImageIcon("C:\\Users\\IRENE\\OneDrive\\Documentos\\NetBeansProjects\\InicioSesion\\src\\main\\java\\Imagenes\\am.PNG")); // NOI18N
         jButton21.setBorder(null);
         jButton21.setBorderPainted(false);
         jButton21.setContentAreaFilled(false);
         jButton21.setFocusPainted(false);
+
+        jButton22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/inicio.png"))); // NOI18N
+        jButton22.setBorderPainted(false);
+        jButton22.setContentAreaFilled(false);
+        jButton22.setFocusPainted(false);
+
+        jButton23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/amigos.png"))); // NOI18N
+        jButton23.setBorderPainted(false);
+        jButton23.setContentAreaFilled(false);
+        jButton23.setFocusPainted(false);
+
+        jButton24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/boton-de-notificaciones.png"))); // NOI18N
+        jButton24.setBorderPainted(false);
+        jButton24.setContentAreaFilled(false);
+        jButton24.setFocusPainted(false);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -745,16 +743,26 @@ public class FacebookFriends extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel27)
-                            .addComponent(jButton20, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel24)
-                        .addGap(50, 50, 50)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(31, 31, 31)
+                                .addComponent(jButton22)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton20, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton23, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel24)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton24)))
+                        .addGap(12, 12, 12)
                         .addComponent(jButton21)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel25)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton25)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton18)
-                        .addGap(46, 46, 46)
+                        .addGap(137, 137, 137)
                         .addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
         );
@@ -765,7 +773,10 @@ public class FacebookFriends extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jButton20, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jButton23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton20, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                                    .addComponent(jButton22))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel27))
                             .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -775,7 +786,11 @@ public class FacebookFriends extends javax.swing.JFrame {
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton21)
-                            .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton24)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jButton25)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -786,7 +801,7 @@ public class FacebookFriends extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -845,11 +860,11 @@ public class FacebookFriends extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton16ActionPerformed
 
-    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+    private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
         this.dispose();
-        Notificaciones not = new Notificaciones();
-        not.setVisible(true);
-    }//GEN-LAST:event_jButton18ActionPerformed
+        Menuframe mf = new Menuframe();
+        mf.setVisible(true);
+    }//GEN-LAST:event_jButton19ActionPerformed
 
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
         this.dispose();
@@ -857,11 +872,11 @@ public class FacebookFriends extends javax.swing.JFrame {
         in.setVisible(true);
     }//GEN-LAST:event_jButton20ActionPerformed
 
-    private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
+    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
         this.dispose();
-        Menuframe mf = new Menuframe();
-        mf.setVisible(true);
-    }//GEN-LAST:event_jButton19ActionPerformed
+        Notificaciones not = new Notificaciones();
+        not.setVisible(true);
+    }//GEN-LAST:event_jButton18ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -882,6 +897,10 @@ public class FacebookFriends extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton21;
+    private javax.swing.JButton jButton22;
+    private javax.swing.JButton jButton23;
+    private javax.swing.JButton jButton24;
+    private javax.swing.JButton jButton25;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
