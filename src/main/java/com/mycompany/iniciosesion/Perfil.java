@@ -26,326 +26,140 @@ public class Perfil extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        header = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        background = new javax.swing.JPanel();
+        barramenu = new javax.swing.JPanel();
         inicio = new javax.swing.JButton();
-        amigos = new javax.swing.JButton();
-        usuario = new javax.swing.JButton();
-        notificaciones = new javax.swing.JButton();
         menu = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
-        detalles = new javax.swing.JLabel();
-        añadirhistoria = new javax.swing.JLabel();
-        nuevahistoria = new javax.swing.JLabel();
-        editdetalles = new javax.swing.JLabel();
-        amigos2 = new javax.swing.JLabel();
-        buscaramigos = new javax.swing.JLabel();
-        totalamigos = new javax.swing.JLabel();
-        a1 = new javax.swing.JLabel();
-        a2 = new javax.swing.JLabel();
-        a3 = new javax.swing.JLabel();
-        a4 = new javax.swing.JLabel();
-        a5 = new javax.swing.JLabel();
-        a6 = new javax.swing.JLabel();
-        veramigos = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        nameusuario = new javax.swing.JLabel();
-        not2 = new javax.swing.JButton();
-        modperfil = new javax.swing.JButton();
+        perfil = new javax.swing.JButton();
+        amigos = new javax.swing.JButton();
+        notificaciones = new javax.swing.JButton();
+        infousuario = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        header.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
 
-        inicio.setForeground(new java.awt.Color(255, 255, 255));
+        barramenu.setBackground(new java.awt.Color(255, 255, 255));
+
+        inicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/inicio.png"))); // NOI18N
         inicio.setBorder(null);
         inicio.setBorderPainted(false);
         inicio.setContentAreaFilled(false);
         inicio.setFocusPainted(false);
-        inicio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inicioActionPerformed(evt);
-            }
-        });
 
-        amigos.setForeground(new java.awt.Color(255, 255, 255));
-        amigos.setBorder(null);
-        amigos.setBorderPainted(false);
-        amigos.setContentAreaFilled(false);
-        amigos.setFocusPainted(false);
-        amigos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                amigosActionPerformed(evt);
-            }
-        });
-
-        usuario.setBorder(null);
-        usuario.setBorderPainted(false);
-        usuario.setContentAreaFilled(false);
-        usuario.setFocusPainted(false);
-
-        notificaciones.setBorder(null);
-        notificaciones.setBorderPainted(false);
-        notificaciones.setContentAreaFilled(false);
-        notificaciones.setFocusPainted(false);
-
+        menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu.png"))); // NOI18N
         menu.setBorder(null);
         menu.setBorderPainted(false);
         menu.setContentAreaFilled(false);
         menu.setFocusPainted(false);
-        menu.addActionListener(new java.awt.event.ActionListener() {
+
+        perfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/usuario.png"))); // NOI18N
+        perfil.setBorder(null);
+        perfil.setBorderPainted(false);
+        perfil.setContentAreaFilled(false);
+        perfil.setFocusPainted(false);
+
+        amigos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/amigos.png"))); // NOI18N
+        amigos.setBorder(null);
+        amigos.setBorderPainted(false);
+        amigos.setContentAreaFilled(false);
+        amigos.setFocusPainted(false);
+
+        notificaciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/notificaciones.png"))); // NOI18N
+        notificaciones.setBorder(null);
+        notificaciones.setBorderPainted(false);
+        notificaciones.setContentAreaFilled(false);
+        notificaciones.setFocusPainted(false);
+        notificaciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuActionPerformed(evt);
+                notificacionesActionPerformed(evt);
             }
         });
 
-        jButton1.setBorder(null);
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.setFocusPainted(false);
-
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-
-        detalles.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        detalles.setText("Detalles");
-
-        nuevahistoria.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
-        nuevahistoria.setText(" NEW");
-        nuevahistoria.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        editdetalles.setBackground(new java.awt.Color(102, 153, 255));
-        editdetalles.setForeground(new java.awt.Color(0, 51, 255));
-        editdetalles.setText("Editar detalles públicos");
-
-        amigos2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        amigos2.setText("Amigos");
-
-        buscaramigos.setForeground(new java.awt.Color(0, 51, 255));
-        buscaramigos.setText("Buscar amigos");
-
-        totalamigos.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        totalamigos.setText("6 amigos");
-
-        a1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        a1.setText("Leslie");
-        a1.setToolTipText("");
-        a1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        a1.setVerifyInputWhenFocusTarget(false);
-        a1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-
-        a2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        a2.setText("Michelle");
-        a2.setToolTipText("");
-        a2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        a2.setVerifyInputWhenFocusTarget(false);
-        a2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-
-        a3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        a3.setText("Damaris");
-        a3.setToolTipText("");
-        a3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        a3.setVerifyInputWhenFocusTarget(false);
-        a3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-
-        a4.setText("Diego");
-        a4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        a4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-
-        a5.setText("Alan");
-        a5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        a5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-
-        a6.setText("Mariel");
-        a6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        a6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-
-        veramigos.setText("Ver todos los amigos");
-
-        jButton2.setBackground(new java.awt.Color(153, 204, 255));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(0, 0, 153));
-        jButton2.setText("Publicaciones");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(veramigos)
-                .addGap(69, 69, 69))
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        javax.swing.GroupLayout barramenuLayout = new javax.swing.GroupLayout(barramenu);
+        barramenu.setLayout(barramenuLayout);
+        barramenuLayout.setHorizontalGroup(
+            barramenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(barramenuLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addComponent(a1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(a3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addComponent(a4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(a5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addComponent(totalamigos)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(7, 7, 7)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(amigos2)
-                                    .addComponent(editdetalles)))
-                            .addComponent(detalles)
-                            .addComponent(añadirhistoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(nuevahistoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(a2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(a6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(buscaramigos))
-                        .addGap(0, 11, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addComponent(inicio)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addComponent(amigos)
+                .addGap(51, 51, 51)
+                .addComponent(perfil)
+                .addGap(46, 46, 46)
+                .addComponent(notificaciones)
+                .addGap(51, 51, 51)
+                .addComponent(menu)
+                .addContainerGap())
         );
-
-        jPanel3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {añadirhistoria, nuevahistoria});
-
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        barramenuLayout.setVerticalGroup(
+            barramenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(barramenuLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(detalles)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(añadirhistoria, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(nuevahistoria)
-                .addGap(14, 14, 14)
-                .addComponent(editdetalles)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(amigos2)
-                    .addComponent(buscaramigos))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(totalamigos)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(a3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(a2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(a1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(a6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(a5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(a4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(veramigos)
+                .addGroup(barramenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(perfil)
+                    .addGroup(barramenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(menu, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(inicio))
+                    .addComponent(amigos)
+                    .addComponent(notificaciones))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        nameusuario.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        nameusuario.setText("Nombre Usuario");
+        infousuario.setBackground(new java.awt.Color(255, 255, 255));
 
-        not2.setBorderPainted(false);
-        not2.setContentAreaFilled(false);
-        not2.setFocusPainted(false);
-
-        modperfil.setBorderPainted(false);
-        modperfil.setContentAreaFilled(false);
-        modperfil.setFocusPainted(false);
-
-        javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
-        header.setLayout(headerLayout);
-        headerLayout.setHorizontalGroup(
-            headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(headerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(headerLayout.createSequentialGroup()
-                        .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(headerLayout.createSequentialGroup()
-                                .addComponent(inicio)
-                                .addGap(26, 26, 26)
-                                .addComponent(amigos)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(usuario))
-                            .addGroup(headerLayout.createSequentialGroup()
-                                .addComponent(nameusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(not2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(32, 32, 32)
-                        .addComponent(notificaciones)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(modperfil, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(menu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(headerLayout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+        javax.swing.GroupLayout infousuarioLayout = new javax.swing.GroupLayout(infousuario);
+        infousuario.setLayout(infousuarioLayout);
+        infousuarioLayout.setHorizontalGroup(
+            infousuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
-        headerLayout.setVerticalGroup(
-            headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(headerLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(inicio, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(amigos))
-                        .addComponent(usuario))
-                    .addComponent(notificaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(modperfil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(nameusuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(not2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+        infousuarioLayout.setVerticalGroup(
+            infousuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
         );
+
+        javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
+        background.setLayout(backgroundLayout);
+        backgroundLayout.setHorizontalGroup(
+            backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(backgroundLayout.createSequentialGroup()
+                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(infousuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(barramenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
+        );
+        backgroundLayout.setVerticalGroup(
+            backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(backgroundLayout.createSequentialGroup()
+                .addComponent(barramenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(infousuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 614, Short.MAX_VALUE))
+        );
+
+        jScrollPane1.setViewportView(background);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jScrollPane1)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void inicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inicioActionPerformed
-        
-    }//GEN-LAST:event_inicioActionPerformed
-
-    private void amigosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amigosActionPerformed
+    private void notificacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notificacionesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_amigosActionPerformed
-
-    private void menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_notificacionesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -382,31 +196,14 @@ public class Perfil extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel a1;
-    private javax.swing.JLabel a2;
-    private javax.swing.JLabel a3;
-    private javax.swing.JLabel a4;
-    private javax.swing.JLabel a5;
-    private javax.swing.JLabel a6;
     private javax.swing.JButton amigos;
-    private javax.swing.JLabel amigos2;
-    private javax.swing.JLabel añadirhistoria;
-    private javax.swing.JLabel buscaramigos;
-    private javax.swing.JLabel detalles;
-    private javax.swing.JLabel editdetalles;
-    private javax.swing.JPanel header;
+    private javax.swing.JPanel background;
+    private javax.swing.JPanel barramenu;
+    private javax.swing.JPanel infousuario;
     private javax.swing.JButton inicio;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton menu;
-    private javax.swing.JButton modperfil;
-    private javax.swing.JLabel nameusuario;
-    private javax.swing.JButton not2;
     private javax.swing.JButton notificaciones;
-    private javax.swing.JLabel nuevahistoria;
-    private javax.swing.JLabel totalamigos;
-    private javax.swing.JButton usuario;
-    private javax.swing.JLabel veramigos;
+    private javax.swing.JButton perfil;
     // End of variables declaration//GEN-END:variables
 }
