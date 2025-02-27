@@ -214,13 +214,13 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jPanel12" alignment="1" pref="2176" max="32767" attributes="0"/>
+                          <Component id="jPanel12" alignment="1" pref="2178" max="32767" attributes="0"/>
                           <Component id="jPanel11" alignment="1" max="32767" attributes="0"/>
                           <Component id="jPanel9" alignment="1" max="32767" attributes="0"/>
                           <Component id="jPanel8" alignment="1" max="32767" attributes="0"/>
                           <Component id="jPanel3" alignment="1" max="32767" attributes="0"/>
                           <Component id="jPanel10" max="32767" attributes="0"/>
-                          <Component id="jPanel13" alignment="1" pref="2176" max="32767" attributes="0"/>
+                          <Component id="jPanel13" alignment="1" pref="2178" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -1086,6 +1086,9 @@
             <Property name="contentAreaFilled" type="boolean" value="false"/>
             <Property name="focusPainted" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton22ActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
