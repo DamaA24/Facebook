@@ -221,9 +221,9 @@ public class IniciarSesion extends javax.swing.JFrame {
 
     private boolean verificarLogin(String usuario, String contrasena) {
         
-        String url = "jdbc:mysql://localhost:3306/facebook";
-        String dbUsuario = "root"; 
-        String dbContrasena = ""; 
+        String url = "jdbc:mysql://148.210.171.244:3306/facebook";
+        String dbUsuario = "AlanMijares"; 
+        String dbContrasena = "1"; 
 
        
         String query = "SELECT * FROM usuarios WHERE correo = ? AND contraseña = ?";
