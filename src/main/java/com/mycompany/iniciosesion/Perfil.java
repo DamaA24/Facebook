@@ -47,24 +47,44 @@ public class Perfil extends javax.swing.JFrame {
         inicio.setBorderPainted(false);
         inicio.setContentAreaFilled(false);
         inicio.setFocusPainted(false);
+        inicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inicioActionPerformed(evt);
+            }
+        });
 
         menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu.png"))); // NOI18N
         menu.setBorder(null);
         menu.setBorderPainted(false);
         menu.setContentAreaFilled(false);
         menu.setFocusPainted(false);
+        menu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuActionPerformed(evt);
+            }
+        });
 
         perfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/usuario.png"))); // NOI18N
         perfil.setBorder(null);
         perfil.setBorderPainted(false);
         perfil.setContentAreaFilled(false);
         perfil.setFocusPainted(false);
+        perfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                perfilActionPerformed(evt);
+            }
+        });
 
         amigos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/amigos.png"))); // NOI18N
         amigos.setBorder(null);
         amigos.setBorderPainted(false);
         amigos.setContentAreaFilled(false);
         amigos.setFocusPainted(false);
+        amigos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                amigosActionPerformed(evt);
+            }
+        });
 
         notificaciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/notificaciones.png"))); // NOI18N
         notificaciones.setBorder(null);
@@ -158,8 +178,34 @@ public class Perfil extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void notificacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notificacionesActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
+        Notificaciones N = new Notificaciones();
+        N.setVisible(true);
     }//GEN-LAST:event_notificacionesActionPerformed
+
+    private void inicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inicioActionPerformed
+        this.dispose();
+        InicioF IF = new InicioF();
+        IF.setVisible(true);
+    }//GEN-LAST:event_inicioActionPerformed
+
+    private void amigosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amigosActionPerformed
+        this.dispose();
+        FacebookFriends FF = new FacebookFriends();
+        FF.setVisible(true);
+    }//GEN-LAST:event_amigosActionPerformed
+
+    private void perfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_perfilActionPerformed
+        this.dispose();
+        Perfil P = new Perfil();
+        P.setVisible(true);
+    }//GEN-LAST:event_perfilActionPerformed
+
+    private void menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuActionPerformed
+        this.dispose();
+        Menuframe Mf = new Menuframe();
+        Mf.setVisible(true);
+    }//GEN-LAST:event_menuActionPerformed
 
     /**
      * @param args the command line arguments

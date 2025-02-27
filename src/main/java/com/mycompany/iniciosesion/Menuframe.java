@@ -106,7 +106,7 @@ public class Menuframe extends javax.swing.JFrame {
         labelGente.setText("Gente de CU");
 
         btnGuardado.setBackground(new java.awt.Color(153, 153, 153));
-        btnGuardado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/marcador.png"))); // NOI18N
+        btnGuardado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/marcador.png"))); // NOI18N
         btnGuardado.setText("Guardado");
 
         btnRecuerdos.setBackground(new java.awt.Color(153, 153, 153));
