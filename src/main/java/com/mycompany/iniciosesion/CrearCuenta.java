@@ -290,7 +290,7 @@ public class CrearCuenta extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // Obtener los valores de los campos
+
         String nombre = Nombre.getText();
         String apellido = Apellido.getText();
         String correo = Correo.getText();
@@ -310,7 +310,7 @@ public class CrearCuenta extends javax.swing.JFrame {
                 String fechaNacimiento = String.format("%04d-%02d-%02d", año, mes, dia);
 
                 // Conexión a la base de datos
-                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/facebook", "root", "");
+                Connection con = DriverManager.getConnection("jdbc:mysql://148.210.171.244:3306/facebook", "AlanMijares", "1");
 
                 // Verificar si el correo ya está registrado
                 String queryVerificarCorreo = "SELECT COUNT(*) FROM usuarios WHERE correo = ?";
