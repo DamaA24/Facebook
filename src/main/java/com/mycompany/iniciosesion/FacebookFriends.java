@@ -818,7 +818,7 @@ public class FacebookFriends extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton29ActionPerformed
 
     private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
-        his.dispose();
+        this.dispose();
         FacebookFriends FF = new FacebookFriends();
         FF.setVisible(true);
     }//GEN-LAST:event_jButton23ActionPerformed
