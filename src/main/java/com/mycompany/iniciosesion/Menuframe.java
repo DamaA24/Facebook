@@ -33,241 +33,249 @@ public class Menuframe extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
-        btnInicio = new javax.swing.JButton();
-        btnMenu = new javax.swing.JButton();
-        btnAmigos = new javax.swing.JButton();
-        btnPerfil = new javax.swing.JButton();
-        btnNotificaciones = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JSeparator();
+        InicioBtn = new javax.swing.JButton();
+        AmigosBtn = new javax.swing.JButton();
+        PerfilBtn = new javax.swing.JButton();
+        NotificacionesBtn = new javax.swing.JButton();
+        MenuBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        btnConfiguracion = new javax.swing.JButton();
-        btnBuscar = new javax.swing.JButton();
-        btnPerfil2 = new javax.swing.JButton();
-        btnCrearperfil = new javax.swing.JButton();
-        labelAccesoDirecto = new javax.swing.JLabel();
-        btnGrupocu = new javax.swing.JButton();
-        labelGente = new javax.swing.JLabel();
-        btnGuardado = new javax.swing.JButton();
-        btnRecuerdos = new javax.swing.JButton();
-        btnGrupos = new javax.swing.JButton();
-        btnVideo = new javax.swing.JButton();
-        btnFeeds = new javax.swing.JButton();
-        btnBuscarAmigos = new javax.swing.JButton();
-        btnVerMas = new javax.swing.JButton();
-        btnAyuda = new javax.swing.JButton();
-        btnConfigyPriv = new javax.swing.JButton();
-        btnAccesoPro = new javax.swing.JButton();
-        btnCerrarSesion = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JSeparator();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
+        jButton11 = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        jButton12 = new javax.swing.JButton();
+        jButton13 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        btnInicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/hogar.png"))); // NOI18N
-        btnInicio.addActionListener(new java.awt.event.ActionListener() {
+        InicioBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/inicio.png"))); // NOI18N
+        InicioBtn.setBorder(null);
+        InicioBtn.setBorderPainted(false);
+        InicioBtn.setContentAreaFilled(false);
+
+        AmigosBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/amigos.png"))); // NOI18N
+        AmigosBtn.setBorder(null);
+        AmigosBtn.setBorderPainted(false);
+        AmigosBtn.setContentAreaFilled(false);
+
+        PerfilBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/usuario.png"))); // NOI18N
+        PerfilBtn.setBorder(null);
+        PerfilBtn.setBorderPainted(false);
+        PerfilBtn.setContentAreaFilled(false);
+
+        NotificacionesBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/notificaciones.png"))); // NOI18N
+        NotificacionesBtn.setBorder(null);
+        NotificacionesBtn.setBorderPainted(false);
+        NotificacionesBtn.setContentAreaFilled(false);
+
+        MenuBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu.png"))); // NOI18N
+        MenuBtn.setBorder(null);
+        MenuBtn.setBorderPainted(false);
+        MenuBtn.setContentAreaFilled(false);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setText("Menú");
+
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/configuracion-gear.png"))); // NOI18N
+        jButton6.setBorder(null);
+        jButton6.setBorderPainted(false);
+        jButton6.setContentAreaFilled(false);
+
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/searchp.png"))); // NOI18N
+        jButton7.setBorder(null);
+        jButton7.setBorderPainted(false);
+        jButton7.setContentAreaFilled(false);
+
+        jButton8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/usuario.png"))); // NOI18N
+        jButton8.setText("Desconocido");
+
+        jButton9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jButton9.setText("Crear nueva página o perfil");
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setText("Tus accesos directos");
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grupos.png"))); // NOI18N
+        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton1.setBorderPainted(false);
+        jButton1.setContentAreaFilled(false);
+
+        jLabel3.setText("Gente de CU");
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/marcador.png"))); // NOI18N
+        jButton2.setText("Guardado");
+        jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jButton2.setContentAreaFilled(false);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInicioActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });
 
-        btnMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/menu.png"))); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recuerdos.png"))); // NOI18N
+        jButton3.setText("Recuerdos");
+        jButton3.setToolTipText("");
+        jButton3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jButton3.setContentAreaFilled(false);
 
-        btnAmigos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/amigo.png"))); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grupos24.png"))); // NOI18N
+        jButton4.setText("Grupos");
+        jButton4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jButton4.setContentAreaFilled(false);
 
-        btnPerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/avatar.png"))); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/video2.png"))); // NOI18N
+        jButton5.setText("Video");
+        jButton5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jButton5.setContentAreaFilled(false);
 
-        btnNotificaciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/boton-de-notificaciones.png"))); // NOI18N
+        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buscaramigo.png"))); // NOI18N
+        jButton10.setText("Buscar amigos");
+        jButton10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jButton10.setContentAreaFilled(false);
 
-        jSeparator1.setBackground(new java.awt.Color(206, 206, 206));
+        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/feed-de-actividades.png"))); // NOI18N
+        jButton11.setText("Feeds");
+        jButton11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jButton11.setContentAreaFilled(false);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
-        jLabel1.setText("Menú");
+        jButton12.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pregunta.png"))); // NOI18N
+        jButton12.setText("Ayuda y soporte técnico");
 
-        btnConfiguracion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/configuracion-gear.png"))); // NOI18N
-
-        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/lupa.png"))); // NOI18N
-
-        btnPerfil2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnPerfil2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/perfildesconocido.png"))); // NOI18N
-        btnPerfil2.setText("Desconocido");
-
-        btnCrearperfil.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnCrearperfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/mas.png"))); // NOI18N
-        btnCrearperfil.setText("Crear nuevo perfil o página");
-
-        labelAccesoDirecto.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        labelAccesoDirecto.setText("Tus accesos directos");
-
-        btnGrupocu.setBackground(new java.awt.Color(0, 0, 0));
-        btnGrupocu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/grupo.png"))); // NOI18N
-
-        labelGente.setText("Gente de CU");
-
-        btnGuardado.setBackground(new java.awt.Color(153, 153, 153));
-        btnGuardado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/marcador.png"))); // NOI18N
-        btnGuardado.setText("Guardado");
-
-        btnRecuerdos.setBackground(new java.awt.Color(153, 153, 153));
-        btnRecuerdos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/recuerdos.png"))); // NOI18N
-        btnRecuerdos.setText("Recuerdos");
-
-        btnGrupos.setBackground(new java.awt.Color(153, 153, 153));
-        btnGrupos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/grupos24.png"))); // NOI18N
-        btnGrupos.setText("Grupos");
-
-        btnVideo.setBackground(new java.awt.Color(153, 153, 153));
-        btnVideo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/videos.png"))); // NOI18N
-        btnVideo.setText("Video");
-
-        btnFeeds.setBackground(new java.awt.Color(153, 153, 153));
-        btnFeeds.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/feed-de-actividades.png"))); // NOI18N
-        btnFeeds.setText("Feeds");
-
-        btnBuscarAmigos.setBackground(new java.awt.Color(153, 153, 153));
-        btnBuscarAmigos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscaramigo.png"))); // NOI18N
-        btnBuscarAmigos.setText("Buscar Amigos");
-
-        btnVerMas.setBackground(new java.awt.Color(153, 153, 153));
-        btnVerMas.setText("Ver más");
-
-        btnAyuda.setBackground(new java.awt.Color(153, 153, 153));
-        btnAyuda.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnAyuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/pregunta.png"))); // NOI18N
-        btnAyuda.setText("Ayuda y soporte técnico");
-
-        btnConfigyPriv.setBackground(new java.awt.Color(153, 153, 153));
-        btnConfigyPriv.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnConfigyPriv.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ajustes.png"))); // NOI18N
-        btnConfigyPriv.setText("Configuración y privacidad");
-
-        btnAccesoPro.setBackground(new java.awt.Color(153, 153, 153));
-        btnAccesoPro.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnAccesoPro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/intereses.png"))); // NOI18N
-        btnAccesoPro.setText("Acceso profesional");
-
-        btnCerrarSesion.setBackground(new java.awt.Color(102, 102, 102));
-        btnCerrarSesion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnCerrarSesion.setText("Cerrar sesión");
+        jButton13.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ajustes.png"))); // NOI18N
+        jButton13.setText("Configuración y privacidad");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator1)
+            .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnAyuda, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnConfigyPriv, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnAccesoPro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCrearperfil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnPerfil2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnInicio)
-                        .addGap(31, 31, 31)
-                        .addComponent(btnAmigos)
-                        .addGap(32, 32, 32)
-                        .addComponent(btnPerfil)
-                        .addGap(26, 26, 26)
-                        .addComponent(btnNotificaciones)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnMenu)
-                        .addContainerGap(17, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnConfiguracion)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnBuscar)
-                        .addGap(15, 15, 15))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(btnGrupos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(labelAccesoDirecto, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnGrupocu, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelGente, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnGuardado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnFeeds, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnRecuerdos, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(15, 15, 15))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnVideo, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnBuscarAmigos))
-                                .addContainerGap())))
-                    .addComponent(btnVerMas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCerrarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(InicioBtn)
+                                .addGap(50, 50, 50)
+                                .addComponent(AmigosBtn)
+                                .addGap(45, 45, 45)
+                                .addComponent(PerfilBtn)
+                                .addGap(49, 49, 49)
+                                .addComponent(NotificacionesBtn)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(MenuBtn))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton7)))
+                        .addGap(14, 14, 14))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButton8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jLabel2))
+                            .addComponent(jButton9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton1)
+                            .addComponent(jLabel3)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jSeparator1)
+                            .addComponent(jButton12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 15, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(btnPerfil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnAmigos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(btnNotificaciones))
+                    .addComponent(InicioBtn)
+                    .addComponent(NotificacionesBtn)
+                    .addComponent(AmigosBtn)
+                    .addComponent(MenuBtn)
+                    .addComponent(PerfilBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(btnBuscar)
-                    .addComponent(btnConfiguracion))
-                .addGap(23, 23, 23)
-                .addComponent(btnPerfil2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnCrearperfil, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton6))
+                    .addComponent(jButton7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(labelAccesoDirecto)
+                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnGrupocu, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelGente)
-                .addGap(26, 26, 26)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnGuardado, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnRecuerdos, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnGrupos, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
-                    .addComponent(btnVideo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnFeeds, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
-                    .addComponent(btnBuscarAmigos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnVerMas)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnAyuda, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnConfigyPriv, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnAccesoPro, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(btnCerrarSesion)
-                .addGap(0, 14, Short.MAX_VALUE))
+                .addComponent(jButton13)
+                .addGap(569, 569, 569))
         );
 
         jScrollPane1.setViewportView(jPanel1);
 
-        getContentPane().add(jScrollPane1, java.awt.BorderLayout.PAGE_END);
+        getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
-        this.dispose();
-        InicioF in = new InicioF();
-        in.setVisible(true);
-    }//GEN-LAST:event_btnInicioActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -306,32 +314,30 @@ public class Menuframe extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAccesoPro;
-    private javax.swing.JButton btnAmigos;
-    private javax.swing.JButton btnAyuda;
-    private javax.swing.JButton btnBuscar;
-    private javax.swing.JButton btnBuscarAmigos;
-    private javax.swing.JButton btnCerrarSesion;
-    private javax.swing.JButton btnConfiguracion;
-    private javax.swing.JButton btnConfigyPriv;
-    private javax.swing.JButton btnCrearperfil;
-    private javax.swing.JButton btnFeeds;
-    private javax.swing.JButton btnGrupocu;
-    private javax.swing.JButton btnGrupos;
-    private javax.swing.JButton btnGuardado;
-    private javax.swing.JButton btnInicio;
-    private javax.swing.JButton btnMenu;
-    private javax.swing.JButton btnNotificaciones;
-    private javax.swing.JButton btnPerfil;
-    private javax.swing.JButton btnPerfil2;
-    private javax.swing.JButton btnRecuerdos;
-    private javax.swing.JButton btnVerMas;
-    private javax.swing.JButton btnVideo;
+    private javax.swing.JButton AmigosBtn;
+    private javax.swing.JButton InicioBtn;
+    private javax.swing.JButton MenuBtn;
+    private javax.swing.JButton NotificacionesBtn;
+    private javax.swing.JButton PerfilBtn;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JLabel labelAccesoDirecto;
-    private javax.swing.JLabel labelGente;
+    private javax.swing.JSeparator jSeparator2;
     // End of variables declaration//GEN-END:variables
 }
