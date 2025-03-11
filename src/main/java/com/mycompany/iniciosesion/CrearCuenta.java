@@ -291,15 +291,20 @@ public class CrearCuenta extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
-        String nombre = Nombre.getText();
-        String apellido = Apellido.getText();
-        String correo = Correo.getText();
-        String contraseña = Contraseña.getText();  // Cambiado de JPasswordField a JTextField para tu requerimiento
-        int dia = (int) spinnerDia.getValue();
-        int mes = (int) spinnerMes.getValue();
-        int año = (int) spinnerAño.getValue();
-        String numero = Numero.getText();
-        String genero = (String) comboGenero.getSelectedItem();
+         String nombre = Nombre.getText();
+    String apellido = Apellido.getText();
+    String correo = Correo.getText();
+    String contraseña = Contraseña.getText();  // Cambiado de JPasswordField a JTextField para tu requerimiento
+    int dia = (int) spinnerDia.getValue();
+    int mes = (int) spinnerMes.getValue();
+    int año = (int) spinnerAño.getValue();
+    String numero = Numero.getText();
+    String genero = (String) comboGenero.getSelectedItem();
+    String formacionAcademica = ""; // Obtener el valor de formación académica
+    String lugarResidencia = "";
+
+    
+        
 
         // Validar que no haya campos vacíos
         if (nombre.isEmpty() || apellido.isEmpty() || correo.isEmpty() || contraseña.isEmpty() || numero.isEmpty()) {
@@ -308,12 +313,16 @@ public class CrearCuenta extends javax.swing.JFrame {
             try {
                 // Crear fecha de nacimiento en formato DATE
                 String fechaNacimiento = String.format("%04d-%02d-%02d", año, mes, dia);
+                java.sql.Date fechaRegistro = new java.sql.Date(System.currentTimeMillis());
+                byte[] fotoPerfil = null;
+                String nombreArchivoFoto = "default.jpg";
+                String estadoPerfil = "activo"; 
 
                 // Conexión a la base de datos
-                Connection con = DriverManager.getConnection("jdbc:mysql://148.210.171.244:3306/facebook", "AlanMijares", "1");
+                Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/facebook", "AlanMijares", "1");
 
                 // Verificar si el correo ya está registrado
-                String queryVerificarCorreo = "SELECT COUNT(*) FROM usuarios WHERE correo = ?";
+                String queryVerificarCorreo = "SELECT COUNT(*) FROM perfil_usuario WHERE Correo_electronico = ?";
                 PreparedStatement stVerificar = con.prepareStatement(queryVerificarCorreo);
                 stVerificar.setString(1, correo);
                 ResultSet rs = stVerificar.executeQuery();
@@ -324,15 +333,22 @@ public class CrearCuenta extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "El correo electrónico ya está registrado.");
                 } else {
                     // Si el correo no está registrado, crear la cuenta
-                    String queryInsertar = "INSERT INTO usuarios (nombre, apellido, correo, contraseña, fecha_nacimiento, numero, genero) VALUES (?, ?, ?, ?, ?, ?, ?)";
+                    String queryInsertar = "INSERT INTO perfil_usuario (Nombre, Apellido, Correo_electronico, Contraseña, Telefono, Foto_perfil, Nombre_archivo_foto, Fecha_nacimiento, Genero, Formacion_academica, Lugar_residencia, Fecha_registro, Estado_perfil) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                     PreparedStatement stInsertar = con.prepareStatement(queryInsertar);
                     stInsertar.setString(1, nombre);
                     stInsertar.setString(2, apellido);
                     stInsertar.setString(3, correo);
-                    stInsertar.setString(4, contraseña);
-                    stInsertar.setDate(5, Date.valueOf(fechaNacimiento));  // Fecha de nacimiento en formato DATE
-                    stInsertar.setString(6, numero);
-                    stInsertar.setString(7, genero);
+                    stInsertar.setString(4, contraseña);  // Usando la contraseña como texto, aunque normalmente deberías cifrarla
+                    stInsertar.setString(5, numero);
+                    stInsertar.setNull(6, java.sql.Types.BLOB);
+                    stInsertar.setString(7, nombreArchivoFoto);
+                    stInsertar.setDate(8, Date.valueOf(fechaNacimiento));  // Fecha de nacimiento en formato DATE
+                    stInsertar.setString(9, genero);
+                    stInsertar.setString(10, formacionAcademica);
+                    stInsertar.setString(11, lugarResidencia);
+                    stInsertar.setDate(12, fechaRegistro); // Fecha actual como Fecha_registro
+                    stInsertar.setString(13, estadoPerfil);
+                    
                     int filasAfectadas = stInsertar.executeUpdate();
 
                     if (filasAfectadas > 0) {

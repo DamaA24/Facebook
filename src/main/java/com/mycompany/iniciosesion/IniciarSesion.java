@@ -221,12 +221,12 @@ public class IniciarSesion extends javax.swing.JFrame {
 
     private boolean verificarLogin(String usuario, String contrasena) {
         
-        String url = "jdbc:mysql://148.210.171.244:3306/facebook";
+        String url = "jdbc:mysql://127.0.0.1:3306/facebook";
         String dbUsuario = "AlanMijares"; 
         String dbContrasena = "1"; 
 
        
-        String query = "SELECT * FROM usuarios WHERE correo = ? AND contraseña = ?";
+        String query = "SELECT * FROM perfil_usuario WHERE correo_electronico = ? AND contraseña = ?";
 
         try (Connection conn = DriverManager.getConnection(url, dbUsuario, dbContrasena);
              PreparedStatement stmt = conn.prepareStatement(query)) {
