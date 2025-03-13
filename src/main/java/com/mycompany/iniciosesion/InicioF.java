@@ -506,6 +506,8 @@ public class InicioF extends javax.swing.JFrame {
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         this.dispose();
         Perfil P = new Perfil();
+        IniciarSesion IS = new IniciarSesion();
+        P.actualizarNombreUsuario(IS.idUsuario);
         P.setVisible(true);
     }//GEN-LAST:event_jButton10ActionPerformed
 
@@ -517,7 +519,9 @@ public class InicioF extends javax.swing.JFrame {
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         this.dispose();
+        IniciarSesion IS = new IniciarSesion();
         Menuframe Mf = new Menuframe();
+        Mf.actualizarNombreUsuario(IS.idUsuario);
         Mf.setVisible(true);
     }//GEN-LAST:event_jButton9ActionPerformed
 

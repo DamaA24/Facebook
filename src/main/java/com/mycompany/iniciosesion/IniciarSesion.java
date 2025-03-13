@@ -10,9 +10,13 @@ import javax.swing.JOptionPane;
 
 public class IniciarSesion extends javax.swing.JFrame {
 
-    
+    public static int idUsuario;
+
+
+    // Método para obtener el idUsuario después de la verificación
     public IniciarSesion() {
         initComponents();
+
     }
 
 
@@ -240,6 +244,7 @@ public class IniciarSesion extends javax.swing.JFrame {
 
             
             if (rs.next()) {
+                idUsuario = rs.getInt("id_usuario");
                 return true;
             }
         } catch (SQLException e) {

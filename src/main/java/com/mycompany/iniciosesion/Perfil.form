@@ -206,14 +206,12 @@
                               <Component id="filtrospublicacion" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="usuarioname" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="notperfil" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="fotoperfil" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="fotoperfil" max="32767" attributes="0"/>
+                                  <Component id="usuario" max="32767" attributes="0"/>
                               </Group>
+                              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                              <Component id="notperfil" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="editperfil" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -264,9 +262,10 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="editperfil" min="-2" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="usuarioname" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="notperfil" alignment="0" min="-2" pref="16" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="notperfil" min="-2" pref="16" max="-2" attributes="0"/>
+                                  <Component id="usuario" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="fotoperfil" min="-2" max="-2" attributes="0"/>
@@ -287,7 +286,7 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="editperfilpublico" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="amigos_usuario" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="buscamigos" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -320,20 +319,6 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="usuarioname">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="12" style="1"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Nombre Usuario"/>
-                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="null"/>
-                </Property>
-                <Property name="borderPainted" type="boolean" value="false"/>
-                <Property name="contentAreaFilled" type="boolean" value="false"/>
-                <Property name="focusPainted" type="boolean" value="false"/>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JButton" name="notperfil">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
@@ -386,6 +371,9 @@
                 <Property name="contentAreaFilled" type="boolean" value="false"/>
                 <Property name="focusPainted" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="publicaciones_usuarioActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="fotos_usuario">
               <Properties>
@@ -818,6 +806,11 @@
                 </Component>
               </SubComponents>
             </Container>
+            <Component class="javax.swing.JLabel" name="usuario">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Usuario"/>
+              </Properties>
+            </Component>
           </SubComponents>
         </Container>
       </SubComponents>
