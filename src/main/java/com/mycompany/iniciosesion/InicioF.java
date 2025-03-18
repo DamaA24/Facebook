@@ -508,6 +508,7 @@ public class InicioF extends javax.swing.JFrame {
         Perfil P = new Perfil();
         IniciarSesion IS = new IniciarSesion();
         P.actualizarNombreUsuario(IS.idUsuario);
+        P.cargarImagenUsuario(IS.idUsuario);
         P.setVisible(true);
     }//GEN-LAST:event_jButton10ActionPerformed
 

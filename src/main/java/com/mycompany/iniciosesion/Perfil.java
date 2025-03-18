@@ -1,9 +1,11 @@
 package com.mycompany.iniciosesion;
+import java.awt.Image;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
+import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
 
 public class Perfil extends javax.swing.JFrame {
@@ -27,7 +29,6 @@ public class Perfil extends javax.swing.JFrame {
         info_usuario = new javax.swing.JPanel();
         notperfil = new javax.swing.JButton();
         editperfil = new javax.swing.JButton();
-        fotoperfil = new javax.swing.JButton();
         publicaciones_usuario = new javax.swing.JButton();
         fotos_usuario = new javax.swing.JButton();
         videos_usuario = new javax.swing.JButton();
@@ -56,6 +57,8 @@ public class Perfil extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         usuario = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
+        fotoperfil = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -170,12 +173,6 @@ public class Perfil extends javax.swing.JFrame {
                 editperfilActionPerformed(evt);
             }
         });
-
-        fotoperfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fperfil.png"))); // NOI18N
-        fotoperfil.setBorder(null);
-        fotoperfil.setBorderPainted(false);
-        fotoperfil.setContentAreaFilled(false);
-        fotoperfil.setFocusPainted(false);
 
         publicaciones_usuario.setText("Publicaciones");
         publicaciones_usuario.setBorder(null);
@@ -424,6 +421,15 @@ public class Perfil extends javax.swing.JFrame {
 
         usuario.setText("Usuario");
 
+        jButton4.setText("+");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        fotoperfil.setText("FOTO");
+
         javax.swing.GroupLayout info_usuarioLayout = new javax.swing.GroupLayout(info_usuario);
         info_usuario.setLayout(info_usuarioLayout);
         info_usuarioLayout.setHorizontalGroup(
@@ -432,50 +438,57 @@ public class Perfil extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(veramigos)
                 .addGap(117, 117, 117))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, info_usuarioLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(info_usuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(publicacionformato, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, info_usuarioLayout.createSequentialGroup()
-                        .addComponent(histpublicaciones)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(filtrospublicacion))
-                    .addGroup(info_usuarioLayout.createSequentialGroup()
-                        .addGroup(info_usuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(fotoperfil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(usuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(33, 33, 33)
+            .addGroup(info_usuarioLayout.createSequentialGroup()
+                .addGroup(info_usuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, info_usuarioLayout.createSequentialGroup()
+                        .addComponent(usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(notperfil)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(editperfil))
                     .addGroup(info_usuarioLayout.createSequentialGroup()
-                        .addComponent(amigos_usuario)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(buscamigos))
-                    .addGroup(info_usuarioLayout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(info_usuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(publicacionformato, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(info_usuarioLayout.createSequentialGroup()
-                                .addComponent(a1)
-                                .addGap(66, 66, 66)
+                                .addComponent(histpublicaciones)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(filtrospublicacion))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, info_usuarioLayout.createSequentialGroup()
+                                .addComponent(amigos_usuario)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(buscamigos))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, info_usuarioLayout.createSequentialGroup()
                                 .addGroup(info_usuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(editperfilpublico)
-                                    .addComponent(a2)
-                                    .addComponent(a5)))
-                            .addGroup(info_usuarioLayout.createSequentialGroup()
-                                .addComponent(publicaciones_usuario)
-                                .addGap(24, 24, 24)
-                                .addComponent(fotos_usuario)
-                                .addGap(28, 28, 28)
-                                .addComponent(videos_usuario))
-                            .addComponent(detallesperfil)
-                            .addComponent(nuevahistoria)
-                            .addComponent(añadirhistoria)
-                            .addComponent(a4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                        .addGroup(info_usuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(a3, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(a6, javax.swing.GroupLayout.Alignment.TRAILING)))
-                    .addComponent(newpost, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(info_usuarioLayout.createSequentialGroup()
+                                        .addComponent(a1)
+                                        .addGap(66, 66, 66)
+                                        .addGroup(info_usuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(editperfilpublico)
+                                            .addComponent(a2)
+                                            .addComponent(a5)))
+                                    .addComponent(detallesperfil)
+                                    .addComponent(nuevahistoria)
+                                    .addComponent(añadirhistoria)
+                                    .addComponent(a4)
+                                    .addGroup(info_usuarioLayout.createSequentialGroup()
+                                        .addGroup(info_usuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(fotoperfil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(publicaciones_usuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGroup(info_usuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(info_usuarioLayout.createSequentialGroup()
+                                                .addGap(24, 24, 24)
+                                                .addComponent(fotos_usuario)
+                                                .addGap(28, 28, 28)
+                                                .addComponent(videos_usuario))
+                                            .addGroup(info_usuarioLayout.createSequentialGroup()
+                                                .addGap(3, 3, 3)
+                                                .addComponent(jButton4)))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                                .addGroup(info_usuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(a3, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(a6, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addComponent(newpost, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(16, 16, 16))
         );
         info_usuarioLayout.setVerticalGroup(
@@ -489,8 +502,13 @@ public class Perfil extends javax.swing.JFrame {
                         .addGroup(info_usuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(notperfil, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(usuario))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(fotoperfil)))
+                        .addGroup(info_usuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(info_usuarioLayout.createSequentialGroup()
+                                .addGap(47, 47, 47)
+                                .addComponent(jButton4))
+                            .addGroup(info_usuarioLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(fotoperfil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(info_usuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(publicaciones_usuario)
@@ -607,6 +625,76 @@ public class Perfil extends javax.swing.JFrame {
         });
     }
 }
+   
+   public void cargarImagenUsuario(int userId) {
+    final Connection conn;  // Hacer final la variable
+    final PreparedStatement stmt;  // Hacer final la variable
+    final ResultSet rs;  // Hacer final la variable
+
+    try {
+        // Configuración de la conexión a la base de datos
+        conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/facebook", "AlanMijares", "1");
+
+        // Consulta SQL para obtener la imagen del usuario usando la columna 'ID_Usuario'
+        String sql = "SELECT Foto_perfil FROM perfil_usuario WHERE ID_Usuario = ?";
+        stmt = conn.prepareStatement(sql);
+        stmt.setInt(1, userId); // Establecer el ID del usuario en la consulta
+
+        // Ejecutar la consulta
+        rs = stmt.executeQuery();
+
+        // Usar invokeLater para asegurar que el código se ejecute en el hilo de la interfaz gráfica
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    if (rs.next()) {  // Si hay una imagen para el usuario
+                        byte[] fotoPerfil = rs.getBytes("Foto_perfil"); // Obtener el arreglo de bytes de la imagen
+
+                        // Si la imagen no es nula
+                        if (fotoPerfil != null) {
+                            ImageIcon imageIcon = new ImageIcon(fotoPerfil); // Convertir el arreglo de bytes en una imagen
+                            Image image = imageIcon.getImage(); // Obtener la imagen
+
+                            // Escalar la imagen (opcional)
+                            Image imagenEscalada = image.getScaledInstance(70, 70, Image.SCALE_SMOOTH);
+
+                            // Establecer la imagen escalada en el botón
+                            fotoperfil.setIcon(new ImageIcon(imagenEscalada));
+                            fotoperfil.setText(""); // Limpiar el texto del botón si existe
+                        } else {
+                            fotoperfil.setText("Sin imagen");
+                        }
+                    } else {
+                        // Si no se encuentra el usuario en la base de datos
+                        fotoperfil.setText("Usuario no encontrado");
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    fotoperfil.setText("Error al cargar la imagen.");
+                } finally {
+                    // Cerrar recursos
+                    try {
+                        if (rs != null) rs.close();
+                        if (stmt != null) stmt.close();
+                        if (conn != null) conn.close();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                fotoperfil.setText("Error al cargar la imagen.");
+            }
+        });
+    }
+}
 
  
 
@@ -661,6 +749,12 @@ public class Perfil extends javax.swing.JFrame {
 
     }//GEN-LAST:event_publicaciones_usuarioActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        this.dispose();
+        SubirFoto SF = new SubirFoto();
+        SF.setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -687,7 +781,7 @@ public class Perfil extends javax.swing.JFrame {
     private javax.swing.JButton editperfilpublico;
     private javax.swing.JButton filtrospublicacion;
     private javax.swing.JButton foto;
-    private javax.swing.JButton fotoperfil;
+    private javax.swing.JLabel fotoperfil;
     private javax.swing.JButton fotos_usuario;
     private javax.swing.JLabel histpublicaciones;
     private javax.swing.JPanel info_usuario;
@@ -695,6 +789,7 @@ public class Perfil extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JPanel menu;
     private javax.swing.JButton menu_u;
     private javax.swing.JPanel newpost;
