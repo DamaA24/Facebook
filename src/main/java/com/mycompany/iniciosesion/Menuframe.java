@@ -241,7 +241,7 @@ public class Menuframe extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton7))
                 .addGap(28, 28, 28)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(usuario)
                     .addComponent(jLabel5))
                 .addGap(18, 18, 18)
@@ -352,9 +352,11 @@ public class Menuframe extends javax.swing.JFrame {
 
     private void PerfilBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PerfilBtnActionPerformed
         this.dispose();
-        IniciarSesion IS = new IniciarSesion(); 
-        actualizarNombreUsuario(IS.idUsuario);
         Perfil P = new Perfil();
+        IniciarSesion IS = new IniciarSesion();
+        P.actualizarNombreUsuario(IS.idUsuario);
+        P.cargarImagenUsuario(IS.idUsuario);
+        P.cargarPortadaUsuario(IS.idUsuario);
         P.setVisible(true);
     }//GEN-LAST:event_PerfilBtnActionPerformed
 

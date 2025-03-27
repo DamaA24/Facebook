@@ -798,6 +798,10 @@ public class FacebookFriends extends javax.swing.JFrame {
     private void jButton26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton26ActionPerformed
         this.dispose();
         Perfil P = new Perfil();
+        IniciarSesion IS = new IniciarSesion();
+        P.actualizarNombreUsuario(IS.idUsuario);
+        P.cargarImagenUsuario(IS.idUsuario);
+        P.cargarPortadaUsuario(IS.idUsuario);
         P.setVisible(true);
     }//GEN-LAST:event_jButton26ActionPerformed
 

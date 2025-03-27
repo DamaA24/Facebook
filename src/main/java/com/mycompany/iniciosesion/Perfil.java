@@ -27,7 +27,6 @@ public class Perfil extends javax.swing.JFrame {
         inicio = new javax.swing.JButton();
         publicaciones = new javax.swing.JScrollPane();
         info_usuario = new javax.swing.JPanel();
-        notperfil = new javax.swing.JButton();
         editperfil = new javax.swing.JButton();
         publicaciones_usuario = new javax.swing.JButton();
         fotos_usuario = new javax.swing.JButton();
@@ -38,12 +37,6 @@ public class Perfil extends javax.swing.JFrame {
         editperfilpublico = new javax.swing.JButton();
         amigos_usuario = new javax.swing.JButton();
         buscamigos = new javax.swing.JButton();
-        a1 = new javax.swing.JButton();
-        a2 = new javax.swing.JButton();
-        a3 = new javax.swing.JButton();
-        a4 = new javax.swing.JButton();
-        a5 = new javax.swing.JButton();
-        a6 = new javax.swing.JButton();
         veramigos = new javax.swing.JButton();
         filtrospublicacion = new javax.swing.JButton();
         histpublicaciones = new javax.swing.JLabel();
@@ -57,8 +50,10 @@ public class Perfil extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         usuario = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
         fotoperfil = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JLabel();
+        nuevahistoria1 = new javax.swing.JButton();
+        nuevahistoria2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -157,12 +152,6 @@ public class Perfil extends javax.swing.JFrame {
 
         info_usuario.setBackground(new java.awt.Color(255, 255, 255));
 
-        notperfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/not2.png"))); // NOI18N
-        notperfil.setBorder(null);
-        notperfil.setBorderPainted(false);
-        notperfil.setContentAreaFilled(false);
-        notperfil.setFocusPainted(false);
-
         editperfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/editarperfil.png"))); // NOI18N
         editperfil.setBorder(null);
         editperfil.setBorderPainted(false);
@@ -239,60 +228,6 @@ public class Perfil extends javax.swing.JFrame {
                 buscamigosActionPerformed(evt);
             }
         });
-
-        a1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/a1.png"))); // NOI18N
-        a1.setText("Leslie");
-        a1.setBorder(null);
-        a1.setBorderPainted(false);
-        a1.setContentAreaFilled(false);
-        a1.setFocusPainted(false);
-        a1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        a1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-
-        a2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/a1.png"))); // NOI18N
-        a2.setText("Damaris");
-        a2.setBorder(null);
-        a2.setBorderPainted(false);
-        a2.setContentAreaFilled(false);
-        a2.setFocusPainted(false);
-        a2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        a2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-
-        a3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/a1.png"))); // NOI18N
-        a3.setText("Michelle");
-        a3.setBorder(null);
-        a3.setBorderPainted(false);
-        a3.setContentAreaFilled(false);
-        a3.setFocusPainted(false);
-        a3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        a3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-
-        a4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/a2.png"))); // NOI18N
-        a4.setText("Alan");
-        a4.setBorder(null);
-        a4.setBorderPainted(false);
-        a4.setContentAreaFilled(false);
-        a4.setFocusPainted(false);
-        a4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        a4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-
-        a5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/a2.png"))); // NOI18N
-        a5.setText("Diego");
-        a5.setBorder(null);
-        a5.setBorderPainted(false);
-        a5.setContentAreaFilled(false);
-        a5.setFocusPainted(false);
-        a5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        a5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-
-        a6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fperfil.png"))); // NOI18N
-        a6.setText("Mariel");
-        a6.setBorder(null);
-        a6.setBorderPainted(false);
-        a6.setContentAreaFilled(false);
-        a6.setFocusPainted(false);
-        a6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        a6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         veramigos.setText("Ver todos los amigos");
         veramigos.setBorder(null);
@@ -421,122 +356,115 @@ public class Perfil extends javax.swing.JFrame {
 
         usuario.setText("Usuario");
 
-        jButton4.setText("+");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-
         fotoperfil.setText("FOTO");
+
+        jPanel1.setText("PORTADA");
+
+        nuevahistoria1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/añadirhistoria.png"))); // NOI18N
+        nuevahistoria1.setBorder(null);
+        nuevahistoria1.setBorderPainted(false);
+        nuevahistoria1.setContentAreaFilled(false);
+        nuevahistoria1.setFocusPainted(false);
+
+        nuevahistoria2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/añadirhistoria.png"))); // NOI18N
+        nuevahistoria2.setBorder(null);
+        nuevahistoria2.setBorderPainted(false);
+        nuevahistoria2.setContentAreaFilled(false);
+        nuevahistoria2.setFocusPainted(false);
 
         javax.swing.GroupLayout info_usuarioLayout = new javax.swing.GroupLayout(info_usuario);
         info_usuario.setLayout(info_usuarioLayout);
         info_usuarioLayout.setHorizontalGroup(
             info_usuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, info_usuarioLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(veramigos)
-                .addGap(117, 117, 117))
             .addGroup(info_usuarioLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(info_usuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, info_usuarioLayout.createSequentialGroup()
-                        .addComponent(usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(notperfil)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(editperfil))
                     .addGroup(info_usuarioLayout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(info_usuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(publicacionformato, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(info_usuarioLayout.createSequentialGroup()
                                 .addComponent(histpublicaciones)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(filtrospublicacion))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, info_usuarioLayout.createSequentialGroup()
-                                .addComponent(amigos_usuario)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(buscamigos))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, info_usuarioLayout.createSequentialGroup()
+                                .addComponent(filtrospublicacion)
+                                .addGap(10, 10, 10))
+                            .addComponent(newpost, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(info_usuarioLayout.createSequentialGroup()
                                 .addGroup(info_usuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(info_usuarioLayout.createSequentialGroup()
-                                        .addComponent(a1)
-                                        .addGap(66, 66, 66)
-                                        .addGroup(info_usuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(editperfilpublico)
-                                            .addComponent(a2)
-                                            .addComponent(a5)))
-                                    .addComponent(detallesperfil)
-                                    .addComponent(nuevahistoria)
                                     .addComponent(añadirhistoria)
-                                    .addComponent(a4)
+                                    .addComponent(amigos_usuario)
                                     .addGroup(info_usuarioLayout.createSequentialGroup()
-                                        .addGroup(info_usuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(fotoperfil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(publicaciones_usuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addGroup(info_usuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(info_usuarioLayout.createSequentialGroup()
-                                                .addGap(24, 24, 24)
-                                                .addComponent(fotos_usuario)
-                                                .addGap(28, 28, 28)
-                                                .addComponent(videos_usuario))
-                                            .addGroup(info_usuarioLayout.createSequentialGroup()
-                                                .addGap(3, 3, 3)
-                                                .addComponent(jButton4)))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                                        .addComponent(fotoperfil, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(257, 257, 257)
+                                        .addComponent(editperfil)))
+                                .addGap(0, 89, Short.MAX_VALUE)))
+                        .addContainerGap())
+                    .addGroup(info_usuarioLayout.createSequentialGroup()
+                        .addComponent(usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, info_usuarioLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(veramigos)
+                        .addGap(117, 117, 117))))
+            .addGroup(info_usuarioLayout.createSequentialGroup()
+                .addGroup(info_usuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(info_usuarioLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(info_usuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(detallesperfil)
+                            .addGroup(info_usuarioLayout.createSequentialGroup()
                                 .addGroup(info_usuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(a3, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(a6, javax.swing.GroupLayout.Alignment.TRAILING)))
-                            .addComponent(newpost, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(16, 16, 16))
+                                    .addComponent(publicaciones_usuario)
+                                    .addComponent(nuevahistoria2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addComponent(fotos_usuario)
+                                .addGap(18, 18, 18)
+                                .addComponent(videos_usuario))))
+                    .addGroup(info_usuarioLayout.createSequentialGroup()
+                        .addGap(78, 78, 78)
+                        .addGroup(info_usuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(info_usuarioLayout.createSequentialGroup()
+                                .addComponent(nuevahistoria, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(nuevahistoria1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(info_usuarioLayout.createSequentialGroup()
+                                .addComponent(editperfilpublico)
+                                .addGap(18, 18, 18)
+                                .addComponent(buscamigos))))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         info_usuarioLayout.setVerticalGroup(
             info_usuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(info_usuarioLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(info_usuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(editperfil)
-                    .addGroup(info_usuarioLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(info_usuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(notperfil, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(usuario))
-                        .addGroup(info_usuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(info_usuarioLayout.createSequentialGroup()
-                                .addGap(47, 47, 47)
-                                .addComponent(jButton4))
-                            .addGroup(info_usuarioLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(fotoperfil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editperfil))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(fotoperfil, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(usuario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(info_usuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(publicaciones_usuario)
                     .addComponent(fotos_usuario)
                     .addComponent(videos_usuario))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(detallesperfil)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(nuevahistoria)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(info_usuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(nuevahistoria2, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nuevahistoria, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nuevahistoria1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(añadirhistoria)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(editperfilpublico)
+                .addGap(128, 128, 128)
+                .addComponent(amigos_usuario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(info_usuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(amigos_usuario)
+                .addGroup(info_usuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(editperfilpublico)
                     .addComponent(buscamigos))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(info_usuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(a1)
-                    .addComponent(a2)
-                    .addComponent(a3))
-                .addGap(18, 18, 18)
-                .addGroup(info_usuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(a4)
-                    .addComponent(a5)
-                    .addComponent(a6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(132, 132, 132)
                 .addComponent(veramigos)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(info_usuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -695,6 +623,75 @@ public class Perfil extends javax.swing.JFrame {
         });
     }
 }
+   public void cargarPortadaUsuario(int userId) {
+    final Connection conn;  // Hacer final la variable
+    final PreparedStatement stmt;  // Hacer final la variable
+    final ResultSet rs;  // Hacer final la variable
+
+    try {
+        // Configuración de la conexión a la base de datos
+        conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/facebook", "AlanMijares", "1");
+
+        // Consulta SQL para obtener la imagen del usuario usando la columna 'ID_Usuario'
+        String sql = "SELECT Foto_portada FROM perfil_usuario WHERE ID_Usuario = ?";
+        stmt = conn.prepareStatement(sql);
+        stmt.setInt(1, userId); // Establecer el ID del usuario en la consulta
+
+        // Ejecutar la consulta
+        rs = stmt.executeQuery();
+
+        // Usar invokeLater para asegurar que el código se ejecute en el hilo de la interfaz gráfica
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    if (rs.next()) {  // Si hay una imagen para el usuario
+                        byte[] fotoPortada = rs.getBytes("Foto_portada"); // Obtener el arreglo de bytes de la imagen
+
+                        // Si la imagen no es nula
+                        if (fotoPortada != null) {
+                            ImageIcon imageIcon = new ImageIcon(fotoPortada); // Convertir el arreglo de bytes en una imagen
+                            Image image = imageIcon.getImage(); // Obtener la imagen
+
+                            // Escalar la imagen (opcional)
+                            Image imagenEscalada = image.getScaledInstance(349, 96, Image.SCALE_SMOOTH);
+
+                            // Establecer la imagen escalada en el botón
+                            jPanel1.setIcon(new ImageIcon(imagenEscalada));
+                            jPanel1.setText(""); // Limpiar el texto del botón si existe
+                        } else {
+                            jPanel1.setText("Sin imagen");
+                        }
+                    } else {
+                        // Si no se encuentra el usuario en la base de datos
+                        jPanel1.setText("Usuario no encontrado");
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    jPanel1.setText("Error al cargar la imagen.");
+                } finally {
+                    // Cerrar recursos
+                    try {
+                        if (rs != null) rs.close();
+                        if (stmt != null) stmt.close();
+                        if (conn != null) conn.close();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                jPanel1.setText("Error al cargar la imagen.");
+            }
+        });
+    }
+}
 
  
 
@@ -710,9 +707,11 @@ public class Perfil extends javax.swing.JFrame {
 
     private void perfil_uActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_perfil_uActionPerformed
         this.dispose();
-        IniciarSesion IS = new IniciarSesion(); 
-        actualizarNombreUsuario(IS.idUsuario);
         Perfil P = new Perfil();
+        IniciarSesion IS = new IniciarSesion();
+        P.actualizarNombreUsuario(IS.idUsuario);
+        P.cargarImagenUsuario(IS.idUsuario);
+        P.cargarPortadaUsuario(IS.idUsuario);
         P.setVisible(true);
     }//GEN-LAST:event_perfil_uActionPerformed
 
@@ -738,7 +737,9 @@ public class Perfil extends javax.swing.JFrame {
     }//GEN-LAST:event_inicioActionPerformed
 
     private void editperfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editperfilActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
+        EditarImagenes EI = new EditarImagenes();
+        EI.setVisible(true);
     }//GEN-LAST:event_editperfilActionPerformed
 
     private void buscamigosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscamigosActionPerformed
@@ -748,12 +749,6 @@ public class Perfil extends javax.swing.JFrame {
     private void publicaciones_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_publicaciones_usuarioActionPerformed
 
     }//GEN-LAST:event_publicaciones_usuarioActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        this.dispose();
-        SubirFoto SF = new SubirFoto();
-        SF.setVisible(true);
-    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -766,12 +761,6 @@ public class Perfil extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton a1;
-    private javax.swing.JButton a2;
-    private javax.swing.JButton a3;
-    private javax.swing.JButton a4;
-    private javax.swing.JButton a5;
-    private javax.swing.JButton a6;
     private javax.swing.JButton amigos;
     private javax.swing.JButton amigos_usuario;
     private javax.swing.JButton añadirhistoria;
@@ -789,15 +778,16 @@ public class Perfil extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JLabel jPanel1;
     private javax.swing.JPanel menu;
     private javax.swing.JButton menu_u;
     private javax.swing.JPanel newpost;
     private javax.swing.JButton newpublicacion;
     private javax.swing.JButton nombre;
     private javax.swing.JButton notificaciones;
-    private javax.swing.JButton notperfil;
     private javax.swing.JButton nuevahistoria;
+    private javax.swing.JButton nuevahistoria1;
+    private javax.swing.JButton nuevahistoria2;
     private javax.swing.JButton perfil_u;
     private javax.swing.JPanel publicacion_compartida;
     private javax.swing.JScrollPane publicaciones;
