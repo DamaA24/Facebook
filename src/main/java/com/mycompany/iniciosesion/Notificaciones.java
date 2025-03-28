@@ -191,6 +191,10 @@ public class Notificaciones extends javax.swing.JFrame {
     private void perfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_perfilActionPerformed
         this.dispose();
         Perfil P = new Perfil();
+        IniciarSesion IS = new IniciarSesion();
+        P.actualizarNombreUsuario(IS.idUsuario);
+        P.cargarImagenUsuario(IS.idUsuario);
+        P.cargarImagenPortada(IS.idUsuario, P.fotoportada);
         P.setVisible(true);
     }//GEN-LAST:event_perfilActionPerformed
 

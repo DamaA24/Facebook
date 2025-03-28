@@ -801,7 +801,7 @@ public class FacebookFriends extends javax.swing.JFrame {
         IniciarSesion IS = new IniciarSesion();
         P.actualizarNombreUsuario(IS.idUsuario);
         P.cargarImagenUsuario(IS.idUsuario);
-        P.cargarPortadaUsuario(IS.idUsuario);
+        P.cargarImagenPortada(IS.idUsuario, P.fotoportada);
         P.setVisible(true);
     }//GEN-LAST:event_jButton26ActionPerformed
 
