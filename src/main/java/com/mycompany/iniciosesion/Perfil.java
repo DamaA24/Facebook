@@ -14,16 +14,18 @@ import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.JPanel;
 
 public class Perfil extends javax.swing.JFrame {
-
-    
+    public int offset = 0;
+    IniciarSesion IS = new IniciarSesion();
     private Image background_image;
     public Perfil() {
         initComponents();
+        
     }
     
     
@@ -51,6 +53,8 @@ public class Perfil extends javax.swing.JFrame {
         destacada4 = new javax.swing.JButton();
         destacada2 = new javax.swing.JButton();
         sigdestacada = new javax.swing.JButton();
+        añadirdestacada = new javax.swing.JButton();
+        sigdestacada1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -119,7 +123,7 @@ public class Perfil extends javax.swing.JFrame {
             .addGroup(menuLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(inicio)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(amigos)
                 .addGap(47, 47, 47)
                 .addComponent(perfil_u, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -148,7 +152,7 @@ public class Perfil extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 247, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -245,6 +249,11 @@ public class Perfil extends javax.swing.JFrame {
         destacada1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         destacada1.setContentAreaFilled(false);
         destacada1.setFocusPainted(false);
+        destacada1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                destacada1ActionPerformed(evt);
+            }
+        });
 
         destacada3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/añadirhistoria.png"))); // NOI18N
         destacada3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -263,7 +272,7 @@ public class Perfil extends javax.swing.JFrame {
         destacada2.setHideActionText(true);
 
         sigdestacada.setText(">>");
-        sigdestacada.setBorderPainted(false);
+        sigdestacada.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         sigdestacada.setContentAreaFilled(false);
         sigdestacada.setFocusPainted(false);
         sigdestacada.addActionListener(new java.awt.event.ActionListener() {
@@ -272,22 +281,51 @@ public class Perfil extends javax.swing.JFrame {
             }
         });
 
+        añadirdestacada.setText("Modificar Destacadas");
+        añadirdestacada.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        añadirdestacada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                añadirdestacadaActionPerformed(evt);
+            }
+        });
+
+        sigdestacada1.setText("<<");
+        sigdestacada1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        sigdestacada1.setContentAreaFilled(false);
+        sigdestacada1.setFocusPainted(false);
+        sigdestacada1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sigdestacada1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(destacada1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11)
-                .addComponent(destacada2, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(destacada3, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(destacada4, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(sigdestacada, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(sigdestacada1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(destacada1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addComponent(añadirdestacada)
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(sigdestacada, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(destacada2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(destacada3, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(destacada4, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(14, 14, 14))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -297,11 +335,13 @@ public class Perfil extends javax.swing.JFrame {
                     .addComponent(destacada1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(destacada3, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(destacada4, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(destacada2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addComponent(sigdestacada)))
-                .addContainerGap(46, Short.MAX_VALUE))
+                    .addComponent(destacada2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(añadirdestacada)
+                    .addComponent(sigdestacada)
+                    .addComponent(sigdestacada1))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -329,7 +369,7 @@ public class Perfil extends javax.swing.JFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(175, Short.MAX_VALUE))
+                .addContainerGap(180, Short.MAX_VALUE))
         );
 
         pack();
@@ -560,6 +600,69 @@ public class Perfil extends javax.swing.JFrame {
     }
 }
   
+   public void cargarDestacadasPerfil(int offset, int idUsuario) {
+    try {
+        // Conectar a la base de datos
+        Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/facebook", "AlanMijares", "1");
+
+        // Consulta SQL para obtener las imágenes desde la tabla 'media' filtradas por el 'ID_Usuario'
+        String query = "SELECT ID_Destacada, Icono_destacada FROM destacadas WHERE ID_Usuario = ? LIMIT 4 OFFSET ?";
+        PreparedStatement pst = con.prepareStatement(query);
+        pst.setInt(1, idUsuario);  // Ajustamos el ID del usuario en la consulta
+        pst.setInt(2, offset);      // Ajustar el OFFSET según la página de imágenes
+
+        // Ejecutar la consulta
+        ResultSet rs = pst.executeQuery();
+
+        // Asignar las imágenes y los ID de media a los botones
+        JButton[] botones = {destacada1, destacada2, destacada3, destacada4};
+        int i = 0;
+
+        // Limpiar las imágenes en los botones antes de asignar nuevas
+        for (JButton boton : botones) {
+            boton.setIcon(null);
+            boton.setEnabled(true);  // Asegurarse de que los botones estén habilitados
+        }
+
+        // Procesar los resultados de la consulta y asignar las imágenes a los botones
+        while (rs.next() && i < botones.length) {
+        int idDestacada = rs.getInt("ID_Destacada");
+        byte[] contenidoMedia = rs.getBytes("Icono_destacada");
+
+        // Crear un ImageIcon a partir de los datos de la imagen
+        ImageIcon originalImageIcon = new ImageIcon(contenidoMedia);
+
+        // Obtener el tamaño del botón (en este caso, el primer botón)
+        int buttonWidth = botones[i].getWidth();
+        int buttonHeight = botones[i].getHeight();
+
+        // Escalar la imagen para que se ajuste al tamaño del botón
+        Image originalImage = originalImageIcon.getImage();
+        Image scaledImage = originalImage.getScaledInstance(buttonWidth, buttonHeight, Image.SCALE_SMOOTH);
+
+        // Crear un nuevo ImageIcon con la imagen escalada
+        ImageIcon scaledImageIcon = new ImageIcon(scaledImage);
+
+        // Establecer la imagen escalada en el botón correspondiente
+        botones[i].setIcon(scaledImageIcon);
+
+        // Asignar el ID del medio a cada botón, si se necesita usarlo más tarde
+        botones[i].putClientProperty("ID_Destacada", idDestacada);
+
+        i++;
+        }
+
+        // Si no hay suficientes imágenes, deshabilitar los botones restantes
+        while (i < botones.length) {
+            botones[i].setEnabled(false);
+            i++;
+        }
+
+        con.close();
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(this, "Error al cargar las imágenes: " + ex.getMessage());
+    }
+}
 
  
 
@@ -580,6 +683,7 @@ public class Perfil extends javax.swing.JFrame {
         P.actualizarNombreUsuario(IS.idUsuario);
         P.cargarImagenUsuario(IS.idUsuario);
         P.cargarImagenPortada(IS.idUsuario, P.fotoportada);
+        P.cargarDestacadasPerfil(P.offset, IS.idUsuario);
         P.setVisible(true);
     }//GEN-LAST:event_perfil_uActionPerformed
 
@@ -619,8 +723,26 @@ public class Perfil extends javax.swing.JFrame {
     }//GEN-LAST:event_fotoperfilActionPerformed
 
     private void sigdestacadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sigdestacadaActionPerformed
-        // TODO add your handling code here:
+        offset += 8;  
+        cargarDestacadasPerfil(offset, IS.idUsuario); 
     }//GEN-LAST:event_sigdestacadaActionPerformed
+
+    private void añadirdestacadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_añadirdestacadaActionPerformed
+        this.dispose();
+        AñadirDestacada AD = new AñadirDestacada();
+        IniciarSesion IS = new IniciarSesion();
+        AD.cargarDestacadas(AD.offset, IS.idUsuario);
+        AD.setVisible(true);
+    }//GEN-LAST:event_añadirdestacadaActionPerformed
+
+    private void destacada1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_destacada1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_destacada1ActionPerformed
+
+    private void sigdestacada1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sigdestacada1ActionPerformed
+        offset -= 8;  
+        cargarDestacadasPerfil(offset, IS.idUsuario); 
+    }//GEN-LAST:event_sigdestacada1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -634,6 +756,7 @@ public class Perfil extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton amigos;
+    private javax.swing.JButton añadirdestacada;
     private javax.swing.JButton destacada1;
     private javax.swing.JButton destacada2;
     private javax.swing.JButton destacada3;
@@ -652,6 +775,7 @@ public class Perfil extends javax.swing.JFrame {
     private javax.swing.JButton notificaciones;
     private javax.swing.JButton perfil_u;
     private javax.swing.JButton sigdestacada;
+    private javax.swing.JButton sigdestacada1;
     private javax.swing.JLabel usuario;
     // End of variables declaration//GEN-END:variables
 }
