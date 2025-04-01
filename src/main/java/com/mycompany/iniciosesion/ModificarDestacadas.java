@@ -38,6 +38,11 @@ public class ModificarDestacadas extends javax.swing.JFrame {
         jButton4.setText("Volver");
         jButton4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButton4.setFocusPainted(false);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("Añadir Destacada");
         jButton5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -51,6 +56,11 @@ public class ModificarDestacadas extends javax.swing.JFrame {
         jButton6.setText("Eliminar Destacada");
         jButton6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButton6.setFocusPainted(false);
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -99,8 +109,27 @@ public class ModificarDestacadas extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         this.dispose();
         AñadirDestacada AD = new AñadirDestacada();
+        IniciarSesion IS = new IniciarSesion();
+        AD.cargarDestacadas(AD.offset, IS.idUsuario);
         AD.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        this.dispose();
+        Perfil P = new Perfil();
+        IniciarSesion IS = new IniciarSesion();
+        P.actualizarNombreUsuario(IS.idUsuario);
+        P.cargarImagenUsuario(IS.idUsuario);
+        P.cargarImagenPortada(IS.idUsuario, P.fotoportada);
+        P.cargarDestacadasPerfil(P.offset, IS.idUsuario);
+        P.setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        this.dispose();
+        EliminarDestacada ED = new EliminarDestacada();
+        ED.setVisible(true);
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments

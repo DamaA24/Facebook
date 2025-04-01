@@ -24,11 +24,11 @@ import javax.swing.JOptionPane;
  *
  * @author Alan Mijares
  */
-public class AñadirDestacada extends javax.swing.JFrame {
+public class EliminarDestacada extends javax.swing.JFrame {
     IniciarSesion IS = new IniciarSesion();
     public int offset = 0;
-    public int idMedia;
-    public AñadirDestacada() {
+    public int idDestacada;
+    public EliminarDestacada() {
         initComponents();
         cargarDestacadas(offset, IS.idUsuario);
     }
@@ -40,7 +40,7 @@ public class AñadirDestacada extends javax.swing.JFrame {
         Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/facebook", "AlanMijares", "1");
 
         // Consulta SQL para obtener las imágenes desde la tabla 'media' filtradas por el 'ID_Usuario'
-        String query = "SELECT ID_Media, Contenido_media FROM media WHERE Tipo = 'imagen' AND ID_Usuario = ? LIMIT 8 OFFSET ?";
+        String query = "SELECT ID_Destacada, Icono_destacada FROM destacadas WHERE ID_Usuario = ? LIMIT 8 OFFSET ?";
         PreparedStatement pst = con.prepareStatement(query);
         pst.setInt(1, idUsuario);  // Ajustamos el ID del usuario en la consulta
         pst.setInt(2, offset);      // Ajustar el OFFSET según la página de imágenes
@@ -60,8 +60,8 @@ public class AñadirDestacada extends javax.swing.JFrame {
 
         // Procesar los resultados de la consulta y asignar las imágenes a los botones
         while (rs.next() && i < botones.length) {
-        idMedia = rs.getInt("ID_Media");
-        byte[] contenidoMedia = rs.getBytes("Contenido_media");
+        idDestacada = rs.getInt("ID_Destacada");
+        byte[] contenidoMedia = rs.getBytes("Icono_destacada");
 
         // Crear un ImageIcon a partir de los datos de la imagen
         ImageIcon originalImageIcon = new ImageIcon(contenidoMedia);
@@ -81,7 +81,7 @@ public class AñadirDestacada extends javax.swing.JFrame {
         botones[i].setIcon(scaledImageIcon);
 
         // Asignar el ID del medio a cada botón, si se necesita usarlo más tarde
-        botones[i].putClientProperty("ID_Media", idMedia);
+        botones[i].putClientProperty("ID_Destacada", idDestacada);
 
         i++;
         }
@@ -116,7 +116,6 @@ public class AñadirDestacada extends javax.swing.JFrame {
         d4 = new javax.swing.JButton();
         d6 = new javax.swing.JButton();
         d8 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         atras = new javax.swing.JButton();
 
@@ -139,7 +138,7 @@ public class AñadirDestacada extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel2.setText("Seleccione una foto para subir a destacada");
+        jLabel2.setText("Seleccione una foto para eliminar de destacadas");
 
         siguiente.setText(">>");
         siguiente.addActionListener(new java.awt.event.ActionListener() {
@@ -228,14 +227,6 @@ public class AñadirDestacada extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Subir Nueva");
-        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         jButton2.setText("Volver");
         jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -256,15 +247,10 @@ public class AñadirDestacada extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(49, 49, 49)
-                        .addComponent(jLabel2))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(166, 166, 166)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap()
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49)
+                .addComponent(jLabel2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
@@ -317,9 +303,7 @@ public class AñadirDestacada extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(d6, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(d7, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton1)
-                                .addContainerGap())))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(d4, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -343,12 +327,6 @@ public class AñadirDestacada extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.dispose();
-        SubirDestacada SD = new SubirDestacada();
-        SD.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.dispose();
         ModificarDestacadas MD = new ModificarDestacadas();
@@ -366,68 +344,43 @@ public class AñadirDestacada extends javax.swing.JFrame {
     }//GEN-LAST:event_siguienteActionPerformed
 
     private void d1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_d1ActionPerformed
-         
-        
-        ImageIcon imageIcon = (ImageIcon) d1.getIcon();
-        if (imageIcon != null) {
-            // Obtener la imagen del ImageIcon
-            Image image = imageIcon.getImage();
+        Object mediaIdObject = d1.getClientProperty("ID_Destacada");
 
-            // Crear un BufferedImage con las dimensiones de la imagen
-            BufferedImage bufferedImage = new BufferedImage(image.getWidth(null), image.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+        if (mediaIdObject != null) {
+            idDestacada = (int) mediaIdObject;  // Convertir el valor a int
 
-            // Dibujar la imagen en el BufferedImage
-            Graphics2D g2d = bufferedImage.createGraphics();
-            g2d.drawImage(image, 0, 0, null);
-            g2d.dispose();
-
-            // Convertir la imagen en un array de bytes
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
             try {
-                ImageIO.write(bufferedImage, "png", baos); // O usa el formato adecuado (por ejemplo, "jpeg", "jpg")
-                byte[] imageBytes = baos.toByteArray();
-
-                // Recoger otros datos (suponiendo que tienes los datos necesarios en variables como idUsuario, idHistoria, etc.)
-                IniciarSesion IS = new IniciarSesion(); // Suponiendo que tienes el ID del usuario
-                String nombreArchivoIcono = "imagen";
-
                 // Conectar a la base de datos
                 Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/facebook", "AlanMijares", "1");
 
-                // Consulta SQL para insertar la imagen y otros datos en la tabla 'Destacadas'
-                String query = "INSERT INTO destacadas (ID_Usuario, ID_Media, Nombre, Icono_destacada, Nombre_archivo_icono) VALUES (?, ?, ?, ?, ?)";
+                // Consulta SQL para eliminar la destacada con el ID de media
+                String query = "DELETE FROM destacadas WHERE ID_Destacada = ?";
                 PreparedStatement pst = con.prepareStatement(query);
 
-                // Establecer los parámetros
-                pst.setInt(1, IS.idUsuario);
-                pst.setInt(2, idMedia);
-                pst.setString(3, "");
-                pst.setBytes(4, imageBytes);
-                pst.setString(5, nombreArchivoIcono);
+                // Establecer el parámetro del ID_Media
+                pst.setInt(1, idDestacada);
 
-                // Ejecutar la consulta de inserción
+                // Ejecutar la consulta de eliminación
                 int rowsAffected = pst.executeUpdate();
 
                 if (rowsAffected > 0) {
-                    JOptionPane.showMessageDialog(this, "Imagen destacada subida con éxito.");
+                    JOptionPane.showMessageDialog(this, "Imagen destacada eliminada con éxito.");
+
+                    // Opcional: Limpiar la imagen del botón si la quieres quitar de la interfaz
+                    d1.setIcon(null);
+                    d1.setEnabled(false); // Deshabilitar el botón para indicar que está vacío
                 } else {
-                    JOptionPane.showMessageDialog(this, "Error al subir la imagen destacada.");
+                    JOptionPane.showMessageDialog(this, "No se encontró la destacada con el ID especificado.");
                 }
 
                 // Cerrar la conexión
                 con.close();
-
-            } catch (IOException ex) {
-                JOptionPane.showMessageDialog(this, "Error al procesar la imagen: " + ex.getMessage());
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(this, "Error al conectar con la base de datos: " + ex.getMessage());
             }
         } else {
-            JOptionPane.showMessageDialog(this, "No hay imagen en el botón.");
+            JOptionPane.showMessageDialog(this, "No se ha seleccionado ninguna imagen.");
         }
-
-
-    
         this.dispose();
         Perfil P = new Perfil();
         IniciarSesion IS = new IniciarSesion();
@@ -439,66 +392,43 @@ public class AñadirDestacada extends javax.swing.JFrame {
     }//GEN-LAST:event_d1ActionPerformed
 
     private void d2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_d2ActionPerformed
-        ImageIcon imageIcon = (ImageIcon) d2.getIcon();
-        if (imageIcon != null) {
-            // Obtener la imagen del ImageIcon
-            Image image = imageIcon.getImage();
+        Object mediaIdObject = d2.getClientProperty("ID_Destacada");
 
-            // Crear un BufferedImage con las dimensiones de la imagen
-            BufferedImage bufferedImage = new BufferedImage(image.getWidth(null), image.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+        if (mediaIdObject != null) {
+            idDestacada = (int) mediaIdObject;  // Convertir el valor a int
 
-            // Dibujar la imagen en el BufferedImage
-            Graphics2D g2d = bufferedImage.createGraphics();
-            g2d.drawImage(image, 0, 0, null);
-            g2d.dispose();
-
-            // Convertir la imagen en un array de bytes
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
             try {
-                ImageIO.write(bufferedImage, "png", baos); // O usa el formato adecuado (por ejemplo, "jpeg", "jpg")
-                byte[] imageBytes = baos.toByteArray();
-
-                // Recoger otros datos (suponiendo que tienes los datos necesarios en variables como idUsuario, idHistoria, etc.)
-                IniciarSesion IS = new IniciarSesion(); // Suponiendo que tienes el ID del usuario
-                String nombreArchivoIcono = "imagen";
-
                 // Conectar a la base de datos
                 Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/facebook", "AlanMijares", "1");
 
-                // Consulta SQL para insertar la imagen y otros datos en la tabla 'Destacadas'
-                String query = "INSERT INTO destacadas (ID_Usuario, ID_Media, Nombre, Icono_destacada, Nombre_archivo_icono) VALUES (?, ?, ?, ?, ?)";
+                // Consulta SQL para eliminar la destacada con el ID de media
+                String query = "DELETE FROM destacadas WHERE ID_Destacada = ?";
                 PreparedStatement pst = con.prepareStatement(query);
 
-                // Establecer los parámetros
-                pst.setInt(1, IS.idUsuario);
-                pst.setInt(2, idMedia);
-                pst.setString(3, "");
-                pst.setBytes(4, imageBytes);
-                pst.setString(5, nombreArchivoIcono);
+                // Establecer el parámetro del ID_Media
+                pst.setInt(1, idDestacada);
 
-                // Ejecutar la consulta de inserción
+                // Ejecutar la consulta de eliminación
                 int rowsAffected = pst.executeUpdate();
 
                 if (rowsAffected > 0) {
-                    JOptionPane.showMessageDialog(this, "Imagen destacada subida con éxito.");
+                    JOptionPane.showMessageDialog(this, "Imagen destacada eliminada con éxito.");
+
+                    // Opcional: Limpiar la imagen del botón si la quieres quitar de la interfaz
+                    d2.setIcon(null);
+                    d2.setEnabled(false); // Deshabilitar el botón para indicar que está vacío
                 } else {
-                    JOptionPane.showMessageDialog(this, "Error al subir la imagen destacada.");
+                    JOptionPane.showMessageDialog(this, "No se encontró la destacada con el ID especificado.");
                 }
 
                 // Cerrar la conexión
                 con.close();
-
-            } catch (IOException ex) {
-                JOptionPane.showMessageDialog(this, "Error al procesar la imagen: " + ex.getMessage());
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(this, "Error al conectar con la base de datos: " + ex.getMessage());
             }
         } else {
-            JOptionPane.showMessageDialog(this, "No hay imagen en el botón.");
+            JOptionPane.showMessageDialog(this, "No se ha seleccionado ninguna imagen.");
         }
-
-
-    
         this.dispose();
         Perfil P = new Perfil();
         IniciarSesion IS = new IniciarSesion();
@@ -510,66 +440,43 @@ public class AñadirDestacada extends javax.swing.JFrame {
     }//GEN-LAST:event_d2ActionPerformed
 
     private void d3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_d3ActionPerformed
-        ImageIcon imageIcon = (ImageIcon) d3.getIcon();
-        if (imageIcon != null) {
-            // Obtener la imagen del ImageIcon
-            Image image = imageIcon.getImage();
+        Object mediaIdObject = d3.getClientProperty("ID_Destacada");
 
-            // Crear un BufferedImage con las dimensiones de la imagen
-            BufferedImage bufferedImage = new BufferedImage(image.getWidth(null), image.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+        if (mediaIdObject != null) {
+            idDestacada = (int) mediaIdObject;  // Convertir el valor a int
 
-            // Dibujar la imagen en el BufferedImage
-            Graphics2D g2d = bufferedImage.createGraphics();
-            g2d.drawImage(image, 0, 0, null);
-            g2d.dispose();
-
-            // Convertir la imagen en un array de bytes
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
             try {
-                ImageIO.write(bufferedImage, "png", baos); // O usa el formato adecuado (por ejemplo, "jpeg", "jpg")
-                byte[] imageBytes = baos.toByteArray();
-
-                // Recoger otros datos (suponiendo que tienes los datos necesarios en variables como idUsuario, idHistoria, etc.)
-                IniciarSesion IS = new IniciarSesion(); // Suponiendo que tienes el ID del usuario
-                String nombreArchivoIcono = "imagen";
-
                 // Conectar a la base de datos
                 Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/facebook", "AlanMijares", "1");
 
-                // Consulta SQL para insertar la imagen y otros datos en la tabla 'Destacadas'
-                String query = "INSERT INTO destacadas (ID_Usuario, ID_Media, Nombre, Icono_destacada, Nombre_archivo_icono) VALUES (?, ?, ?, ?, ?)";
+                // Consulta SQL para eliminar la destacada con el ID de media
+                String query = "DELETE FROM destacadas WHERE ID_Destacada = ?";
                 PreparedStatement pst = con.prepareStatement(query);
 
-                // Establecer los parámetros
-                pst.setInt(1, IS.idUsuario);
-                pst.setInt(2, idMedia);
-                pst.setString(3, "");
-                pst.setBytes(4, imageBytes);
-                pst.setString(5, nombreArchivoIcono);
+                // Establecer el parámetro del ID_Media
+                pst.setInt(1, idDestacada);
 
-                // Ejecutar la consulta de inserción
+                // Ejecutar la consulta de eliminación
                 int rowsAffected = pst.executeUpdate();
 
                 if (rowsAffected > 0) {
-                    JOptionPane.showMessageDialog(this, "Imagen destacada subida con éxito.");
+                    JOptionPane.showMessageDialog(this, "Imagen destacada eliminada con éxito.");
+
+                    // Opcional: Limpiar la imagen del botón si la quieres quitar de la interfaz
+                    d3.setIcon(null);
+                    d3.setEnabled(false); // Deshabilitar el botón para indicar que está vacío
                 } else {
-                    JOptionPane.showMessageDialog(this, "Error al subir la imagen destacada.");
+                    JOptionPane.showMessageDialog(this, "No se encontró la destacada con el ID especificado.");
                 }
 
                 // Cerrar la conexión
                 con.close();
-
-            } catch (IOException ex) {
-                JOptionPane.showMessageDialog(this, "Error al procesar la imagen: " + ex.getMessage());
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(this, "Error al conectar con la base de datos: " + ex.getMessage());
             }
         } else {
-            JOptionPane.showMessageDialog(this, "No hay imagen en el botón.");
+            JOptionPane.showMessageDialog(this, "No se ha seleccionado ninguna imagen.");
         }
-
-
-    
         this.dispose();
         Perfil P = new Perfil();
         IniciarSesion IS = new IniciarSesion();
@@ -581,66 +488,43 @@ public class AñadirDestacada extends javax.swing.JFrame {
     }//GEN-LAST:event_d3ActionPerformed
 
     private void d4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_d4ActionPerformed
-        ImageIcon imageIcon = (ImageIcon) d4.getIcon();
-        if (imageIcon != null) {
-            // Obtener la imagen del ImageIcon
-            Image image = imageIcon.getImage();
+Object mediaIdObject = d4.getClientProperty("ID_Destacada");
 
-            // Crear un BufferedImage con las dimensiones de la imagen
-            BufferedImage bufferedImage = new BufferedImage(image.getWidth(null), image.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+        if (mediaIdObject != null) {
+            idDestacada = (int) mediaIdObject;  // Convertir el valor a int
 
-            // Dibujar la imagen en el BufferedImage
-            Graphics2D g2d = bufferedImage.createGraphics();
-            g2d.drawImage(image, 0, 0, null);
-            g2d.dispose();
-
-            // Convertir la imagen en un array de bytes
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
             try {
-                ImageIO.write(bufferedImage, "png", baos); // O usa el formato adecuado (por ejemplo, "jpeg", "jpg")
-                byte[] imageBytes = baos.toByteArray();
-
-                // Recoger otros datos (suponiendo que tienes los datos necesarios en variables como idUsuario, idHistoria, etc.)
-                IniciarSesion IS = new IniciarSesion(); // Suponiendo que tienes el ID del usuario
-                String nombreArchivoIcono = "imagen";
-
                 // Conectar a la base de datos
                 Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/facebook", "AlanMijares", "1");
 
-                // Consulta SQL para insertar la imagen y otros datos en la tabla 'Destacadas'
-                String query = "INSERT INTO destacadas (ID_Usuario, ID_Media, Nombre, Icono_destacada, Nombre_archivo_icono) VALUES (?, ?, ?, ?, ?)";
+                // Consulta SQL para eliminar la destacada con el ID de media
+                String query = "DELETE FROM destacadas WHERE ID_Destacada = ?";
                 PreparedStatement pst = con.prepareStatement(query);
 
-                // Establecer los parámetros
-                pst.setInt(1, IS.idUsuario);
-                pst.setInt(2, idMedia);
-                pst.setString(3, "");
-                pst.setBytes(4, imageBytes);
-                pst.setString(5, nombreArchivoIcono);
+                // Establecer el parámetro del ID_Media
+                pst.setInt(1, idDestacada);
 
-                // Ejecutar la consulta de inserción
+                // Ejecutar la consulta de eliminación
                 int rowsAffected = pst.executeUpdate();
 
                 if (rowsAffected > 0) {
-                    JOptionPane.showMessageDialog(this, "Imagen destacada subida con éxito.");
+                    JOptionPane.showMessageDialog(this, "Imagen destacada eliminada con éxito.");
+
+                    // Opcional: Limpiar la imagen del botón si la quieres quitar de la interfaz
+                    d4.setIcon(null);
+                    d4.setEnabled(false); // Deshabilitar el botón para indicar que está vacío
                 } else {
-                    JOptionPane.showMessageDialog(this, "Error al subir la imagen destacada.");
+                    JOptionPane.showMessageDialog(this, "No se encontró la destacada con el ID especificado.");
                 }
 
                 // Cerrar la conexión
                 con.close();
-
-            } catch (IOException ex) {
-                JOptionPane.showMessageDialog(this, "Error al procesar la imagen: " + ex.getMessage());
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(this, "Error al conectar con la base de datos: " + ex.getMessage());
             }
         } else {
-            JOptionPane.showMessageDialog(this, "No hay imagen en el botón.");
+            JOptionPane.showMessageDialog(this, "No se ha seleccionado ninguna imagen.");
         }
-
-
-    
         this.dispose();
         Perfil P = new Perfil();
         IniciarSesion IS = new IniciarSesion();
@@ -652,64 +536,43 @@ public class AñadirDestacada extends javax.swing.JFrame {
     }//GEN-LAST:event_d4ActionPerformed
 
     private void d5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_d5ActionPerformed
-        ImageIcon imageIcon = (ImageIcon) d5.getIcon();
-        if (imageIcon != null) {
-            // Obtener la imagen del ImageIcon
-            Image image = imageIcon.getImage();
+Object mediaIdObject = d5.getClientProperty("ID_Destacada");
 
-            // Crear un BufferedImage con las dimensiones de la imagen
-            BufferedImage bufferedImage = new BufferedImage(image.getWidth(null), image.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+        if (mediaIdObject != null) {
+            idDestacada = (int) mediaIdObject;  // Convertir el valor a int
 
-            // Dibujar la imagen en el BufferedImage
-            Graphics2D g2d = bufferedImage.createGraphics();
-            g2d.drawImage(image, 0, 0, null);
-            g2d.dispose();
-
-            // Convertir la imagen en un array de bytes
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
             try {
-                ImageIO.write(bufferedImage, "png", baos); // O usa el formato adecuado (por ejemplo, "jpeg", "jpg")
-                byte[] imageBytes = baos.toByteArray();
-
-                // Recoger otros datos (suponiendo que tienes los datos necesarios en variables como idUsuario, idHistoria, etc.)
-                IniciarSesion IS = new IniciarSesion(); // Suponiendo que tienes el ID del usuario
-                String nombreArchivoIcono = "imagen";
-
                 // Conectar a la base de datos
                 Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/facebook", "AlanMijares", "1");
 
-                // Consulta SQL para insertar la imagen y otros datos en la tabla 'Destacadas'
-                String query = "INSERT INTO destacadas (ID_Usuario, ID_Media, Nombre, Icono_destacada, Nombre_archivo_icono) VALUES (?, ?, ?, ?, ?)";
+                // Consulta SQL para eliminar la destacada con el ID de media
+                String query = "DELETE FROM destacadas WHERE ID_Destacada = ?";
                 PreparedStatement pst = con.prepareStatement(query);
 
-                // Establecer los parámetros
-                pst.setInt(1, IS.idUsuario);
-                pst.setInt(2, idMedia);
-                pst.setString(3, "");
-                pst.setBytes(4, imageBytes);
-                pst.setString(5, nombreArchivoIcono);
+                // Establecer el parámetro del ID_Media
+                pst.setInt(1, idDestacada);
 
-                // Ejecutar la consulta de inserción
+                // Ejecutar la consulta de eliminación
                 int rowsAffected = pst.executeUpdate();
 
                 if (rowsAffected > 0) {
-                    JOptionPane.showMessageDialog(this, "Imagen destacada subida con éxito.");
+                    JOptionPane.showMessageDialog(this, "Imagen destacada eliminada con éxito.");
+
+                    // Opcional: Limpiar la imagen del botón si la quieres quitar de la interfaz
+                    d5.setIcon(null);
+                    d5.setEnabled(false); // Deshabilitar el botón para indicar que está vacío
                 } else {
-                    JOptionPane.showMessageDialog(this, "Error al subir la imagen destacada.");
+                    JOptionPane.showMessageDialog(this, "No se encontró la destacada con el ID especificado.");
                 }
 
                 // Cerrar la conexión
                 con.close();
-
-            } catch (IOException ex) {
-                JOptionPane.showMessageDialog(this, "Error al procesar la imagen: " + ex.getMessage());
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(this, "Error al conectar con la base de datos: " + ex.getMessage());
             }
         } else {
-            JOptionPane.showMessageDialog(this, "No hay imagen en el botón.");
+            JOptionPane.showMessageDialog(this, "No se ha seleccionado ninguna imagen.");
         }
-
         this.dispose();
         Perfil P = new Perfil();
         IniciarSesion IS = new IniciarSesion();
@@ -721,64 +584,43 @@ public class AñadirDestacada extends javax.swing.JFrame {
     }//GEN-LAST:event_d5ActionPerformed
 
     private void d6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_d6ActionPerformed
-        ImageIcon imageIcon = (ImageIcon) d6.getIcon();
-        if (imageIcon != null) {
-            // Obtener la imagen del ImageIcon
-            Image image = imageIcon.getImage();
+Object mediaIdObject = d6.getClientProperty("ID_Destacada");
 
-            // Crear un BufferedImage con las dimensiones de la imagen
-            BufferedImage bufferedImage = new BufferedImage(image.getWidth(null), image.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+        if (mediaIdObject != null) {
+            idDestacada = (int) mediaIdObject;  // Convertir el valor a int
 
-            // Dibujar la imagen en el BufferedImage
-            Graphics2D g2d = bufferedImage.createGraphics();
-            g2d.drawImage(image, 0, 0, null);
-            g2d.dispose();
-
-            // Convertir la imagen en un array de bytes
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
             try {
-                ImageIO.write(bufferedImage, "png", baos); // O usa el formato adecuado (por ejemplo, "jpeg", "jpg")
-                byte[] imageBytes = baos.toByteArray();
-
-                // Recoger otros datos (suponiendo que tienes los datos necesarios en variables como idUsuario, idHistoria, etc.)
-                IniciarSesion IS = new IniciarSesion(); // Suponiendo que tienes el ID del usuario
-                String nombreArchivoIcono = "imagen";
-
                 // Conectar a la base de datos
                 Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/facebook", "AlanMijares", "1");
 
-                // Consulta SQL para insertar la imagen y otros datos en la tabla 'Destacadas'
-                String query = "INSERT INTO destacadas (ID_Usuario, ID_Media, Nombre, Icono_destacada, Nombre_archivo_icono) VALUES (?, ?, ?, ?, ?)";
+                // Consulta SQL para eliminar la destacada con el ID de media
+                String query = "DELETE FROM destacadas WHERE ID_Destacada = ?";
                 PreparedStatement pst = con.prepareStatement(query);
 
-                // Establecer los parámetros
-                pst.setInt(1, IS.idUsuario);
-                pst.setInt(2, idMedia);
-                pst.setString(3, "");
-                pst.setBytes(4, imageBytes);
-                pst.setString(5, nombreArchivoIcono);
+                // Establecer el parámetro del ID_Media
+                pst.setInt(1, idDestacada);
 
-                // Ejecutar la consulta de inserción
+                // Ejecutar la consulta de eliminación
                 int rowsAffected = pst.executeUpdate();
 
                 if (rowsAffected > 0) {
-                    JOptionPane.showMessageDialog(this, "Imagen destacada subida con éxito.");
+                    JOptionPane.showMessageDialog(this, "Imagen destacada eliminada con éxito.");
+
+                    // Opcional: Limpiar la imagen del botón si la quieres quitar de la interfaz
+                    d6.setIcon(null);
+                    d6.setEnabled(false); // Deshabilitar el botón para indicar que está vacío
                 } else {
-                    JOptionPane.showMessageDialog(this, "Error al subir la imagen destacada.");
+                    JOptionPane.showMessageDialog(this, "No se encontró la destacada con el ID especificado.");
                 }
 
                 // Cerrar la conexión
                 con.close();
-
-            } catch (IOException ex) {
-                JOptionPane.showMessageDialog(this, "Error al procesar la imagen: " + ex.getMessage());
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(this, "Error al conectar con la base de datos: " + ex.getMessage());
             }
         } else {
-            JOptionPane.showMessageDialog(this, "No hay imagen en el botón.");
+            JOptionPane.showMessageDialog(this, "No se ha seleccionado ninguna imagen.");
         }
-
         this.dispose();
         Perfil P = new Perfil();
         IniciarSesion IS = new IniciarSesion();
@@ -790,64 +632,43 @@ public class AñadirDestacada extends javax.swing.JFrame {
     }//GEN-LAST:event_d6ActionPerformed
 
     private void d7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_d7ActionPerformed
-        ImageIcon imageIcon = (ImageIcon) d7.getIcon();
-        if (imageIcon != null) {
-            // Obtener la imagen del ImageIcon
-            Image image = imageIcon.getImage();
+      Object mediaIdObject = d7.getClientProperty("ID_Destacada");
 
-            // Crear un BufferedImage con las dimensiones de la imagen
-            BufferedImage bufferedImage = new BufferedImage(image.getWidth(null), image.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+        if (mediaIdObject != null) {
+            idDestacada = (int) mediaIdObject;  // Convertir el valor a int
 
-            // Dibujar la imagen en el BufferedImage
-            Graphics2D g2d = bufferedImage.createGraphics();
-            g2d.drawImage(image, 0, 0, null);
-            g2d.dispose();
-
-            // Convertir la imagen en un array de bytes
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
             try {
-                ImageIO.write(bufferedImage, "png", baos); // O usa el formato adecuado (por ejemplo, "jpeg", "jpg")
-                byte[] imageBytes = baos.toByteArray();
-
-                // Recoger otros datos (suponiendo que tienes los datos necesarios en variables como idUsuario, idHistoria, etc.)
-                IniciarSesion IS = new IniciarSesion(); // Suponiendo que tienes el ID del usuario
-                String nombreArchivoIcono = "imagen";
-
                 // Conectar a la base de datos
                 Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/facebook", "AlanMijares", "1");
 
-                // Consulta SQL para insertar la imagen y otros datos en la tabla 'Destacadas'
-                String query = "INSERT INTO destacadas (ID_Usuario, ID_Media, Nombre, Icono_destacada, Nombre_archivo_icono) VALUES (?, ?, ?, ?, ?)";
+                // Consulta SQL para eliminar la destacada con el ID de media
+                String query = "DELETE FROM destacadas WHERE ID_Destacada = ?";
                 PreparedStatement pst = con.prepareStatement(query);
 
-                // Establecer los parámetros
-                pst.setInt(1, IS.idUsuario);
-                pst.setInt(2, idMedia);
-                pst.setString(3, "");
-                pst.setBytes(4, imageBytes);
-                pst.setString(5, nombreArchivoIcono);
+                // Establecer el parámetro del ID_Media
+                pst.setInt(1, idDestacada);
 
-                // Ejecutar la consulta de inserción
+                // Ejecutar la consulta de eliminación
                 int rowsAffected = pst.executeUpdate();
 
                 if (rowsAffected > 0) {
-                    JOptionPane.showMessageDialog(this, "Imagen destacada subida con éxito.");
+                    JOptionPane.showMessageDialog(this, "Imagen destacada eliminada con éxito.");
+
+                    // Opcional: Limpiar la imagen del botón si la quieres quitar de la interfaz
+                    d7.setIcon(null);
+                    d7.setEnabled(false); // Deshabilitar el botón para indicar que está vacío
                 } else {
-                    JOptionPane.showMessageDialog(this, "Error al subir la imagen destacada.");
+                    JOptionPane.showMessageDialog(this, "No se encontró la destacada con el ID especificado.");
                 }
 
                 // Cerrar la conexión
                 con.close();
-
-            } catch (IOException ex) {
-                JOptionPane.showMessageDialog(this, "Error al procesar la imagen: " + ex.getMessage());
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(this, "Error al conectar con la base de datos: " + ex.getMessage());
             }
         } else {
-            JOptionPane.showMessageDialog(this, "No hay imagen en el botón.");
+            JOptionPane.showMessageDialog(this, "No se ha seleccionado ninguna imagen.");
         }
-
         this.dispose();
         Perfil P = new Perfil();
         IniciarSesion IS = new IniciarSesion();
@@ -859,64 +680,43 @@ public class AñadirDestacada extends javax.swing.JFrame {
     }//GEN-LAST:event_d7ActionPerformed
 
     private void d8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_d8ActionPerformed
-        ImageIcon imageIcon = (ImageIcon) d8.getIcon();
-        if (imageIcon != null) {
-            // Obtener la imagen del ImageIcon
-            Image image = imageIcon.getImage();
+        Object mediaIdObject = d8.getClientProperty("ID_Destacada");
 
-            // Crear un BufferedImage con las dimensiones de la imagen
-            BufferedImage bufferedImage = new BufferedImage(image.getWidth(null), image.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+        if (mediaIdObject != null) {
+            idDestacada = (int) mediaIdObject;  // Convertir el valor a int
 
-            // Dibujar la imagen en el BufferedImage
-            Graphics2D g2d = bufferedImage.createGraphics();
-            g2d.drawImage(image, 0, 0, null);
-            g2d.dispose();
-
-            // Convertir la imagen en un array de bytes
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
             try {
-                ImageIO.write(bufferedImage, "png", baos); // O usa el formato adecuado (por ejemplo, "jpeg", "jpg")
-                byte[] imageBytes = baos.toByteArray();
-
-                // Recoger otros datos (suponiendo que tienes los datos necesarios en variables como idUsuario, idHistoria, etc.)
-                IniciarSesion IS = new IniciarSesion(); // Suponiendo que tienes el ID del usuario
-                String nombreArchivoIcono = "imagen";
-
                 // Conectar a la base de datos
                 Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/facebook", "AlanMijares", "1");
 
-                // Consulta SQL para insertar la imagen y otros datos en la tabla 'Destacadas'
-                String query = "INSERT INTO destacadas (ID_Usuario, ID_Media, Nombre, Icono_destacada, Nombre_archivo_icono) VALUES (?, ?, ?, ?, ?)";
+                // Consulta SQL para eliminar la destacada con el ID de media
+                String query = "DELETE FROM destacadas WHERE ID_Destacada = ?";
                 PreparedStatement pst = con.prepareStatement(query);
 
-                // Establecer los parámetros
-                pst.setInt(1, IS.idUsuario);
-                pst.setInt(2, idMedia);
-                pst.setString(3, "");
-                pst.setBytes(4, imageBytes);
-                pst.setString(5, nombreArchivoIcono);
+                // Establecer el parámetro del ID_Media
+                pst.setInt(1, idDestacada);
 
-                // Ejecutar la consulta de inserción
+                // Ejecutar la consulta de eliminación
                 int rowsAffected = pst.executeUpdate();
 
                 if (rowsAffected > 0) {
-                    JOptionPane.showMessageDialog(this, "Imagen destacada subida con éxito.");
+                    JOptionPane.showMessageDialog(this, "Imagen destacada eliminada con éxito.");
+
+                    // Opcional: Limpiar la imagen del botón si la quieres quitar de la interfaz
+                    d8.setIcon(null);
+                    d8.setEnabled(false); // Deshabilitar el botón para indicar que está vacío
                 } else {
-                    JOptionPane.showMessageDialog(this, "Error al subir la imagen destacada.");
+                    JOptionPane.showMessageDialog(this, "No se encontró la destacada con el ID especificado.");
                 }
 
                 // Cerrar la conexión
                 con.close();
-
-            } catch (IOException ex) {
-                JOptionPane.showMessageDialog(this, "Error al procesar la imagen: " + ex.getMessage());
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(this, "Error al conectar con la base de datos: " + ex.getMessage());
             }
         } else {
-            JOptionPane.showMessageDialog(this, "No hay imagen en el botón.");
+            JOptionPane.showMessageDialog(this, "No se ha seleccionado ninguna imagen.");
         }
-        
         this.dispose();
         Perfil P = new Perfil();
         IniciarSesion IS = new IniciarSesion();
@@ -957,7 +757,7 @@ public class AñadirDestacada extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AñadirDestacada().setVisible(true);
+                new EliminarDestacada().setVisible(true);
             }
         });
     }
@@ -975,7 +775,6 @@ public class AñadirDestacada extends javax.swing.JFrame {
     private javax.swing.JButton destacada1;
     private javax.swing.JButton destacada10;
     private javax.swing.JButton destacada4;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

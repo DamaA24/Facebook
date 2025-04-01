@@ -723,16 +723,14 @@ public class Perfil extends javax.swing.JFrame {
     }//GEN-LAST:event_fotoperfilActionPerformed
 
     private void sigdestacadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sigdestacadaActionPerformed
-        offset += 8;  
+        offset += 4;  
         cargarDestacadasPerfil(offset, IS.idUsuario); 
     }//GEN-LAST:event_sigdestacadaActionPerformed
 
     private void añadirdestacadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_añadirdestacadaActionPerformed
         this.dispose();
-        AñadirDestacada AD = new AñadirDestacada();
-        IniciarSesion IS = new IniciarSesion();
-        AD.cargarDestacadas(AD.offset, IS.idUsuario);
-        AD.setVisible(true);
+        ModificarDestacadas MD = new ModificarDestacadas();
+        MD.setVisible(true);
     }//GEN-LAST:event_añadirdestacadaActionPerformed
 
     private void destacada1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_destacada1ActionPerformed
@@ -740,7 +738,7 @@ public class Perfil extends javax.swing.JFrame {
     }//GEN-LAST:event_destacada1ActionPerformed
 
     private void sigdestacada1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sigdestacada1ActionPerformed
-        offset -= 8;  
+        offset -= 4;  
         cargarDestacadasPerfil(offset, IS.idUsuario); 
     }//GEN-LAST:event_sigdestacada1ActionPerformed
 
