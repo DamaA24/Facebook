@@ -76,6 +76,12 @@ public class SubirDestacada extends javax.swing.JFrame {
             }
         });
 
+        descripcion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                descripcionActionPerformed(evt);
+            }
+        });
+
         jLabel2.setText("Descripcion:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -244,6 +250,10 @@ public class SubirDestacada extends javax.swing.JFrame {
         AñadirDestacada AD = new AñadirDestacada();
         AD.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void descripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descripcionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_descripcionActionPerformed
 
     /**
      * @param args the command line arguments

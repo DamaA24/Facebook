@@ -28,6 +28,7 @@ public class AñadirDestacada extends javax.swing.JFrame {
     IniciarSesion IS = new IniciarSesion();
     public int offset = 0;
     public int idMedia;
+    
     public AñadirDestacada() {
         initComponents();
         cargarDestacadas(offset, IS.idUsuario);
@@ -40,14 +41,15 @@ public class AñadirDestacada extends javax.swing.JFrame {
         Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/facebook", "AlanMijares", "1");
 
         // Consulta SQL para obtener las imágenes desde la tabla 'media' filtradas por el 'ID_Usuario'
-        String query = "SELECT ID_Media, Contenido_media FROM media WHERE Tipo = 'imagen' AND ID_Usuario = ? LIMIT 8 OFFSET ?";
+        String query = "SELECT ID_Media, Contenido_media, Descripcion FROM media WHERE Tipo = 'imagen' AND ID_Usuario = ? LIMIT 8 OFFSET ?";
         PreparedStatement pst = con.prepareStatement(query);
         pst.setInt(1, idUsuario);  // Ajustamos el ID del usuario en la consulta
         pst.setInt(2, offset);      // Ajustar el OFFSET según la página de imágenes
-
+ 
         // Ejecutar la consulta
         ResultSet rs = pst.executeQuery();
-
+      
+        
         // Asignar las imágenes y los ID de media a los botones
         JButton[] botones = {d1, d2, d3, d4, d5, d6, d7, d8};
         int i = 0;
@@ -82,6 +84,7 @@ public class AñadirDestacada extends javax.swing.JFrame {
 
         // Asignar el ID del medio a cada botón, si se necesita usarlo más tarde
         botones[i].putClientProperty("ID_Media", idMedia);
+       
 
         i++;
         }
@@ -91,6 +94,7 @@ public class AñadirDestacada extends javax.swing.JFrame {
             botones[i].setEnabled(false);
             i++;
         }
+        
 
         con.close();
     } catch (SQLException ex) {
@@ -366,8 +370,7 @@ public class AñadirDestacada extends javax.swing.JFrame {
     }//GEN-LAST:event_siguienteActionPerformed
 
     private void d1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_d1ActionPerformed
-         
-        
+
         ImageIcon imageIcon = (ImageIcon) d1.getIcon();
         if (imageIcon != null) {
             // Obtener la imagen del ImageIcon
@@ -393,15 +396,26 @@ public class AñadirDestacada extends javax.swing.JFrame {
 
                 // Conectar a la base de datos
                 Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/facebook", "AlanMijares", "1");
-
+           
                 // Consulta SQL para insertar la imagen y otros datos en la tabla 'Destacadas'
+                String descripcionQuery = "SELECT Descripcion FROM media WHERE ID_Media = ? AND ID_Usuario = ?";
+                PreparedStatement pstDescripcion = con.prepareStatement(descripcionQuery);
+                pstDescripcion.setInt(1, idMedia);
+                pstDescripcion.setInt(2, IS.idUsuario);
+                ResultSet rsDescripcion = pstDescripcion.executeQuery();
+                
+                String descripcion = "";
+                if (rsDescripcion.next()) {
+                 descripcion = rsDescripcion.getString("Descripcion");
+                }
+                
                 String query = "INSERT INTO destacadas (ID_Usuario, ID_Media, Nombre, Icono_destacada, Nombre_archivo_icono) VALUES (?, ?, ?, ?, ?)";
                 PreparedStatement pst = con.prepareStatement(query);
 
                 // Establecer los parámetros
                 pst.setInt(1, IS.idUsuario);
                 pst.setInt(2, idMedia);
-                pst.setString(3, "");
+                pst.setString(3, descripcion);
                 pst.setBytes(4, imageBytes);
                 pst.setString(5, nombreArchivoIcono);
 
@@ -413,8 +427,9 @@ public class AñadirDestacada extends javax.swing.JFrame {
                 } else {
                     JOptionPane.showMessageDialog(this, "Error al subir la imagen destacada.");
                 }
-
-                // Cerrar la conexión
+                
+                
+                
                 con.close();
 
             } catch (IOException ex) {
@@ -464,15 +479,26 @@ public class AñadirDestacada extends javax.swing.JFrame {
 
                 // Conectar a la base de datos
                 Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/facebook", "AlanMijares", "1");
-
+           
                 // Consulta SQL para insertar la imagen y otros datos en la tabla 'Destacadas'
+                String descripcionQuery = "SELECT Descripcion FROM media WHERE ID_Media = ? AND ID_Usuario = ?";
+                PreparedStatement pstDescripcion = con.prepareStatement(descripcionQuery);
+                pstDescripcion.setInt(1, idMedia);
+                pstDescripcion.setInt(2, IS.idUsuario);
+                ResultSet rsDescripcion = pstDescripcion.executeQuery();
+                
+                String descripcion = "";
+                if (rsDescripcion.next()) {
+                 descripcion = rsDescripcion.getString("Descripcion");
+                }
+                
                 String query = "INSERT INTO destacadas (ID_Usuario, ID_Media, Nombre, Icono_destacada, Nombre_archivo_icono) VALUES (?, ?, ?, ?, ?)";
                 PreparedStatement pst = con.prepareStatement(query);
 
                 // Establecer los parámetros
                 pst.setInt(1, IS.idUsuario);
                 pst.setInt(2, idMedia);
-                pst.setString(3, "");
+                pst.setString(3, descripcion);
                 pst.setBytes(4, imageBytes);
                 pst.setString(5, nombreArchivoIcono);
 
@@ -484,8 +510,9 @@ public class AñadirDestacada extends javax.swing.JFrame {
                 } else {
                     JOptionPane.showMessageDialog(this, "Error al subir la imagen destacada.");
                 }
-
-                // Cerrar la conexión
+                
+                
+                
                 con.close();
 
             } catch (IOException ex) {
@@ -507,6 +534,8 @@ public class AñadirDestacada extends javax.swing.JFrame {
         P.cargarImagenPortada(IS.idUsuario, P.fotoportada);
         P.cargarDestacadasPerfil(P.offset, IS.idUsuario);
         P.setVisible(true);
+
+   
     }//GEN-LAST:event_d2ActionPerformed
 
     private void d3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_d3ActionPerformed
@@ -535,15 +564,26 @@ public class AñadirDestacada extends javax.swing.JFrame {
 
                 // Conectar a la base de datos
                 Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/facebook", "AlanMijares", "1");
-
+           
                 // Consulta SQL para insertar la imagen y otros datos en la tabla 'Destacadas'
+                String descripcionQuery = "SELECT Descripcion FROM media WHERE ID_Media = ? AND ID_Usuario = ?";
+                PreparedStatement pstDescripcion = con.prepareStatement(descripcionQuery);
+                pstDescripcion.setInt(1, idMedia);
+                pstDescripcion.setInt(2, IS.idUsuario);
+                ResultSet rsDescripcion = pstDescripcion.executeQuery();
+                
+                String descripcion = "";
+                if (rsDescripcion.next()) {
+                 descripcion = rsDescripcion.getString("Descripcion");
+                }
+                
                 String query = "INSERT INTO destacadas (ID_Usuario, ID_Media, Nombre, Icono_destacada, Nombre_archivo_icono) VALUES (?, ?, ?, ?, ?)";
                 PreparedStatement pst = con.prepareStatement(query);
 
                 // Establecer los parámetros
                 pst.setInt(1, IS.idUsuario);
                 pst.setInt(2, idMedia);
-                pst.setString(3, "");
+                pst.setString(3, descripcion);
                 pst.setBytes(4, imageBytes);
                 pst.setString(5, nombreArchivoIcono);
 
@@ -555,8 +595,9 @@ public class AñadirDestacada extends javax.swing.JFrame {
                 } else {
                     JOptionPane.showMessageDialog(this, "Error al subir la imagen destacada.");
                 }
-
-                // Cerrar la conexión
+                
+                
+                
                 con.close();
 
             } catch (IOException ex) {
@@ -606,15 +647,26 @@ public class AñadirDestacada extends javax.swing.JFrame {
 
                 // Conectar a la base de datos
                 Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/facebook", "AlanMijares", "1");
-
+           
                 // Consulta SQL para insertar la imagen y otros datos en la tabla 'Destacadas'
+                String descripcionQuery = "SELECT Descripcion FROM media WHERE ID_Media = ? AND ID_Usuario = ?";
+                PreparedStatement pstDescripcion = con.prepareStatement(descripcionQuery);
+                pstDescripcion.setInt(1, idMedia);
+                pstDescripcion.setInt(2, IS.idUsuario);
+                ResultSet rsDescripcion = pstDescripcion.executeQuery();
+                
+                String descripcion = "";
+                if (rsDescripcion.next()) {
+                 descripcion = rsDescripcion.getString("Descripcion");
+                }
+                
                 String query = "INSERT INTO destacadas (ID_Usuario, ID_Media, Nombre, Icono_destacada, Nombre_archivo_icono) VALUES (?, ?, ?, ?, ?)";
                 PreparedStatement pst = con.prepareStatement(query);
 
                 // Establecer los parámetros
                 pst.setInt(1, IS.idUsuario);
                 pst.setInt(2, idMedia);
-                pst.setString(3, "");
+                pst.setString(3, descripcion);
                 pst.setBytes(4, imageBytes);
                 pst.setString(5, nombreArchivoIcono);
 
@@ -626,8 +678,9 @@ public class AñadirDestacada extends javax.swing.JFrame {
                 } else {
                     JOptionPane.showMessageDialog(this, "Error al subir la imagen destacada.");
                 }
-
-                // Cerrar la conexión
+                
+                
+                
                 con.close();
 
             } catch (IOException ex) {
@@ -677,15 +730,26 @@ public class AñadirDestacada extends javax.swing.JFrame {
 
                 // Conectar a la base de datos
                 Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/facebook", "AlanMijares", "1");
-
+           
                 // Consulta SQL para insertar la imagen y otros datos en la tabla 'Destacadas'
+                String descripcionQuery = "SELECT Descripcion FROM media WHERE ID_Media = ? AND ID_Usuario = ?";
+                PreparedStatement pstDescripcion = con.prepareStatement(descripcionQuery);
+                pstDescripcion.setInt(1, idMedia);
+                pstDescripcion.setInt(2, IS.idUsuario);
+                ResultSet rsDescripcion = pstDescripcion.executeQuery();
+                
+                String descripcion = "";
+                if (rsDescripcion.next()) {
+                 descripcion = rsDescripcion.getString("Descripcion");
+                }
+                
                 String query = "INSERT INTO destacadas (ID_Usuario, ID_Media, Nombre, Icono_destacada, Nombre_archivo_icono) VALUES (?, ?, ?, ?, ?)";
                 PreparedStatement pst = con.prepareStatement(query);
 
                 // Establecer los parámetros
                 pst.setInt(1, IS.idUsuario);
                 pst.setInt(2, idMedia);
-                pst.setString(3, "");
+                pst.setString(3, descripcion);
                 pst.setBytes(4, imageBytes);
                 pst.setString(5, nombreArchivoIcono);
 
@@ -697,8 +761,9 @@ public class AñadirDestacada extends javax.swing.JFrame {
                 } else {
                     JOptionPane.showMessageDialog(this, "Error al subir la imagen destacada.");
                 }
-
-                // Cerrar la conexión
+                
+                
+                
                 con.close();
 
             } catch (IOException ex) {
@@ -710,6 +775,8 @@ public class AñadirDestacada extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "No hay imagen en el botón.");
         }
 
+
+    
         this.dispose();
         Perfil P = new Perfil();
         IniciarSesion IS = new IniciarSesion();
@@ -746,15 +813,26 @@ public class AñadirDestacada extends javax.swing.JFrame {
 
                 // Conectar a la base de datos
                 Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/facebook", "AlanMijares", "1");
-
+           
                 // Consulta SQL para insertar la imagen y otros datos en la tabla 'Destacadas'
+                String descripcionQuery = "SELECT Descripcion FROM media WHERE ID_Media = ? AND ID_Usuario = ?";
+                PreparedStatement pstDescripcion = con.prepareStatement(descripcionQuery);
+                pstDescripcion.setInt(1, idMedia);
+                pstDescripcion.setInt(2, IS.idUsuario);
+                ResultSet rsDescripcion = pstDescripcion.executeQuery();
+                
+                String descripcion = "";
+                if (rsDescripcion.next()) {
+                 descripcion = rsDescripcion.getString("Descripcion");
+                }
+                
                 String query = "INSERT INTO destacadas (ID_Usuario, ID_Media, Nombre, Icono_destacada, Nombre_archivo_icono) VALUES (?, ?, ?, ?, ?)";
                 PreparedStatement pst = con.prepareStatement(query);
 
                 // Establecer los parámetros
                 pst.setInt(1, IS.idUsuario);
                 pst.setInt(2, idMedia);
-                pst.setString(3, "");
+                pst.setString(3, descripcion);
                 pst.setBytes(4, imageBytes);
                 pst.setString(5, nombreArchivoIcono);
 
@@ -766,8 +844,9 @@ public class AñadirDestacada extends javax.swing.JFrame {
                 } else {
                     JOptionPane.showMessageDialog(this, "Error al subir la imagen destacada.");
                 }
-
-                // Cerrar la conexión
+                
+                
+                
                 con.close();
 
             } catch (IOException ex) {
@@ -779,6 +858,8 @@ public class AñadirDestacada extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "No hay imagen en el botón.");
         }
 
+
+    
         this.dispose();
         Perfil P = new Perfil();
         IniciarSesion IS = new IniciarSesion();
@@ -815,15 +896,26 @@ public class AñadirDestacada extends javax.swing.JFrame {
 
                 // Conectar a la base de datos
                 Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/facebook", "AlanMijares", "1");
-
+           
                 // Consulta SQL para insertar la imagen y otros datos en la tabla 'Destacadas'
+                String descripcionQuery = "SELECT Descripcion FROM media WHERE ID_Media = ? AND ID_Usuario = ?";
+                PreparedStatement pstDescripcion = con.prepareStatement(descripcionQuery);
+                pstDescripcion.setInt(1, idMedia);
+                pstDescripcion.setInt(2, IS.idUsuario);
+                ResultSet rsDescripcion = pstDescripcion.executeQuery();
+                
+                String descripcion = "";
+                if (rsDescripcion.next()) {
+                 descripcion = rsDescripcion.getString("Descripcion");
+                }
+                
                 String query = "INSERT INTO destacadas (ID_Usuario, ID_Media, Nombre, Icono_destacada, Nombre_archivo_icono) VALUES (?, ?, ?, ?, ?)";
                 PreparedStatement pst = con.prepareStatement(query);
 
                 // Establecer los parámetros
                 pst.setInt(1, IS.idUsuario);
                 pst.setInt(2, idMedia);
-                pst.setString(3, "");
+                pst.setString(3, descripcion);
                 pst.setBytes(4, imageBytes);
                 pst.setString(5, nombreArchivoIcono);
 
@@ -835,8 +927,9 @@ public class AñadirDestacada extends javax.swing.JFrame {
                 } else {
                     JOptionPane.showMessageDialog(this, "Error al subir la imagen destacada.");
                 }
-
-                // Cerrar la conexión
+                
+                
+                
                 con.close();
 
             } catch (IOException ex) {
@@ -848,6 +941,8 @@ public class AñadirDestacada extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "No hay imagen en el botón.");
         }
 
+
+    
         this.dispose();
         Perfil P = new Perfil();
         IniciarSesion IS = new IniciarSesion();
@@ -884,15 +979,26 @@ public class AñadirDestacada extends javax.swing.JFrame {
 
                 // Conectar a la base de datos
                 Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/facebook", "AlanMijares", "1");
-
+           
                 // Consulta SQL para insertar la imagen y otros datos en la tabla 'Destacadas'
+                String descripcionQuery = "SELECT Descripcion FROM media WHERE ID_Media = ? AND ID_Usuario = ?";
+                PreparedStatement pstDescripcion = con.prepareStatement(descripcionQuery);
+                pstDescripcion.setInt(1, idMedia);
+                pstDescripcion.setInt(2, IS.idUsuario);
+                ResultSet rsDescripcion = pstDescripcion.executeQuery();
+                
+                String descripcion = "";
+                if (rsDescripcion.next()) {
+                 descripcion = rsDescripcion.getString("Descripcion");
+                }
+                
                 String query = "INSERT INTO destacadas (ID_Usuario, ID_Media, Nombre, Icono_destacada, Nombre_archivo_icono) VALUES (?, ?, ?, ?, ?)";
                 PreparedStatement pst = con.prepareStatement(query);
 
                 // Establecer los parámetros
                 pst.setInt(1, IS.idUsuario);
                 pst.setInt(2, idMedia);
-                pst.setString(3, "");
+                pst.setString(3, descripcion);
                 pst.setBytes(4, imageBytes);
                 pst.setString(5, nombreArchivoIcono);
 
@@ -904,8 +1010,9 @@ public class AñadirDestacada extends javax.swing.JFrame {
                 } else {
                     JOptionPane.showMessageDialog(this, "Error al subir la imagen destacada.");
                 }
-
-                // Cerrar la conexión
+                
+                
+                
                 con.close();
 
             } catch (IOException ex) {
@@ -916,7 +1023,9 @@ public class AñadirDestacada extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "No hay imagen en el botón.");
         }
-        
+
+
+    
         this.dispose();
         Perfil P = new Perfil();
         IniciarSesion IS = new IniciarSesion();

@@ -15,12 +15,14 @@ import java.sql.PreparedStatement;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.JPanel;
 
 public class Perfil extends javax.swing.JFrame {
     public int offset = 0;
+    int idMedia;
     IniciarSesion IS = new IniciarSesion();
     private Image background_image;
     public Perfil() {
@@ -55,6 +57,10 @@ public class Perfil extends javax.swing.JFrame {
         sigdestacada = new javax.swing.JButton();
         añadirdestacada = new javax.swing.JButton();
         sigdestacada1 = new javax.swing.JButton();
+        desc1 = new javax.swing.JLabel();
+        desc2 = new javax.swing.JLabel();
+        desc3 = new javax.swing.JLabel();
+        desc4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -123,7 +129,7 @@ public class Perfil extends javax.swing.JFrame {
             .addGroup(menuLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(inicio)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addComponent(amigos)
                 .addGap(47, 47, 47)
                 .addComponent(perfil_u, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -299,18 +305,29 @@ public class Perfil extends javax.swing.JFrame {
             }
         });
 
+        desc1.setText("1");
+
+        desc2.setText("2");
+
+        desc3.setText("3");
+
+        desc4.setText("4");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(destacada1, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(15, 15, 15)
                         .addComponent(sigdestacada1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(destacada1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(desc1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(44, 44, 44)
@@ -319,12 +336,18 @@ public class Perfil extends javax.swing.JFrame {
                         .addComponent(sigdestacada, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(desc2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(destacada2, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE))
                         .addGap(12, 12, 12)
-                        .addComponent(destacada2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(destacada3, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(desc3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(destacada3, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(destacada4, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(destacada4, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
+                            .addComponent(desc4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(14, 14, 14))))
         );
         jPanel3Layout.setVerticalGroup(
@@ -336,7 +359,13 @@ public class Perfil extends javax.swing.JFrame {
                     .addComponent(destacada3, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(destacada4, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(destacada2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(desc1)
+                    .addComponent(desc4)
+                    .addComponent(desc3)
+                    .addComponent(desc2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(añadirdestacada)
                     .addComponent(sigdestacada)
@@ -369,7 +398,7 @@ public class Perfil extends javax.swing.JFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(180, Short.MAX_VALUE))
+                .addContainerGap(140, Short.MAX_VALUE))
         );
 
         pack();
@@ -606,7 +635,7 @@ public class Perfil extends javax.swing.JFrame {
         Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/facebook", "AlanMijares", "1");
 
         // Consulta SQL para obtener las imágenes desde la tabla 'media' filtradas por el 'ID_Usuario'
-        String query = "SELECT ID_Destacada, Icono_destacada FROM destacadas WHERE ID_Usuario = ? LIMIT 4 OFFSET ?";
+        String query = "SELECT ID_Destacada, Icono_destacada, Nombre FROM destacadas WHERE ID_Usuario = ? LIMIT 4 OFFSET ?";
         PreparedStatement pst = con.prepareStatement(query);
         pst.setInt(1, idUsuario);  // Ajustamos el ID del usuario en la consulta
         pst.setInt(2, offset);      // Ajustar el OFFSET según la página de imágenes
@@ -616,6 +645,7 @@ public class Perfil extends javax.swing.JFrame {
 
         // Asignar las imágenes y los ID de media a los botones
         JButton[] botones = {destacada1, destacada2, destacada3, destacada4};
+        JLabel[] labels = {desc1, desc2, desc3, desc4};
         int i = 0;
 
         // Limpiar las imágenes en los botones antes de asignar nuevas
@@ -624,10 +654,15 @@ public class Perfil extends javax.swing.JFrame {
             boton.setEnabled(true);  // Asegurarse de que los botones estén habilitados
         }
 
+        for (JLabel label : labels) {
+            label.setText("");  // Limpiar las descripciones
+        }
+
         // Procesar los resultados de la consulta y asignar las imágenes a los botones
         while (rs.next() && i < botones.length) {
         int idDestacada = rs.getInt("ID_Destacada");
         byte[] contenidoMedia = rs.getBytes("Icono_destacada");
+        String nombre = rs.getString("Nombre");
 
         // Crear un ImageIcon a partir de los datos de la imagen
         ImageIcon originalImageIcon = new ImageIcon(contenidoMedia);
@@ -646,6 +681,8 @@ public class Perfil extends javax.swing.JFrame {
         // Establecer la imagen escalada en el botón correspondiente
         botones[i].setIcon(scaledImageIcon);
 
+        labels[i].setText(nombre);
+
         // Asignar el ID del medio a cada botón, si se necesita usarlo más tarde
         botones[i].putClientProperty("ID_Destacada", idDestacada);
 
@@ -655,6 +692,7 @@ public class Perfil extends javax.swing.JFrame {
         // Si no hay suficientes imágenes, deshabilitar los botones restantes
         while (i < botones.length) {
             botones[i].setEnabled(false);
+        labels[i].setText("");
             i++;
         }
 
@@ -662,14 +700,8 @@ public class Perfil extends javax.swing.JFrame {
     } catch (SQLException ex) {
         JOptionPane.showMessageDialog(this, "Error al cargar las imágenes: " + ex.getMessage());
     }
-}
 
- 
-
-
-
-    
-    
+   }
     private void amigosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amigosActionPerformed
         this.dispose();
         FacebookFriends FF = new FacebookFriends();
@@ -755,6 +787,10 @@ public class Perfil extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton amigos;
     private javax.swing.JButton añadirdestacada;
+    private javax.swing.JLabel desc1;
+    private javax.swing.JLabel desc2;
+    private javax.swing.JLabel desc3;
+    private javax.swing.JLabel desc4;
     private javax.swing.JButton destacada1;
     private javax.swing.JButton destacada2;
     private javax.swing.JButton destacada3;
