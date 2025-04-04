@@ -14,12 +14,12 @@ import javax.swing.JOptionPane;
  *
  * @author Damaris
  */
-public class CambiarNombre extends javax.swing.JFrame {
+public class CambiarCorreo extends javax.swing.JFrame {
 
     /**
      * Creates new form CambiarNombre
      */
-    public CambiarNombre() {
+    public CambiarCorreo() {
         initComponents();
     }
 
@@ -34,9 +34,7 @@ public class CambiarNombre extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        nombre = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        apellido = new javax.swing.JTextField();
+        correo = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
@@ -45,14 +43,11 @@ public class CambiarNombre extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(0, 153, 255));
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Coloque su nuevo nombre");
+        jLabel1.setText("Coloque su nuevo correo");
 
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Coloque su nuevo apellido");
-
-        apellido.addActionListener(new java.awt.event.ActionListener() {
+        correo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                apellidoActionPerformed(evt);
+                correoActionPerformed(evt);
             }
         });
 
@@ -78,11 +73,11 @@ public class CambiarNombre extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(119, 119, 119)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1)
-                            .addComponent(nombre)
-                            .addComponent(apellido, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(correo, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(14, 14, 14)
+                                .addComponent(jLabel1))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(163, 163, 163)
                         .addComponent(jButton1))
@@ -96,14 +91,10 @@ public class CambiarNombre extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton2)
-                .addGap(18, 18, 18)
+                .addGap(92, 92, 92)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(apellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(correo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(20, 20, 20))
@@ -124,8 +115,7 @@ public class CambiarNombre extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String nombreT = nombre.getText();
-        String apellidoT = apellido.getText();
+        String correoT = correo.getText();
 
         
             try {
@@ -133,16 +123,15 @@ public class CambiarNombre extends javax.swing.JFrame {
                 Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/facebook", "AlanMijares", "1");
 
                 IniciarSesion IS = new IniciarSesion();
-                String queryActualizar = "UPDATE perfil_usuario SET Nombre = ?, Apellido = ? WHERE ID_Usuario = ?";
+                String queryActualizar = "UPDATE perfil_usuario SET Correo_electronico = ? WHERE ID_Usuario = ?";
                 PreparedStatement stActualizar = con.prepareStatement(queryActualizar);
-                stActualizar.setString(1, nombreT);
-                stActualizar.setString(2, apellidoT);
-                stActualizar.setInt(3, IS.idUsuario); // Asegúrate de definir el ID del usuario que deseas actualizar
+                stActualizar.setString(1, correoT);
+                stActualizar.setInt(2, IS.idUsuario); // Asegúrate de definir el ID del usuario que deseas actualizar
 
                 int filasAfectadas = stActualizar.executeUpdate(); // Ejecutar la actualización
 
                 if (filasAfectadas > 0) {
-                    JOptionPane.showMessageDialog(this, "Cambio de nombre exitoso.");
+                    JOptionPane.showMessageDialog(this, "Cambio de correo exitoso.");
                     this.dispose();
                     Menuframe Mf = new Menuframe();
                     Mf.actualizarNombreUsuario(IS.idUsuario);
@@ -157,14 +146,12 @@ public class CambiarNombre extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Error en la base de datos: " + ex.getMessage());
             
         }
-            
-
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void apellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apellidoActionPerformed
+    private void correoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_correoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_apellidoActionPerformed
+    }//GEN-LAST:event_correoActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.dispose();
@@ -204,18 +191,16 @@ public class CambiarNombre extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CambiarNombre().setVisible(true);
+                new CambiarCorreo().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField apellido;
+    private javax.swing.JTextField correo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField nombre;
     // End of variables declaration//GEN-END:variables
 }

@@ -187,6 +187,11 @@ public class Menuframe extends javax.swing.JFrame {
                 B_configNomMouseExited(evt);
             }
         });
+        B_configNom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_configNomActionPerformed(evt);
+            }
+        });
 
         B_configCorreo.setText("Cambiar Correo");
         B_configCorreo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -200,6 +205,11 @@ public class Menuframe extends javax.swing.JFrame {
                 B_configCorreoMouseExited(evt);
             }
         });
+        B_configCorreo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_configCorreoActionPerformed(evt);
+            }
+        });
 
         B_configContraseña.setText("Cambiar Contraseña");
         B_configContraseña.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -211,6 +221,11 @@ public class Menuframe extends javax.swing.JFrame {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 B_configContraseñaMouseExited(evt);
+            }
+        });
+        B_configContraseña.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_configContraseñaActionPerformed(evt);
             }
         });
 
@@ -462,6 +477,23 @@ private boolean isConfigVisible = false;
     private void B_configContraseñaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B_configContraseñaMouseExited
     B_configContraseña.setForeground(new Color(0,0,0));    // TODO add your handling code here:
     }//GEN-LAST:event_B_configContraseñaMouseExited
+
+    private void B_configNomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_configNomActionPerformed
+        this.dispose();
+        CambiarNombre CN = new CambiarNombre();
+        CN.setVisible(true);
+    }//GEN-LAST:event_B_configNomActionPerformed
+
+    private void B_configCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_configCorreoActionPerformed
+        this.dispose();
+        CambiarCorreo CC = new CambiarCorreo();
+        CC.setVisible(true);    }//GEN-LAST:event_B_configCorreoActionPerformed
+
+    private void B_configContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_configContraseñaActionPerformed
+        this.dispose();
+        CambiarContraseña pp= new CambiarContraseña();
+        pp.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_B_configContraseñaActionPerformed
 
     /**
      * @param args the command line arguments
