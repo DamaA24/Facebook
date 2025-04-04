@@ -1,6 +1,7 @@
 
 package com.mycompany.iniciosesion;
 
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -15,7 +16,7 @@ public class Menuframe extends javax.swing.JFrame {
  
     public Menuframe() {
         initComponents();
-        
+        P_config.setVisible(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -45,9 +46,13 @@ public class Menuframe extends javax.swing.JFrame {
         jButton11 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jButton12 = new javax.swing.JButton();
-        jButton13 = new javax.swing.JButton();
+        B_config = new javax.swing.JButton();
         usuario = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        P_config = new javax.swing.JPanel();
+        B_configNom = new javax.swing.JButton();
+        B_configCorreo = new javax.swing.JButton();
+        B_configContraseña = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -103,6 +108,7 @@ public class Menuframe extends javax.swing.JFrame {
 
         jButton9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jButton9.setText("Crear nueva página o perfil");
+        jButton9.setBorder(null);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("Tus accesos directos");
@@ -154,19 +160,104 @@ public class Menuframe extends javax.swing.JFrame {
         jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pregunta.png"))); // NOI18N
         jButton12.setText("Ayuda y soporte técnico");
 
-        jButton13.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ajustes.png"))); // NOI18N
-        jButton13.setText("Configuración y privacidad");
+        B_config.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        B_config.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ajustes.png"))); // NOI18N
+        B_config.setText("Configuración y privacidad");
+        B_config.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                B_configMouseClicked(evt);
+            }
+        });
 
         usuario.setText("Desconocido");
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/usuario.png"))); // NOI18N
+
+        P_config.setBackground(new java.awt.Color(255, 255, 255));
+
+        B_configNom.setText("Cambiar Nombre");
+        B_configNom.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        B_configNom.setContentAreaFilled(false);
+        B_configNom.setFocusPainted(false);
+        B_configNom.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                B_configNomMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                B_configNomMouseExited(evt);
+            }
+        });
+        B_configNom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_configNomActionPerformed(evt);
+            }
+        });
+
+        B_configCorreo.setText("Cambiar Correo");
+        B_configCorreo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        B_configCorreo.setContentAreaFilled(false);
+        B_configCorreo.setFocusPainted(false);
+        B_configCorreo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                B_configCorreoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                B_configCorreoMouseExited(evt);
+            }
+        });
+        B_configCorreo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_configCorreoActionPerformed(evt);
+            }
+        });
+
+        B_configContraseña.setText("Cambiar Contraseña");
+        B_configContraseña.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        B_configContraseña.setContentAreaFilled(false);
+        B_configContraseña.setFocusPainted(false);
+        B_configContraseña.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                B_configContraseñaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                B_configContraseñaMouseExited(evt);
+            }
+        });
+        B_configContraseña.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_configContraseñaActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout P_configLayout = new javax.swing.GroupLayout(P_config);
+        P_config.setLayout(P_configLayout);
+        P_configLayout.setHorizontalGroup(
+            P_configLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(B_configNom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(B_configCorreo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(B_configContraseña, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
+        );
+        P_configLayout.setVerticalGroup(
+            P_configLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(P_configLayout.createSequentialGroup()
+                .addComponent(B_configNom, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(B_configCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(B_configContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(usuario)
+                .addGap(121, 121, 121))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,27 +292,23 @@ public class Menuframe extends javax.swing.JFrame {
                             .addComponent(jButton9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton1)
-                            .addComponent(jLabel3)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jSeparator1)
-                            .addComponent(jButton12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 15, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(usuario)
-                .addGap(121, 121, 121))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(P_config, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jButton1)
+                                .addComponent(jLabel3)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jSeparator1)
+                                .addComponent(jButton12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(B_config, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(0, 39, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -263,14 +350,16 @@ public class Menuframe extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton13)
-                .addGap(569, 569, 569))
+                .addComponent(B_config)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(P_config, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(457, 457, 457))
         );
 
         jScrollPane1.setViewportView(jPanel1);
@@ -359,6 +448,52 @@ public class Menuframe extends javax.swing.JFrame {
         P.cargarImagenPortada(IS.idUsuario, P.fotoportada);
         P.setVisible(true);
     }//GEN-LAST:event_PerfilBtnActionPerformed
+private boolean isConfigVisible = false;
+    private void B_configMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B_configMouseClicked
+      isConfigVisible = !isConfigVisible; // Alterna el estado
+    P_config.setVisible(isConfigVisible);  // TODO add your handling code here:
+    }//GEN-LAST:event_B_configMouseClicked
+
+    private void B_configNomMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B_configNomMouseEntered
+    B_configNom.setForeground(new Color(51,153,255));   // TODO add your handling code here:
+    }//GEN-LAST:event_B_configNomMouseEntered
+
+    private void B_configNomMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B_configNomMouseExited
+    B_configNom.setForeground(new Color(0,0,0));    // TODO add your handling code here:
+    }//GEN-LAST:event_B_configNomMouseExited
+
+    private void B_configCorreoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B_configCorreoMouseEntered
+    B_configCorreo.setForeground(new Color(51,153,255));    // TODO add your handling code here:
+    }//GEN-LAST:event_B_configCorreoMouseEntered
+
+    private void B_configCorreoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B_configCorreoMouseExited
+    B_configCorreo.setForeground(new Color(0,0,0));    // TODO add your handling code here:
+    }//GEN-LAST:event_B_configCorreoMouseExited
+
+    private void B_configContraseñaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B_configContraseñaMouseEntered
+    B_configContraseña.setForeground(new Color(51,153,255));   // TODO add your handling code here:
+    }//GEN-LAST:event_B_configContraseñaMouseEntered
+
+    private void B_configContraseñaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B_configContraseñaMouseExited
+    B_configContraseña.setForeground(new Color(0,0,0));    // TODO add your handling code here:
+    }//GEN-LAST:event_B_configContraseñaMouseExited
+
+    private void B_configNomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_configNomActionPerformed
+        this.dispose();
+        CambiarNombre CN = new CambiarNombre();
+        CN.setVisible(true);
+    }//GEN-LAST:event_B_configNomActionPerformed
+
+    private void B_configCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_configCorreoActionPerformed
+        this.dispose();
+        CambiarCorreo CC = new CambiarCorreo();
+        CC.setVisible(true);    }//GEN-LAST:event_B_configCorreoActionPerformed
+
+    private void B_configContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_configContraseñaActionPerformed
+        this.dispose();
+        CambiarContraseña pp= new CambiarContraseña();
+        pp.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_B_configContraseñaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -398,15 +533,19 @@ public class Menuframe extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AmigosBtn;
+    private javax.swing.JButton B_config;
+    private javax.swing.JButton B_configContraseña;
+    private javax.swing.JButton B_configCorreo;
+    private javax.swing.JButton B_configNom;
     private javax.swing.JButton InicioBtn;
     private javax.swing.JButton MenuBtn;
     private javax.swing.JButton NotificacionesBtn;
+    private javax.swing.JPanel P_config;
     private javax.swing.JButton PerfilBtn;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
