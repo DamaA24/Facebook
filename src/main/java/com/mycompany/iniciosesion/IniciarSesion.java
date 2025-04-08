@@ -217,6 +217,7 @@ public class IniciarSesion extends javax.swing.JFrame {
         if (verificarLogin(usuario, contrasena)) {
             this.dispose();
             InicioF If = new InicioF();
+            If.cargarImagenUsuario(idUsuario);
             If.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);

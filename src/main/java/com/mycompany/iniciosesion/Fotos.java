@@ -217,7 +217,7 @@ public class Fotos extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel5)
-                .addContainerGap(166, Short.MAX_VALUE))
+                .addContainerGap(450, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -238,7 +238,7 @@ public class Fotos extends javax.swing.JFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(373, Short.MAX_VALUE))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
 
         jScrollPane1.setViewportView(jPanel1);
@@ -258,11 +258,20 @@ public class Fotos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void B_PublicacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_PublicacionesActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
+        Perfil P = new Perfil();
+        IniciarSesion IS = new IniciarSesion();
+        P.actualizarNombreUsuario(IS.idUsuario);
+        P.cargarImagenUsuario(IS.idUsuario);
+        P.cargarImagenPortada(IS.idUsuario, P.fotoportada);
+        P.cargarDestacadasPerfil(P.offset, IS.idUsuario);
+        P.setVisible(true);
     }//GEN-LAST:event_B_PublicacionesActionPerformed
 
     private void B_FotosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_FotosActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
+        Fotos F = new Fotos();
+        F.setVisible(true);
     }//GEN-LAST:event_B_FotosActionPerformed
 
     private void B_PublicacionesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B_PublicacionesMouseEntered
