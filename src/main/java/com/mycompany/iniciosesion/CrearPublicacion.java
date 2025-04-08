@@ -5,14 +5,24 @@
 package com.mycompany.iniciosesion;
 
 import static com.mycompany.iniciosesion.IniciarSesion.idUsuario;
+import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.imageio.ImageIO;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -27,11 +37,11 @@ public class CrearPublicacion extends javax.swing.JFrame {
     btnPublicar.setForeground(new java.awt.Color(204, 204, 204));
     
     // Establecer texto predeterminado y color gris claro por defecto
-    jTextArea1.setText("¿Qué estás pensando?");
-    jTextArea1.setForeground(new java.awt.Color(204, 204, 204)); // Gris claro por defecto
+    textoo.setText("¿Qué estás pensando?");
+    textoo.setForeground(new java.awt.Color(204, 204, 204)); // Gris claro por defecto
 
     // Agregar DocumentListener para cambiar el color del botón cuando se escribe
-    jTextArea1.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
+    textoo.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
         @Override
         public void insertUpdate(javax.swing.event.DocumentEvent e) {
             actualizarBoton();
@@ -46,7 +56,7 @@ public class CrearPublicacion extends javax.swing.JFrame {
         }
 
         private void actualizarBoton() {
-            String texto = jTextArea1.getText().trim();
+            String texto = textoo.getText().trim();
             if (!texto.isEmpty()) {
                 btnPublicar.setEnabled(true);
                 btnPublicar.setBackground(new java.awt.Color(24, 119, 242)); // Azul Facebook
@@ -60,26 +70,26 @@ public class CrearPublicacion extends javax.swing.JFrame {
     });
 
     // Agregar FocusListener para borrar el texto predeterminado al hacer clic
-    jTextArea1.addFocusListener(new java.awt.event.FocusListener() {
+    textoo.addFocusListener(new java.awt.event.FocusListener() {
         @Override
         public void focusGained(java.awt.event.FocusEvent evt) {
-            if (jTextArea1.getText().equals("¿Qué estás pensando?")) {
-                jTextArea1.setText(""); // Borrar texto predeterminado
-                jTextArea1.setForeground(new java.awt.Color(0, 0, 0)); // Cambiar a texto negro
+            if (textoo.getText().equals("¿Qué estás pensando?")) {
+                textoo.setText(""); // Borrar texto predeterminado
+                textoo.setForeground(new java.awt.Color(0, 0, 0)); // Cambiar a texto negro
             }
         }
         @Override
         public void focusLost(java.awt.event.FocusEvent evt) {
-            if (jTextArea1.getText().isEmpty()) {
-                jTextArea1.setText("¿Qué estás pensando?"); // Restaurar texto predeterminado
-                jTextArea1.setForeground(new java.awt.Color(204, 204, 204)); // Gris claro
+            if (textoo.getText().isEmpty()) {
+                textoo.setText("¿Qué estás pensando?"); // Restaurar texto predeterminado
+                textoo.setForeground(new java.awt.Color(204, 204, 204)); // Gris claro
             }
         }
     });
     // Revisar si el JTextArea está vacío al inicio
-    if (jTextArea1.getText().isEmpty()) {
-        jTextArea1.setText("¿Qué estás pensando?");
-        jTextArea1.setForeground(new java.awt.Color(204, 204, 204)); // Gris claro
+    if (textoo.getText().isEmpty()) {
+        textoo.setText("¿Qué estás pensando?");
+        textoo.setForeground(new java.awt.Color(204, 204, 204)); // Gris claro
     }
     }
 
@@ -92,10 +102,6 @@ public class CrearPublicacion extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPopupMenu = new javax.swing.JPopupMenu();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         btnCerrar = new javax.swing.JButton();
@@ -104,40 +110,13 @@ public class CrearPublicacion extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         fotoperfil = new javax.swing.JLabel();
         usuario = new javax.swing.JLabel();
-        btnOpciones = new javax.swing.JButton();
+        priv = new javax.swing.JComboBox<>();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        textoo = new javax.swing.JTextArea();
         jPanel5 = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
-
-        jPopupMenu.setBackground(new java.awt.Color(227, 237, 248));
-        jPopupMenu.setForeground(new java.awt.Color(227, 237, 248));
-        jPopupMenu.setBorderPainted(false);
-
-        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/publico1.PNG"))); // NOI18N
-        jMenu1.setText("Público");
-        jMenu1.setBorderPainted(false);
-        jMenu1.setContentAreaFilled(false);
-        jMenu1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jMenu1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        jPopupMenu.add(jMenu1);
-
-        jMenu2.setBackground(new java.awt.Color(227, 237, 248));
-        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/amigos3.PNG"))); // NOI18N
-        jMenu2.setText("Amigos");
-        jMenu2.setBorderPainted(false);
-        jMenu2.setContentAreaFilled(false);
-        jMenu2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        jPopupMenu.add(jMenu2);
-
-        jMenu3.setBackground(new java.awt.Color(227, 237, 248));
-        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/privado1.PNG"))); // NOI18N
-        jMenu3.setText("Solo yo");
-        jMenu3.setBorderPainted(false);
-        jMenu3.setContentAreaFilled(false);
-        jMenu3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        jPopupMenu.add(jMenu3);
+        imag = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -202,15 +181,7 @@ public class CrearPublicacion extends javax.swing.JFrame {
 
         usuario.setText("Nombre usuario");
 
-        btnOpciones.setBackground(new java.awt.Color(227, 237, 248));
-        btnOpciones.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        btnOpciones.setForeground(new java.awt.Color(37, 121, 246));
-        btnOpciones.setText("Privacidad");
-        btnOpciones.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnOpcionesActionPerformed(evt);
-            }
-        });
+        priv.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Publico", "Solo yo", "Amigos" }));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -222,20 +193,18 @@ public class CrearPublicacion extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(usuario)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(btnOpciones)))
+                    .addComponent(priv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(fotoperfil, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(fotoperfil, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                         .addComponent(usuario)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnOpciones)))
+                        .addComponent(priv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 22, Short.MAX_VALUE))
         );
 
@@ -248,14 +217,14 @@ public class CrearPublicacion extends javax.swing.JFrame {
         jScrollPane1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane1.setHorizontalScrollBar(null);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextArea1.setForeground(new java.awt.Color(204, 204, 204));
-        jTextArea1.setRows(5);
-        jTextArea1.setText("¿Qué estás pensando?");
-        jTextArea1.setBorder(null);
-        jTextArea1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jScrollPane1.setViewportView(jTextArea1);
+        textoo.setColumns(20);
+        textoo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        textoo.setForeground(new java.awt.Color(204, 204, 204));
+        textoo.setRows(5);
+        textoo.setText("¿Qué estás pensando?");
+        textoo.setBorder(null);
+        textoo.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jScrollPane1.setViewportView(textoo);
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -263,6 +232,11 @@ public class CrearPublicacion extends javax.swing.JFrame {
         jButton3.setText("Foto/video");
         jButton3.setBorderPainted(false);
         jButton3.setContentAreaFilled(false);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -287,6 +261,10 @@ public class CrearPublicacion extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)
             .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(113, 113, 113)
+                .addComponent(imag, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -294,7 +272,8 @@ public class CrearPublicacion extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(imag, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -326,12 +305,15 @@ public class CrearPublicacion extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    
+    
     public void cargarImagenUsuario(int userId) {
     final Connection conn;  // Hacer final la variable
     final PreparedStatement stmt;  // Hacer final la variable
@@ -460,12 +442,81 @@ public class CrearPublicacion extends javax.swing.JFrame {
     
     
     private void btnPublicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPublicarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnPublicarActionPerformed
+         // Obtener el texto, la fecha y la privacidad
+    String texto = textoo.getText();
+    java.sql.Date fechaSubida = new java.sql.Date(System.currentTimeMillis());
+    String privacidad = (String) priv.getSelectedItem();
 
-    private void btnOpcionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionesActionPerformed
-           jPopupMenu.show(btnOpciones, 0, btnOpciones.getHeight());
-    }//GEN-LAST:event_btnOpcionesActionPerformed
+    // Validar que se haya escrito algo
+    if (texto.trim().isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Escribe algo para publicar.");
+        return;
+    }
+
+    // Obtener la imagen del JLabel
+    Icon icon = imag.getIcon();
+    byte[] foto = null;
+
+    if (icon != null && icon instanceof ImageIcon) {
+        ImageIcon icono = (ImageIcon) icon;
+        Image image = icono.getImage();
+        BufferedImage bufferedImage = new BufferedImage(
+            image.getWidth(null),
+            image.getHeight(null),
+            BufferedImage.TYPE_INT_ARGB
+        );
+
+        Graphics2D g2d = bufferedImage.createGraphics();
+        g2d.drawImage(image, 0, 0, null);
+        g2d.dispose();
+
+        // Convertir imagen a byte[]
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        try {
+            ImageIO.write(bufferedImage, "png", baos);
+            baos.flush();
+            foto = baos.toByteArray();
+            baos.close();
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Error al convertir la imagen: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+    }
+
+    // Obtener el ID del usuario (ajústalo si es una clase estática)
+    int idUsuario = IniciarSesion.idUsuario;
+
+    try {
+        Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/facebook", "AlanMijares", "1");
+
+        String queryInsertar = "INSERT INTO publicacion (ID_Usuario, Texto, Imagen, Fecha_publicacion, Privacidad) VALUES (?, ?, ?, ?, ?)";
+        PreparedStatement stInsertar = con.prepareStatement(queryInsertar);
+
+        stInsertar.setInt(1, idUsuario);
+        stInsertar.setString(2, texto);
+        if (foto != null) {
+            stInsertar.setBytes(3, foto);
+        } else {
+            stInsertar.setNull(3, java.sql.Types.BLOB);
+        }
+        stInsertar.setDate(4, fechaSubida);
+        stInsertar.setString(5, privacidad);
+
+        int filasAfectadas = stInsertar.executeUpdate();
+
+        if (filasAfectadas > 0) {
+            JOptionPane.showMessageDialog(this, "Publicación subida correctamente.");
+        } else {
+            JOptionPane.showMessageDialog(this, "Hubo un error al subir la publicación.");
+        }
+
+        stInsertar.close();
+        con.close();
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(this, "Error en la base de datos: " + ex.getMessage());
+    }
+
+    }//GEN-LAST:event_btnPublicarActionPerformed
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         this.dispose();
@@ -473,6 +524,31 @@ public class CrearPublicacion extends javax.swing.JFrame {
         IF.cargarImagenUsuario(idUsuario);
         IF.setVisible(true);
     }//GEN-LAST:event_btnCerrarActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+        
+        // Filtrar para solo mostrar archivos de imagen
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos de imagen", "jpg", "png", "gif");
+        fileChooser.setFileFilter(filtro);
+        
+        // Abrir el cuadro de diálogo para seleccionar el archivo
+        int resultado = fileChooser.showOpenDialog(this);
+        
+        // Verificar si el usuario seleccionó un archivo
+        if (resultado == JFileChooser.APPROVE_OPTION) {
+            File archivoSeleccionado = fileChooser.getSelectedFile();
+            
+            // Mostrar el nombre del archivo seleccionado en el JLabel
+            imag.setText("");
+
+            // Crear un ImageIcon con la imagen seleccionada
+            ImageIcon imagenIcono = new ImageIcon(archivoSeleccionado.getAbsolutePath());
+            Image imagen = imagenIcono.getImage(); // Obtener la imagen
+            Image imagenEscalada = imagen.getScaledInstance(120, 125, Image.SCALE_SMOOTH); // Escalar la imagen
+            imag.setIcon(new ImageIcon(imagenEscalada)); // Establecer la imagen escalada en el JLabel
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -511,22 +587,19 @@ public class CrearPublicacion extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCerrar;
-    private javax.swing.JButton btnOpciones;
     private javax.swing.JButton btnPublicar;
     private javax.swing.JLabel fotoperfil;
+    private javax.swing.JLabel imag;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPopupMenu jPopupMenu;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JComboBox<String> priv;
+    private javax.swing.JTextArea textoo;
     private javax.swing.JLabel usuario;
     // End of variables declaration//GEN-END:variables
 
