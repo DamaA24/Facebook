@@ -96,6 +96,11 @@ public class InicioF extends javax.swing.JFrame {
         jButton2.setBorderPainted(false);
         jButton2.setContentAreaFilled(false);
         jButton2.setFocusPainted(false);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/plusp.png"))); // NOI18N
         jButton4.setBorder(null);
@@ -686,6 +691,12 @@ public class InicioF extends javax.swing.JFrame {
         P.cargarDestacadasPerfil(P.offset, IS.idUsuario);
         P.setVisible(true);
     }//GEN-LAST:event_fotoperfilActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.dispose();
+        Busqueda B = new Busqueda();
+        B.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
