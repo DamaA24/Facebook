@@ -5,8 +5,14 @@
 package com.mycompany.iniciosesion;
 
 import static com.mycompany.iniciosesion.IniciarSesion.idUsuario;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Insets;
+import java.awt.RenderingHints;
+import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -17,18 +23,24 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import javax.swing.border.AbstractBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.plaf.basic.BasicComboBoxUI;
 
 /**
  *
  * @author User
  */
-public class CrearPublicacion extends javax.swing.JFrame {
+public class CrearPublicacion extends javax.swing.JFrame { 
     public CrearPublicacion() {
         initComponents();
         // Código para el botón "Publicar"
@@ -91,6 +103,54 @@ public class CrearPublicacion extends javax.swing.JFrame {
         textoo.setText("¿Qué estás pensando?");
         textoo.setForeground(new java.awt.Color(204, 204, 204)); // Gris claro
     }
+   // Personalizamos el 'renderer' para agregar los íconos junto al texto
+    priv.setRenderer(new DefaultListCellRenderer() {
+        @Override
+        public java.awt.Component getListCellRendererComponent(javax.swing.JList<?> list, Object value, int index,
+                                                               boolean isSelected, boolean cellHasFocus) {
+            super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+
+            // Verifica si el valor es un String (las opciones de texto)
+            if (value instanceof String opcion) {
+
+                // Asigna el ícono correspondiente según el texto
+                switch (opcion) {
+                    case "Público" -> setIcon(new ImageIcon(getClass().getResource("/publico1.png")));
+                    case "Amigos" -> setIcon(new ImageIcon(getClass().getResource("/amigos3.png")));
+                    case "Solo yo" -> setIcon(new ImageIcon(getClass().getResource("/privado1.png")));
+                    default -> setIcon(null);
+                }
+            }  
+            return this;
+        }
+    });
+    priv.setBorder(new RoundBorder(30)); // Borde redondeado
+    priv.setBackground(new Color(255, 255, 255)); // Fondo blanco
+    priv.setForeground(new Color(0, 0, 0));           // Color del texto
+    priv.setOpaque(true);  // Asegura que el fondo se vea correctamente
+    }
+    
+    public class RoundBorder extends AbstractBorder {
+        private final int radius;
+
+        // Constructor que acepta solo el radio para redondear las esquinas
+        public RoundBorder(int radius) {
+            this.radius = radius;
+        }
+
+        @Override
+        public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+            // Dibujar un borde invisible pero con forma redondeada
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON); // Suavizar bordes
+            g2d.setColor(new Color(0, 0, 0));  // Hacer el borde completamente transparente
+            g2d.draw(new RoundRectangle2D.Double(x, y, width - 1, height - 1, radius, radius)); // Dibujar borde redondeado
+        }
+
+        @Override
+        public Insets getBorderInsets(Component c) {
+            return new Insets(0, 0, 0, 0); // Establecer margen entre borde y contenido
+        }
     }
 
     /**
@@ -181,7 +241,18 @@ public class CrearPublicacion extends javax.swing.JFrame {
 
         usuario.setText("Nombre usuario");
 
-        priv.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Publico", "Solo yo", "Amigos" }));
+        priv.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Público", "Amigos", "Solo yo" }));
+        priv.setBorder(null);
+        priv.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        priv.setFocusCycleRoot(true);
+        priv.setFocusable(false);
+        priv.setKeySelectionManager(null);
+        priv.setRenderer(null);
+        priv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                privActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -198,14 +269,15 @@ public class CrearPublicacion extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(fotoperfil, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                         .addComponent(usuario)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(priv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 22, Short.MAX_VALUE))
+                .addGap(22, 22, 22))
         );
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -549,6 +621,10 @@ public class CrearPublicacion extends javax.swing.JFrame {
             imag.setIcon(new ImageIcon(imagenEscalada)); // Establecer la imagen escalada en el JLabel
         }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void privActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_privActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_privActionPerformed
 
     /**
      * @param args the command line arguments
