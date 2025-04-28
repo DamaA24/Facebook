@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 public class Busqueda extends javax.swing.JFrame {
 
     // Variable para almacenar el ID_Usuario seleccionado
-    public int idUsuarioSeleccionado;
+    public static int idUsuarioSeleccionado;
 
     DefaultListModel<String> modeloLista = new DefaultListModel<>();
 
@@ -145,10 +145,14 @@ public class Busqueda extends javax.swing.JFrame {
 
     // Método para abrir el frame Fotos
     private void abrirFotos() {
-        // Suponiendo que la clase Fotos tiene un constructor que recibe el ID del usuario
-        Fotos fotosFrame = new Fotos();
-        fotosFrame.setVisible(true);
-        this.setVisible(false); // Ocultar la ventana actual
+        this.dispose();
+        Perfil_Amigo PA = new Perfil_Amigo();
+        PA.setVisible(true);
+        PA.actualizarNombreUsuario(idUsuarioSeleccionado);
+        PA.cargarImagenUsuario(idUsuarioSeleccionado);
+        PA.cargarImagenPortada(idUsuarioSeleccionado, PA.fotoportada);
+        PA.cargarDestacadasPerfil(PA .offset, idUsuarioSeleccionado);
+        
     }
     
     @SuppressWarnings("unchecked")

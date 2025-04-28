@@ -26,12 +26,12 @@ import javax.swing.SwingUtilities;
  *
  * @author Alan Mijares
  */
-public class FotoPerfil extends javax.swing.JFrame {
+public class FotoPerfilAmigo extends javax.swing.JFrame {
 
     /**
      * Creates new form FotoPerfil
      */
-    public FotoPerfil() {
+    public FotoPerfilAmigo() {
         initComponents();
     }
 
@@ -94,12 +94,12 @@ public class FotoPerfil extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
-        Perfil P = new Perfil();
-        IniciarSesion IS = new IniciarSesion();
-        P.actualizarNombreUsuario(IS.idUsuario);
-        P.cargarImagenUsuario(IS.idUsuario);
-        P.cargarImagenPortada(IS.idUsuario, P.fotoportada);
-        P.cargarDestacadasPerfil(P.offset, IS.idUsuario);
+        Perfil_Amigo P = new Perfil_Amigo();
+        Busqueda B = new Busqueda();
+        P.actualizarNombreUsuario(B.idUsuarioSeleccionado);
+        P.cargarImagenUsuario(B.idUsuarioSeleccionado);
+        P.cargarImagenPortada(B.idUsuarioSeleccionado, P.fotoportada);
+        P.cargarDestacadasPerfil(P.offset, B.idUsuarioSeleccionado);
         P.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
     public void cargarImagenPerfil(int userId, final JPanel fotoperfil) {
@@ -203,7 +203,7 @@ public class FotoPerfil extends javax.swing.JFrame {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FotoPerfil().setVisible(true);
+                new FotoPerfilAmigo().setVisible(true);
             }
         });
     }
