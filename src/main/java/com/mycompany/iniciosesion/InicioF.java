@@ -651,6 +651,7 @@ public class InicioF extends javax.swing.JFrame {
         P.cargarImagenUsuario(IS.idUsuario);
         P.cargarImagenPortada(IS.idUsuario, P.fotoportada);
         P.cargarDestacadasPerfil(P.offset, IS.idUsuario);
+        P.cargarPublicacion(P.offset, IS.idUsuario);
         P.setVisible(true);
     }//GEN-LAST:event_jButton10ActionPerformed
 

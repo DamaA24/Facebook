@@ -827,7 +827,7 @@ public class Perfil_Amigo extends javax.swing.JFrame {
 
     private void fotosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fotosActionPerformed
         this.dispose();
-        Fotos F = new Fotos();
+        FotosAmigo F = new FotosAmigo();
         F.setVisible(true);
     }//GEN-LAST:event_fotosActionPerformed
 
@@ -855,6 +855,7 @@ public class Perfil_Amigo extends javax.swing.JFrame {
         P.cargarImagenUsuario(IS.idUsuario);
         P.cargarImagenPortada(IS.idUsuario, P.fotoportada);
         P.cargarDestacadasPerfil(P.offset, IS.idUsuario);
+        P.cargarPublicacion(P.offset2, IS.idUsuario);
         P.setVisible(true);
     }//GEN-LAST:event_perfilActionPerformed
 

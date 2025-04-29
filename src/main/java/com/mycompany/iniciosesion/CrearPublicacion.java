@@ -514,79 +514,80 @@ public class CrearPublicacion extends javax.swing.JFrame {
     
     
     private void btnPublicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPublicarActionPerformed
-         // Obtener el texto, la fecha y la privacidad
-    String texto = textoo.getText();
-    java.sql.Date fechaSubida = new java.sql.Date(System.currentTimeMillis());
-    String privacidad = (String) priv.getSelectedItem();
+    // Obtener el texto, la fecha y la privacidad
+String texto = textoo.getText();
+java.sql.Timestamp fechaSubida = new java.sql.Timestamp(System.currentTimeMillis());  // Cambiado a Timestamp
+String privacidad = (String) priv.getSelectedItem();
 
-    // Validar que se haya escrito algo
-    if (texto.trim().isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Escribe algo para publicar.");
+// Validar que se haya escrito algo
+if (texto.trim().isEmpty()) {
+    JOptionPane.showMessageDialog(this, "Escribe algo para publicar.");
+    return;
+}
+
+// Obtener la imagen del JLabel
+Icon icon = imag.getIcon();
+byte[] foto = null;
+
+if (icon != null && icon instanceof ImageIcon) {
+    ImageIcon icono = (ImageIcon) icon;
+    Image image = icono.getImage();
+    BufferedImage bufferedImage = new BufferedImage(
+        image.getWidth(null),
+        image.getHeight(null),
+        BufferedImage.TYPE_INT_ARGB
+    );
+
+    Graphics2D g2d = bufferedImage.createGraphics();
+    g2d.drawImage(image, 0, 0, null);
+    g2d.dispose();
+
+    // Convertir imagen a byte[]
+    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+    try {
+        ImageIO.write(bufferedImage, "png", baos);
+        baos.flush();
+        foto = baos.toByteArray();
+        baos.close();
+    } catch (IOException e) {
+        JOptionPane.showMessageDialog(this, "Error al convertir la imagen: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         return;
     }
+}
 
-    // Obtener la imagen del JLabel
-    Icon icon = imag.getIcon();
-    byte[] foto = null;
+// Obtener el ID del usuario (ajústalo si es una clase estática)
+int idUsuario = IniciarSesion.idUsuario;
 
-    if (icon != null && icon instanceof ImageIcon) {
-        ImageIcon icono = (ImageIcon) icon;
-        Image image = icono.getImage();
-        BufferedImage bufferedImage = new BufferedImage(
-            image.getWidth(null),
-            image.getHeight(null),
-            BufferedImage.TYPE_INT_ARGB
-        );
+try {
+    Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/facebook", "AlanMijares", "1");
 
-        Graphics2D g2d = bufferedImage.createGraphics();
-        g2d.drawImage(image, 0, 0, null);
-        g2d.dispose();
+    String queryInsertar = "INSERT INTO publicacion (ID_Usuario, Texto, Imagen, Fecha_publicacion, Privacidad) VALUES (?, ?, ?, ?, ?)";
+    PreparedStatement stInsertar = con.prepareStatement(queryInsertar);
 
-        // Convertir imagen a byte[]
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        try {
-            ImageIO.write(bufferedImage, "png", baos);
-            baos.flush();
-            foto = baos.toByteArray();
-            baos.close();
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(this, "Error al convertir la imagen: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
+    stInsertar.setInt(1, idUsuario);
+    stInsertar.setString(2, texto);
+    if (foto != null) {
+        stInsertar.setBytes(3, foto);
+    } else {
+        stInsertar.setNull(3, java.sql.Types.BLOB);
+    }
+    stInsertar.setTimestamp(4, fechaSubida);  // Usamos setTimestamp para insertar la fecha y hora
+    stInsertar.setString(5, privacidad);
+
+    int filasAfectadas = stInsertar.executeUpdate();
+
+    if (filasAfectadas > 0) {
+        JOptionPane.showMessageDialog(this, "Publicación subida correctamente.");
+    } else {
+        JOptionPane.showMessageDialog(this, "Hubo un error al subir la publicación.");
     }
 
-    // Obtener el ID del usuario (ajústalo si es una clase estática)
-    int idUsuario = IniciarSesion.idUsuario;
+    stInsertar.close();
+    con.close();
+} catch (SQLException ex) {
+    JOptionPane.showMessageDialog(this, "Error en la base de datos: " + ex.getMessage());
+}
 
-    try {
-        Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/facebook", "AlanMijares", "1");
-
-        String queryInsertar = "INSERT INTO publicacion (ID_Usuario, Texto, Imagen, Fecha_publicacion, Privacidad) VALUES (?, ?, ?, ?, ?)";
-        PreparedStatement stInsertar = con.prepareStatement(queryInsertar);
-
-        stInsertar.setInt(1, idUsuario);
-        stInsertar.setString(2, texto);
-        if (foto != null) {
-            stInsertar.setBytes(3, foto);
-        } else {
-            stInsertar.setNull(3, java.sql.Types.BLOB);
-        }
-        stInsertar.setDate(4, fechaSubida);
-        stInsertar.setString(5, privacidad);
-
-        int filasAfectadas = stInsertar.executeUpdate();
-
-        if (filasAfectadas > 0) {
-            JOptionPane.showMessageDialog(this, "Publicación subida correctamente.");
-        } else {
-            JOptionPane.showMessageDialog(this, "Hubo un error al subir la publicación.");
-        }
-
-        stInsertar.close();
-        con.close();
-    } catch (SQLException ex) {
-        JOptionPane.showMessageDialog(this, "Error en la base de datos: " + ex.getMessage());
-    }
 
     }//GEN-LAST:event_btnPublicarActionPerformed
 

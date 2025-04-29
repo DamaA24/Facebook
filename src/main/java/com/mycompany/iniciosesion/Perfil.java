@@ -1,14 +1,17 @@
 package com.mycompany.iniciosesion;
 import static com.mycompany.iniciosesion.IniciarSesion.idUsuario;
 import java.awt.BorderLayout;
+import java.awt.Button;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Label;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,6 +26,7 @@ import javax.swing.JPanel;
 
 public class Perfil extends javax.swing.JFrame {
     public int offset = 0;
+    public int offset2 = 0;
     int idMedia;
     IniciarSesion IS = new IniciarSesion();
     private Image background_image;
@@ -42,7 +46,6 @@ public class Perfil extends javax.swing.JFrame {
         menu_u = new javax.swing.JButton();
         notificaciones = new javax.swing.JButton();
         inicio = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
         fotoportada = new javax.swing.JPanel();
         editarfotos = new javax.swing.JButton();
         fotoperfil = new javax.swing.JButton();
@@ -64,6 +67,16 @@ public class Perfil extends javax.swing.JFrame {
         desc2 = new javax.swing.JLabel();
         desc3 = new javax.swing.JLabel();
         desc4 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
+        jButton14 = new javax.swing.JButton();
+        user = new javax.swing.JTextField();
+        jButton15 = new javax.swing.JButton();
+        foto = new javax.swing.JButton();
+        text = new javax.swing.JLabel();
+        ima = new javax.swing.JLabel();
+        bajo = new javax.swing.JButton();
+        arriba = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -155,17 +168,6 @@ public class Perfil extends javax.swing.JFrame {
                             .addComponent(menu_u, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(13, 13, 13)))
                     .addComponent(amigos)))
-        );
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
         );
 
         fotoportada.setBackground(new java.awt.Color(255, 255, 255));
@@ -357,12 +359,6 @@ public class Perfil extends javax.swing.JFrame {
                         .addComponent(desc1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(añadirdestacada)
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(sig, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(desc2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -375,7 +371,13 @@ public class Perfil extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(destacada4, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
                             .addComponent(desc4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(14, 14, 14))))
+                        .addGap(14, 14, 14))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addComponent(añadirdestacada)
+                        .addGap(0, 65, Short.MAX_VALUE)
+                        .addComponent(sig, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -397,7 +399,125 @@ public class Perfil extends javax.swing.JFrame {
                     .addComponent(añadirdestacada)
                     .addComponent(sig)
                     .addComponent(atras))
-                .addContainerGap())
+                .addGap(35, 35, 35))
+        );
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
+
+        jButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/optionp.png"))); // NOI18N
+        jButton14.setBorder(null);
+        jButton14.setBorderPainted(false);
+        jButton14.setContentAreaFilled(false);
+        jButton14.setFocusPainted(false);
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
+
+        user.setText("Usuario");
+        user.setBorder(null);
+        user.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userActionPerformed(evt);
+            }
+        });
+
+        jButton15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/close.png"))); // NOI18N
+        jButton15.setBorder(null);
+        jButton15.setBorderPainted(false);
+        jButton15.setContentAreaFilled(false);
+        jButton15.setFocusPainted(false);
+
+        foto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/usuario.png"))); // NOI18N
+        foto.setBorder(null);
+        foto.setBorderPainted(false);
+        foto.setContentAreaFilled(false);
+        foto.setFocusPainted(false);
+        foto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fotoActionPerformed(evt);
+            }
+        });
+
+        text.setText("Texto");
+
+        bajo.setText("v");
+        bajo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bajoActionPerformed(evt);
+            }
+        });
+
+        arriba.setText("^");
+        arriba.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                arribaActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(text, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(foto, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24)
+                        .addComponent(arriba)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel6Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(ima, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(18, 18, 18))
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(168, 168, 168)
+                .addComponent(bajo)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(foto, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(arriba)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(text, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ima, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
+                .addGap(36, 36, 36)
+                .addComponent(bajo))
+        );
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -406,12 +526,9 @@ public class Perfil extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(fotoportada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(106, 106, 106)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -424,8 +541,8 @@ public class Perfil extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -730,8 +847,111 @@ public class Perfil extends javax.swing.JFrame {
     } catch (SQLException ex) {
         JOptionPane.showMessageDialog(this, "Error al cargar las imágenes: " + ex.getMessage());
     }
-
    }
+   
+   
+   public void cargarPublicacion(int offset2, int idUsuario) {
+    try {
+        // Si el offset es menor que 1 (es decir, ya estamos en la primera publicación), no mostrar el botón "Atras"
+        if (offset2 < 1) {
+            arriba.setVisible(false);  // Botón "Atras" (arriba)
+        } else {
+            arriba.setVisible(true);
+        }
+        
+        // Conectar a la base de datos
+        Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/facebook", "AlanMijares", "1");
+
+        // Consulta SQL para obtener la última publicación (ordenada por fecha descendente) de acuerdo al ID de usuario y el offset
+        String query = "SELECT ID_Publicacion, Imagen, Texto, Fecha_publicacion FROM publicacion WHERE ID_Usuario = ? ORDER BY Fecha_publicacion DESC LIMIT 1 OFFSET ?";
+        PreparedStatement pst = con.prepareStatement(query);
+        pst.setInt(1, idUsuario);  // Ajustamos el ID del usuario en la consulta
+        pst.setInt(2, offset2);      // Ajustamos el OFFSET según la publicación que se quiere mostrar
+
+        // Ejecutar la consulta
+        ResultSet rs = pst.executeQuery();
+
+        // Comprobar si la consulta devuelve resultados
+        if (rs.next()) {
+            // Obtener los datos de la publicación
+            int idPublicacion = rs.getInt("ID_Publicacion");
+            String textoPublicacion = rs.getString("Texto");
+            byte[] imagenPublicacion = rs.getBytes("Imagen");
+            Date fechaPublicacion = rs.getDate("Fecha_publicacion");
+
+            // Mostrar el texto de la publicación
+            text.setText(textoPublicacion);
+
+            // Si hay una imagen de la publicación, mostrarla
+            if (imagenPublicacion != null) {
+                ImageIcon imageIcon = new ImageIcon(imagenPublicacion);
+                Image image = imageIcon.getImage();
+
+                // Escalar la imagen para que se ajuste al tamaño del JLabel 'ima'
+                int labelWidth = ima.getWidth();
+                int labelHeight = ima.getHeight();
+                Image scaledImage = image.getScaledInstance(labelWidth, labelHeight, Image.SCALE_SMOOTH);
+
+                ima.setIcon(new ImageIcon(scaledImage));  // Se pone la imagen escalada en el JLabel correspondiente
+            } else {
+                ima.setIcon(null);  // Si no hay imagen, dejar el JLabel vacío
+            }
+
+            // Ahora cargamos la información del usuario (foto de perfil y nombre)
+            String queryUsuario = "SELECT Nombre, Apellido, Foto_perfil FROM perfil_usuario WHERE ID_Usuario = ?";
+            PreparedStatement pstUsuario = con.prepareStatement(queryUsuario);
+            pstUsuario.setInt(1, idUsuario);  // Usamos el ID de usuario
+
+            // Ejecutar la consulta de usuario
+            ResultSet rsUsuario = pstUsuario.executeQuery();
+            if (rsUsuario.next()) {
+                String nombreUsuario = rsUsuario.getString("Nombre") + " " + rsUsuario.getString("Apellido");
+                byte[] fotoPerfil = rsUsuario.getBytes("Foto_perfil");
+
+                // Mostrar el nombre del usuario
+                user.setText(nombreUsuario);
+
+                // Si hay una foto de perfil, mostrarla
+                if (fotoPerfil != null) {
+                    ImageIcon perfilIcon = new ImageIcon(fotoPerfil);
+                    Image perfilImage = perfilIcon.getImage();
+
+                    // Escalar la imagen para que se ajuste al tamaño del JButton 'foto'
+                    int buttonWidth = foto.getWidth();
+                    int buttonHeight = foto.getHeight();
+                    Image scaledPerfilImage = perfilImage.getScaledInstance(buttonWidth, buttonHeight, Image.SCALE_SMOOTH);
+
+                    foto.setIcon(new ImageIcon(scaledPerfilImage));  // Se pone la foto de perfil escalada en el botón
+                } else {
+                    foto.setIcon(null);  // Si no hay foto, dejar el botón vacío
+                }
+            }
+
+            // Si hay más publicaciones, mostrar el botón "Siguiente"
+            bajo.setVisible(true);  // Botón "Siguiente" (bajo)
+
+        } else {
+            // Si no hay más publicaciones, deshabilitar los botones de "Atras" y "Siguiente"
+            bajo.setVisible(false);  // Botón "Siguiente" (bajo)
+            
+            // Limpiar la información de la publicación
+            text.setText("");  // Limpiar el texto de la publicación
+            ima.setIcon(null);  // Limpiar la imagen de la publicación
+            user.setText("");   // Limpiar el nombre del usuario
+            foto.setIcon(null); // Limpiar la foto de perfil
+
+            // Mostrar un mensaje indicando que no hay más publicaciones
+            text.setText("");
+        }
+
+        con.close();
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(this, "Error al cargar la publicación: " + ex.getMessage());
+    }
+}
+
+
+
     private void amigosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amigosActionPerformed
         this.dispose();
         FacebookFriends FF = new FacebookFriends();
@@ -746,6 +966,7 @@ public class Perfil extends javax.swing.JFrame {
         P.cargarImagenUsuario(IS.idUsuario);
         P.cargarImagenPortada(IS.idUsuario, P.fotoportada);
         P.cargarDestacadasPerfil(P.offset, IS.idUsuario);
+        P.cargarPublicacion(P.offset2, IS.idUsuario);
         P.setVisible(true);
     }//GEN-LAST:event_perfil_uActionPerformed
 
@@ -808,21 +1029,46 @@ public class Perfil extends javax.swing.JFrame {
     }//GEN-LAST:event_atrasActionPerformed
 
     private void publiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_publiActionPerformed
-   this.dispose();
-    Perfil P = new Perfil();
+        this.dispose();
+        Perfil P = new Perfil();
         IniciarSesion IS = new IniciarSesion();
         P.actualizarNombreUsuario(IS.idUsuario);
         P.cargarImagenUsuario(IS.idUsuario);
         P.cargarImagenPortada(IS.idUsuario, P.fotoportada);
         P.cargarDestacadasPerfil(P.offset, IS.idUsuario);
+        P.cargarPublicacion(P.offset2, IS.idUsuario);
         P.setVisible(true);
     }//GEN-LAST:event_publiActionPerformed
 
     private void fotosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fotosActionPerformed
         this.dispose();
         Fotos F = new Fotos();
+        IniciarSesion IS = new IniciarSesion();
+        F.cargarFotosPerfil(F.offset, IS.idUsuario);
         F.setVisible(true);
     }//GEN-LAST:event_fotosActionPerformed
+
+    private void userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_userActionPerformed
+
+    private void fotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fotoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fotoActionPerformed
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void bajoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bajoActionPerformed
+        offset2 += 1;  // Aumentar el offset para obtener la siguiente publicación
+    cargarPublicacion(offset2, idUsuario);
+    }//GEN-LAST:event_bajoActionPerformed
+
+    private void arribaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arribaActionPerformed
+       offset2 -= 1;  // Decrementar el offset para obtener la publicación anterior
+    cargarPublicacion(offset2, idUsuario);
+    }//GEN-LAST:event_arribaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -836,8 +1082,10 @@ public class Perfil extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton amigos;
+    private javax.swing.JButton arriba;
     private javax.swing.JButton atras;
     private javax.swing.JButton añadirdestacada;
+    private javax.swing.JButton bajo;
     private javax.swing.JLabel desc1;
     private javax.swing.JLabel desc2;
     private javax.swing.JLabel desc3;
@@ -847,21 +1095,28 @@ public class Perfil extends javax.swing.JFrame {
     private javax.swing.JButton destacada3;
     private javax.swing.JButton destacada4;
     private javax.swing.JButton editarfotos;
+    private javax.swing.JButton foto;
     private javax.swing.JButton fotoperfil;
     public javax.swing.JPanel fotoportada;
     private javax.swing.JButton fotos;
+    private javax.swing.JLabel ima;
     private javax.swing.JButton inicio;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton14;
+    private javax.swing.JButton jButton15;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel menu;
     private javax.swing.JButton menu_u;
     private javax.swing.JButton notificaciones;
     private javax.swing.JButton perfil_u;
     private javax.swing.JButton publi;
     private javax.swing.JButton sig;
+    private javax.swing.JLabel text;
+    private javax.swing.JTextField user;
     private javax.swing.JLabel usuario;
     // End of variables declaration//GEN-END:variables
 }

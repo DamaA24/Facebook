@@ -195,6 +195,7 @@ public class Notificaciones extends javax.swing.JFrame {
         P.actualizarNombreUsuario(IS.idUsuario);
         P.cargarImagenUsuario(IS.idUsuario);
         P.cargarImagenPortada(IS.idUsuario, P.fotoportada);
+        P.cargarPublicacion(P.offset, IS.idUsuario);
         P.setVisible(true);
     }//GEN-LAST:event_perfilActionPerformed
 
