@@ -15,6 +15,31 @@ public class Comentarios extends javax.swing.JFrame {
      */
     public Comentarios() {
         initComponents();
+        Comentarioo.setText("Comentar...");
+        Comentarioo.setForeground(new java.awt.Color(204, 204, 204)); // Gris claro por defecto
+    
+            // Agregar FocusListener para borrar el texto predeterminado al hacer clic
+        Comentarioo.addFocusListener(new java.awt.event.FocusListener() {
+            @Override
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                if (Comentarioo.getText().equals("Comentar...")) {
+                    Comentarioo.setText(""); // Borrar texto predeterminado
+                    Comentarioo.setForeground(new java.awt.Color(0, 0, 0)); // Cambiar a texto negro
+                }
+            }
+            @Override
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                if (Comentarioo.getText().isEmpty()) {
+                    Comentarioo.setText("Comentar..."); // Restaurar texto predeterminado
+                    Comentarioo.setForeground(new java.awt.Color(204, 204, 204)); // Gris claro
+                }
+            }
+        });
+        // Revisar si el JTextArea está vacío al inicio
+        if (Comentarioo.getText().isEmpty()) {
+            Comentarioo.setText("Comentar...");
+            Comentarioo.setForeground(new java.awt.Color(204, 204, 204)); // Gris claro
+        }
     }
 
     /**
@@ -41,7 +66,7 @@ public class Comentarios extends javax.swing.JFrame {
         jButton7 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        Comentarioo = new javax.swing.JTextArea();
         jPanel6 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -224,10 +249,11 @@ public class Comentarios extends javax.swing.JFrame {
             }
         });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setText("Comentar...");
-        jScrollPane2.setViewportView(jTextArea1);
+        Comentarioo.setColumns(20);
+        Comentarioo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Comentarioo.setRows(5);
+        Comentarioo.setText("Comentar...");
+        jScrollPane2.setViewportView(Comentarioo);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -349,6 +375,7 @@ public class Comentarios extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea Comentarioo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -365,6 +392,5 @@ public class Comentarios extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }
