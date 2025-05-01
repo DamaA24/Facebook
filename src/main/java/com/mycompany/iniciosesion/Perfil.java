@@ -95,13 +95,16 @@ public class Perfil extends javax.swing.JFrame {
         amigos.setBorderPainted(false);
         amigos.setContentAreaFilled(false);
         amigos.setFocusPainted(false);
+        amigos.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/amigosS.png"))); // NOI18N
+        amigos.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/amigosS.png"))); // NOI18N
+        amigos.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/amigosS.png"))); // NOI18N
         amigos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 amigosActionPerformed(evt);
             }
         });
 
-        perfil_u.setIcon(new javax.swing.ImageIcon(getClass().getResource("/usuario.png"))); // NOI18N
+        perfil_u.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserS.png"))); // NOI18N
         perfil_u.setBorder(null);
         perfil_u.setBorderPainted(false);
         perfil_u.setContentAreaFilled(false);
@@ -116,6 +119,9 @@ public class Perfil extends javax.swing.JFrame {
         menu_u.setBorderPainted(false);
         menu_u.setContentAreaFilled(false);
         menu_u.setFocusPainted(false);
+        menu_u.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/menuS.png"))); // NOI18N
+        menu_u.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/menuS.png"))); // NOI18N
+        menu_u.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/menuS.png"))); // NOI18N
         menu_u.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menu_uActionPerformed(evt);
@@ -127,6 +133,9 @@ public class Perfil extends javax.swing.JFrame {
         notificaciones.setBorderPainted(false);
         notificaciones.setContentAreaFilled(false);
         notificaciones.setFocusPainted(false);
+        notificaciones.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/NotificacionS.png"))); // NOI18N
+        notificaciones.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/NotificacionS.png"))); // NOI18N
+        notificaciones.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/NotificacionS.png"))); // NOI18N
         notificaciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 notificacionesActionPerformed(evt);
@@ -138,6 +147,9 @@ public class Perfil extends javax.swing.JFrame {
         inicio.setBorderPainted(false);
         inicio.setContentAreaFilled(false);
         inicio.setFocusPainted(false);
+        inicio.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/homeS.png"))); // NOI18N
+        inicio.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/homeS.png"))); // NOI18N
+        inicio.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/homeS.png"))); // NOI18N
         inicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 inicioActionPerformed(evt);

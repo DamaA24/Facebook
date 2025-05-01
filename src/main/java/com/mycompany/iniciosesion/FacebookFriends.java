@@ -143,6 +143,9 @@ public class FacebookFriends extends javax.swing.JFrame {
         jButton26.setBorder(null);
         jButton26.setBorderPainted(false);
         jButton26.setContentAreaFilled(false);
+        jButton26.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/UserS.png"))); // NOI18N
+        jButton26.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/UserS.png"))); // NOI18N
+        jButton26.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/UserS.png"))); // NOI18N
         jButton26.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton26ActionPerformed(evt);
@@ -155,6 +158,8 @@ public class FacebookFriends extends javax.swing.JFrame {
         jButton28.setContentAreaFilled(false);
         jButton28.setFocusPainted(false);
         jButton28.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/NotificacionS.png"))); // NOI18N
+        jButton28.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/NotificacionS.png"))); // NOI18N
+        jButton28.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/NotificacionS.png"))); // NOI18N
         jButton28.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/NotificacionS.png"))); // NOI18N
         jButton28.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -167,6 +172,8 @@ public class FacebookFriends extends javax.swing.JFrame {
         jButton22.setContentAreaFilled(false);
         jButton22.setFocusPainted(false);
         jButton22.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/homeS.png"))); // NOI18N
+        jButton22.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/homeS.png"))); // NOI18N
+        jButton22.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/homeS.png"))); // NOI18N
         jButton22.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/homeS.png"))); // NOI18N
         jButton22.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -179,6 +186,9 @@ public class FacebookFriends extends javax.swing.JFrame {
         jButton27.setBorderPainted(false);
         jButton27.setContentAreaFilled(false);
         jButton27.setFocusPainted(false);
+        jButton27.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/menuS.png"))); // NOI18N
+        jButton27.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/menuS.png"))); // NOI18N
+        jButton27.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/menuS.png"))); // NOI18N
         jButton27.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton27ActionPerformed(evt);

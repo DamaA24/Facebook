@@ -62,16 +62,25 @@ public class Menuframe extends javax.swing.JFrame {
         InicioBtn.setBorder(null);
         InicioBtn.setBorderPainted(false);
         InicioBtn.setContentAreaFilled(false);
+        InicioBtn.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/homeS.png"))); // NOI18N
+        InicioBtn.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/homeS.png"))); // NOI18N
+        InicioBtn.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/homeS.png"))); // NOI18N
 
         AmigosBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/amigos.png"))); // NOI18N
         AmigosBtn.setBorder(null);
         AmigosBtn.setBorderPainted(false);
         AmigosBtn.setContentAreaFilled(false);
+        AmigosBtn.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/amigosS.png"))); // NOI18N
+        AmigosBtn.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/amigosS.png"))); // NOI18N
+        AmigosBtn.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/amigosS.png"))); // NOI18N
 
         PerfilBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/usuario.png"))); // NOI18N
         PerfilBtn.setBorder(null);
         PerfilBtn.setBorderPainted(false);
         PerfilBtn.setContentAreaFilled(false);
+        PerfilBtn.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/UserS.png"))); // NOI18N
+        PerfilBtn.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/UserS.png"))); // NOI18N
+        PerfilBtn.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/UserS.png"))); // NOI18N
         PerfilBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PerfilBtnActionPerformed(evt);
@@ -82,8 +91,11 @@ public class Menuframe extends javax.swing.JFrame {
         NotificacionesBtn.setBorder(null);
         NotificacionesBtn.setBorderPainted(false);
         NotificacionesBtn.setContentAreaFilled(false);
+        NotificacionesBtn.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/NotificacionS.png"))); // NOI18N
+        NotificacionesBtn.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/NotificacionS.png"))); // NOI18N
+        NotificacionesBtn.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/NotificacionS.png"))); // NOI18N
 
-        MenuBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu.png"))); // NOI18N
+        MenuBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menuS.png"))); // NOI18N
         MenuBtn.setBorder(null);
         MenuBtn.setBorderPainted(false);
         MenuBtn.setContentAreaFilled(false);

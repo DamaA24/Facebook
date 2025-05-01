@@ -57,6 +57,9 @@ public class Notificaciones extends javax.swing.JFrame {
         inicio.setBorderPainted(false);
         inicio.setContentAreaFilled(false);
         inicio.setFocusPainted(false);
+        inicio.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/homeS.png"))); // NOI18N
+        inicio.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/homeS.png"))); // NOI18N
+        inicio.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/homeS.png"))); // NOI18N
         inicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 inicioActionPerformed(evt);
@@ -68,6 +71,9 @@ public class Notificaciones extends javax.swing.JFrame {
         menu.setBorderPainted(false);
         menu.setContentAreaFilled(false);
         menu.setFocusPainted(false);
+        menu.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/menuS.png"))); // NOI18N
+        menu.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/menuS.png"))); // NOI18N
+        menu.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/menuS.png"))); // NOI18N
         menu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuActionPerformed(evt);
@@ -79,6 +85,9 @@ public class Notificaciones extends javax.swing.JFrame {
         perfil.setBorderPainted(false);
         perfil.setContentAreaFilled(false);
         perfil.setFocusPainted(false);
+        perfil.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/UserS.png"))); // NOI18N
+        perfil.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/UserS.png"))); // NOI18N
+        perfil.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/UserS.png"))); // NOI18N
         perfil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 perfilActionPerformed(evt);
@@ -90,13 +99,16 @@ public class Notificaciones extends javax.swing.JFrame {
         amigos.setBorderPainted(false);
         amigos.setContentAreaFilled(false);
         amigos.setFocusPainted(false);
+        amigos.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/amigosS.png"))); // NOI18N
+        amigos.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/amigosS.png"))); // NOI18N
+        amigos.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/amigosS.png"))); // NOI18N
         amigos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 amigosActionPerformed(evt);
             }
         });
 
-        noti.setIcon(new javax.swing.ImageIcon(getClass().getResource("/notificaciones.png"))); // NOI18N
+        noti.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NotificacionS.png"))); // NOI18N
         noti.setBorder(null);
         noti.setBorderPainted(false);
         noti.setContentAreaFilled(false);

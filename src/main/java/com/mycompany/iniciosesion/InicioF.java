@@ -108,7 +108,7 @@ public class InicioF extends javax.swing.JFrame {
         jButton4.setContentAreaFilled(false);
         jButton4.setFocusPainted(false);
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/inicio.png"))); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/homeS.png"))); // NOI18N
         jButton5.setBorder(null);
         jButton5.setBorderPainted(false);
         jButton5.setContentAreaFilled(false);
@@ -124,6 +124,9 @@ public class InicioF extends javax.swing.JFrame {
         jButton7.setBorderPainted(false);
         jButton7.setContentAreaFilled(false);
         jButton7.setFocusPainted(false);
+        jButton7.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/amigosS.png"))); // NOI18N
+        jButton7.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/amigosS.png"))); // NOI18N
+        jButton7.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/amigosS.png"))); // NOI18N
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
@@ -135,6 +138,9 @@ public class InicioF extends javax.swing.JFrame {
         jButton8.setBorderPainted(false);
         jButton8.setContentAreaFilled(false);
         jButton8.setFocusPainted(false);
+        jButton8.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/NotificacionS.png"))); // NOI18N
+        jButton8.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/NotificacionS.png"))); // NOI18N
+        jButton8.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/NotificacionS.png"))); // NOI18N
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton8ActionPerformed(evt);
@@ -146,6 +152,9 @@ public class InicioF extends javax.swing.JFrame {
         jButton9.setBorderPainted(false);
         jButton9.setContentAreaFilled(false);
         jButton9.setFocusPainted(false);
+        jButton9.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/menuS.png"))); // NOI18N
+        jButton9.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/menuS.png"))); // NOI18N
+        jButton9.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/menuS.png"))); // NOI18N
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton9ActionPerformed(evt);
@@ -156,6 +165,9 @@ public class InicioF extends javax.swing.JFrame {
         jButton10.setBorder(null);
         jButton10.setBorderPainted(false);
         jButton10.setContentAreaFilled(false);
+        jButton10.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/UserS.png"))); // NOI18N
+        jButton10.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/UserS.png"))); // NOI18N
+        jButton10.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/UserS.png"))); // NOI18N
         jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton10ActionPerformed(evt);
