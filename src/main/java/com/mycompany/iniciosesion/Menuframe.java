@@ -53,6 +53,7 @@ public class Menuframe extends javax.swing.JFrame {
         B_configNom = new javax.swing.JButton();
         B_configCorreo = new javax.swing.JButton();
         B_configContraseña = new javax.swing.JButton();
+        B_configContraseña1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -247,7 +248,7 @@ public class Menuframe extends javax.swing.JFrame {
             P_configLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(B_configNom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(B_configCorreo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(B_configContraseña, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
+            .addComponent(B_configContraseña, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
         );
         P_configLayout.setVerticalGroup(
             P_configLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -258,6 +259,24 @@ public class Menuframe extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(B_configContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
+
+        B_configContraseña1.setText("Cerrar Sesion");
+        B_configContraseña1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        B_configContraseña1.setContentAreaFilled(false);
+        B_configContraseña1.setFocusPainted(false);
+        B_configContraseña1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                B_configContraseña1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                B_configContraseña1MouseExited(evt);
+            }
+        });
+        B_configContraseña1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_configContraseña1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -292,9 +311,21 @@ public class Menuframe extends javax.swing.JFrame {
                             .addComponent(jButton9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(P_config, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(InicioBtn)
+                        .addGap(50, 50, 50)
+                        .addComponent(AmigosBtn)
+                        .addGap(45, 45, 45)
+                        .addComponent(PerfilBtn)
+                        .addGap(49, 49, 49)
+                        .addComponent(NotificacionesBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(MenuBtn)
+                        .addGap(40, 40, 40))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(B_configContraseña1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(P_config, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jButton1)
                                 .addComponent(jLabel3)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -308,18 +339,7 @@ public class Menuframe extends javax.swing.JFrame {
                                 .addComponent(jSeparator1)
                                 .addComponent(jButton12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(B_config, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(0, 39, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(InicioBtn)
-                        .addGap(50, 50, 50)
-                        .addComponent(AmigosBtn)
-                        .addGap(45, 45, 45)
-                        .addComponent(PerfilBtn)
-                        .addGap(49, 49, 49)
-                        .addComponent(NotificacionesBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(MenuBtn)
-                        .addGap(40, 40, 40))))
+                        .addGap(0, 59, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -361,7 +381,7 @@ public class Menuframe extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE))
+                    .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -370,7 +390,9 @@ public class Menuframe extends javax.swing.JFrame {
                 .addComponent(B_config)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(P_config, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(457, 457, 457))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(B_configContraseña1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(421, 421, 421))
         );
 
         jScrollPane1.setViewportView(jPanel1);
@@ -506,6 +528,20 @@ private boolean isConfigVisible = false;
         pp.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_B_configContraseñaActionPerformed
 
+    private void B_configContraseña1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B_configContraseña1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_B_configContraseña1MouseEntered
+
+    private void B_configContraseña1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B_configContraseña1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_B_configContraseña1MouseExited
+
+    private void B_configContraseña1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_configContraseña1ActionPerformed
+        this.dispose();
+        IniciarSesion IS = new IniciarSesion();
+        IS.setVisible(true);
+    }//GEN-LAST:event_B_configContraseña1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -546,6 +582,7 @@ private boolean isConfigVisible = false;
     private javax.swing.JButton AmigosBtn;
     private javax.swing.JButton B_config;
     private javax.swing.JButton B_configContraseña;
+    private javax.swing.JButton B_configContraseña1;
     private javax.swing.JButton B_configCorreo;
     private javax.swing.JButton B_configNom;
     private javax.swing.JButton InicioBtn;
