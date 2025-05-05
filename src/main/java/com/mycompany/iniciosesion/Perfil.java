@@ -1169,7 +1169,7 @@ public class Perfil extends javax.swing.JFrame {
     return nombres.toString().trim();
 }
    
-
+   
 
         
 
