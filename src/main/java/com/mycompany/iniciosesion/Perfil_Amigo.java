@@ -1,5 +1,6 @@
 package com.mycompany.iniciosesion;
 
+import static com.mycompany.iniciosesion.Busqueda.idUsuarioSeleccionado;
 import static com.mycompany.iniciosesion.IniciarSesion.idUsuario;
 import static com.mycompany.iniciosesion.Perfil.idPublicacion;
 import java.awt.BorderLayout;
@@ -37,6 +38,7 @@ public class Perfil_Amigo extends javax.swing.JFrame {
     public Perfil_Amigo() {
         initComponents();
         cargarReacciones();
+        actualizarBotonAmistad();
         corazon.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 manejarReaccion("me encanta");
@@ -75,6 +77,7 @@ public class Perfil_Amigo extends javax.swing.JFrame {
                 triste.setToolTipText("<html>" + obtenerNombresPorReaccion("me entristece").replace("\n", "<br>") + "</html>");
             }
         });
+       
         
     }
     
@@ -98,6 +101,7 @@ public class Perfil_Amigo extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         publi = new javax.swing.JButton();
         fotos = new javax.swing.JButton();
+        solicitudAmistad = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         destacada1 = new javax.swing.JButton();
         destacada3 = new javax.swing.JButton();
@@ -334,6 +338,13 @@ public class Perfil_Amigo extends javax.swing.JFrame {
             }
         });
 
+        solicitudAmistad.setText("Amistad");
+        solicitudAmistad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                solicitudAmistadActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -341,7 +352,10 @@ public class Perfil_Amigo extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(usuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(solicitudAmistad))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -356,7 +370,9 @@ public class Perfil_Amigo extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(usuario)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(usuario)
+                    .addComponent(solicitudAmistad))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(publi)
@@ -1186,6 +1202,143 @@ public class Perfil_Amigo extends javax.swing.JFrame {
 
          return nombres.toString().trim();
      }
+        
+        
+
+        
+        
+        public String obtenerEstadoAmistad(int usuarioA, int usuarioB) {
+    try (Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/facebook", "AlanMijares", "1")) {
+        String sql = "SELECT Estado FROM amistad WHERE " +
+                     "(ID_Usuario1 = ? AND ID_Usuario2 = ?) OR (ID_Usuario1 = ? AND ID_Usuario2 = ?)";
+        PreparedStatement pst = con.prepareStatement(sql);
+        pst.setInt(1, usuarioA);
+        pst.setInt(2, usuarioB);
+        pst.setInt(3, usuarioB);
+        pst.setInt(4, usuarioA);
+        ResultSet rs = pst.executeQuery();
+
+        if (rs.next()) return rs.getString("Estado");
+        return "ninguna";
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return "error";
+    }
+}
+
+    public boolean esReceptorSolicitud(int emisor, int receptor) {
+        try (Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/facebook", "AlanMijares", "1")) {
+            String sql = "SELECT * FROM amistad WHERE ID_Usuario1 = ? AND ID_Usuario2 = ? AND Estado = 'pendiente'";
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setInt(1, emisor);
+            pst.setInt(2, receptor);
+            ResultSet rs = pst.executeQuery();
+            return rs.next();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public void enviarSolicitud(int emisor, int receptor) {
+        try (Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/facebook", "AlanMijares", "1")) {
+            String sql = "INSERT INTO amistad (ID_Usuario1, ID_Usuario2, Estado) VALUES (?, ?, 'pendiente')";
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setInt(1, emisor);
+            pst.setInt(2, receptor);
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(this, "Solicitud enviada.");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void aceptarSolicitud(int emisor, int receptor) {
+        try (Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/facebook", "AlanMijares", "1")) {
+            String sql = "UPDATE amistad SET Estado = 'aceptada' WHERE ID_Usuario1 = ? AND ID_Usuario2 = ?";
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setInt(1, emisor);
+            pst.setInt(2, receptor);
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(this, "Ahora son amigos.");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public void cancelarSolicitud(int emisor, int receptor) {
+    try (Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/facebook", "AlanMijares", "1")) {
+        String sql = "DELETE FROM amistad WHERE ID_Usuario1 = ? AND ID_Usuario2 = ? AND Estado = 'pendiente'";
+        PreparedStatement pst = con.prepareStatement(sql);
+        pst.setInt(1, emisor);
+        pst.setInt(2, receptor);
+        pst.executeUpdate();
+        JOptionPane.showMessageDialog(this, "Solicitud cancelada.");
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
+    
+    
+    public void actualizarBotonAmistad() {
+    String estado = obtenerEstadoAmistad(IniciarSesion.idUsuario, B.idUsuarioSeleccionado);
+    solicitudAmistad.setEnabled(true); // habilitar siempre por defecto
+
+    switch (estado) {
+        case "ninguna" -> {
+            solicitudAmistad.setText("Agregar amigo");
+            solicitudAmistad.setBackground(new Color(51, 153, 255)); // Azul
+            solicitudAmistad.setForeground(Color.WHITE);
+        }
+        case "pendiente" -> {
+            if (esReceptorSolicitud(B.idUsuarioSeleccionado, IniciarSesion.idUsuario)) {
+                solicitudAmistad.setText("Aceptar solicitud");
+                solicitudAmistad.setBackground(new Color(0, 200, 100)); // Verde
+                solicitudAmistad.setForeground(Color.WHITE);
+            } else {
+                solicitudAmistad.setText("Cancelar solicitud");
+                solicitudAmistad.setBackground(Color.GRAY);
+                solicitudAmistad.setForeground(Color.WHITE);
+            }
+        }
+        case "aceptada" -> {
+            solicitudAmistad.setText("Eliminar amistad");
+            solicitudAmistad.setBackground(Color.RED); // Rojo
+            solicitudAmistad.setForeground(Color.WHITE);
+        }
+        default -> {
+            solicitudAmistad.setText("Agregar amigo");
+            solicitudAmistad.setBackground(new Color(51, 153, 255));
+            solicitudAmistad.setForeground(Color.WHITE);
+        }
+    }
+
+    // Si está viendo su propio perfil, ocultar el botón
+    if (IniciarSesion.idUsuario == B.idUsuarioSeleccionado) {
+        solicitudAmistad.setVisible(false);
+    } else {
+        solicitudAmistad.setVisible(true);
+    }
+}
+
+    
+    
+    
+    public void eliminarAmistad(int usuario1, int usuario2) {
+    try (Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/facebook", "AlanMijares", "1")) {
+        String sql = "DELETE FROM amistad WHERE (ID_Usuario1 = ? AND ID_Usuario2 = ?) OR (ID_Usuario1 = ? AND ID_Usuario2 = ?)";
+        PreparedStatement pst = con.prepareStatement(sql);
+        pst.setInt(1, usuario1);
+        pst.setInt(2, usuario2);
+        pst.setInt(3, usuario2);
+        pst.setInt(4, usuario1);
+        pst.executeUpdate();
+        JOptionPane.showMessageDialog(this, "Amistad eliminada.");
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
+
+
     private void amigosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amigosActionPerformed
         this.dispose();
         FacebookFriends FF = new FacebookFriends();
@@ -1242,7 +1395,9 @@ public class Perfil_Amigo extends javax.swing.JFrame {
         PA.cargarImagenUsuario(B.idUsuarioSeleccionado);
         PA.cargarImagenPortada(B.idUsuarioSeleccionado, PA.fotoportada);
         PA.cargarDestacadasPerfil(PA .offset, B.idUsuarioSeleccionado);
+        PA.cargarPublicacion(PA.offset3, idUsuarioSeleccionado);
         PA.cargarReacciones();
+        PA.actualizarBotonAmistad();
         this.setVisible(false); // Ocultar la ventana actual
     }//GEN-LAST:event_publiActionPerformed
 
@@ -1329,6 +1484,47 @@ public class Perfil_Amigo extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_user2ActionPerformed
 
+    private void solicitudAmistadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solicitudAmistadActionPerformed
+        String texto = solicitudAmistad.getText();
+
+        switch (texto) {
+        case "Agregar amigo" -> {
+            enviarSolicitud(IniciarSesion.idUsuario, B.idUsuarioSeleccionado);
+        }
+        case "Aceptar solicitud" -> {
+            int opcion = JOptionPane.showOptionDialog(this,
+                    "¿Aceptar o rechazar la solicitud de amistad?",
+                    "Solicitud pendiente",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    new String[]{"Aceptar", "Rechazar"},
+                    "Aceptar");
+
+            if (opcion == JOptionPane.YES_OPTION) {
+                aceptarSolicitud(B.idUsuarioSeleccionado, IniciarSesion.idUsuario);
+            } else if (opcion == JOptionPane.NO_OPTION) {
+                cancelarSolicitud(B.idUsuarioSeleccionado, IniciarSesion.idUsuario);
+            }
+        }
+        case "Cancelar solicitud" -> {
+            int confirm = JOptionPane.showConfirmDialog(this, "¿Cancelar la solicitud de amistad?", "Confirmar", JOptionPane.YES_NO_OPTION);
+            if (confirm == JOptionPane.YES_OPTION) {
+                cancelarSolicitud(IniciarSesion.idUsuario, B.idUsuarioSeleccionado);
+            }
+        }
+        case "Eliminar amistad" -> {
+            int confirm = JOptionPane.showConfirmDialog(this, "¿Eliminar a este amigo?", "Confirmar", JOptionPane.YES_NO_OPTION);
+            if (confirm == JOptionPane.YES_OPTION) {
+                eliminarAmistad(IniciarSesion.idUsuario, B.idUsuarioSeleccionado);
+            }
+        }
+    }
+
+    // Siempre actualizar estado del botón
+    actualizarBotonAmistad();
+    }//GEN-LAST:event_solicitudAmistadActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1377,6 +1573,7 @@ public class Perfil_Amigo extends javax.swing.JFrame {
     private javax.swing.JButton perfil_u;
     private javax.swing.JButton publi;
     private javax.swing.JButton sig;
+    public javax.swing.JButton solicitudAmistad;
     private javax.swing.JLabel text2;
     private javax.swing.JLabel triste;
     private javax.swing.JTextField user2;

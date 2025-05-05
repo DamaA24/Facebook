@@ -154,6 +154,8 @@ public class Busqueda extends javax.swing.JFrame {
         PA.cargarDestacadasPerfil(PA .offset, idUsuarioSeleccionado);
         PA.cargarPublicacion(PA.offset3, idUsuarioSeleccionado);
         PA.cargarReacciones();
+        PA.actualizarBotonAmistad();
+       
     }
     
     @SuppressWarnings("unchecked")
