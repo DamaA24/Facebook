@@ -685,13 +685,15 @@ public class InicioF extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 779, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 779, Short.MAX_VALUE)
                 .addGap(33, 33, 33))
         );
 
@@ -918,30 +920,21 @@ public class InicioF extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Comentar;
-    private javax.swing.JButton Comentar1;
     private javax.swing.JButton Comentar3;
     private javax.swing.JButton Compartir;
-    private javax.swing.JButton Compartir1;
     private javax.swing.JButton Compartir3;
     private javax.swing.JButton arriba;
-    private javax.swing.JButton arriba1;
     private javax.swing.JButton arriba2;
-    private javax.swing.JButton bajo1;
     private javax.swing.JLabel corazon;
-    private javax.swing.JLabel corazon1;
     private javax.swing.JLabel corazon3;
     private javax.swing.JLabel divierte;
-    private javax.swing.JLabel divierte1;
     private javax.swing.JLabel divierte3;
     private javax.swing.JButton eliminar;
-    private javax.swing.JButton eliminar1;
     private javax.swing.JButton eliminar3;
     private javax.swing.JButton foto;
-    private javax.swing.JButton foto1;
     private javax.swing.JButton foto3;
     private javax.swing.JButton fotoperfil;
     private javax.swing.JLabel ima;
-    private javax.swing.JLabel ima1;
     private javax.swing.JLabel ima3;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
@@ -960,7 +953,6 @@ public class InicioF extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -971,13 +963,10 @@ public class InicioF extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel text;
-    private javax.swing.JLabel text1;
     private javax.swing.JLabel text3;
     private javax.swing.JLabel triste;
-    private javax.swing.JLabel triste1;
     private javax.swing.JLabel triste3;
     private javax.swing.JTextField user;
-    private javax.swing.JTextField user1;
     private javax.swing.JTextField user3;
     // End of variables declaration//GEN-END:variables
 }
