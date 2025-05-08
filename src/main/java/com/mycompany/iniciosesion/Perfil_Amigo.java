@@ -128,7 +128,6 @@ public class Perfil_Amigo extends javax.swing.JFrame {
         bajo2 = new javax.swing.JButton();
         arriba2 = new javax.swing.JButton();
         Comentar = new javax.swing.JButton();
-        Compartir = new javax.swing.JButton();
         corazon = new javax.swing.JLabel();
         divierte = new javax.swing.JLabel();
         triste = new javax.swing.JLabel();
@@ -582,8 +581,6 @@ public class Perfil_Amigo extends javax.swing.JFrame {
             }
         });
 
-        Compartir.setText("Compartir");
-
         corazon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/me encanta1.png"))); // NOI18N
         corazon.setText("1");
 
@@ -609,22 +606,22 @@ public class Perfil_Amigo extends javax.swing.JFrame {
                         .addComponent(divierte)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(triste)
-                        .addGap(18, 18, 18)
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Comentar)
                             .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addGap(28, 28, 28)
-                                .addComponent(bajo2)))
-                        .addGap(18, 18, 18)
-                        .addComponent(Compartir)
-                        .addGap(0, 59, Short.MAX_VALUE))
+                                .addGap(46, 46, 46)
+                                .addComponent(bajo2)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Comentar)
+                                .addGap(49, 49, 49))))
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(foto2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(user2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(24, 24, 24)
                         .addComponent(arriba2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
                         .addComponent(eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(63, 63, 63)))
                 .addGap(18, 18, 18))
@@ -642,17 +639,14 @@ public class Perfil_Amigo extends javax.swing.JFrame {
                 .addComponent(text2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ima2, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addGap(31, 31, 31)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(Comentar)
-                        .addComponent(Compartir))
-                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(divierte)
-                            .addComponent(triste))
-                        .addComponent(corazon, javax.swing.GroupLayout.Alignment.TRAILING)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(divierte)
+                        .addComponent(triste)
+                        .addComponent(Comentar))
+                    .addComponent(corazon, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(7, 7, 7)
                 .addComponent(bajo2)
                 .addContainerGap(41, Short.MAX_VALUE))
         );
@@ -995,106 +989,71 @@ public class Perfil_Amigo extends javax.swing.JFrame {
    
    public void cargarPublicacion(int offset3, int idUsuarioSeleccionado) {
     try {
-        // Si el offset es menor que 1 (es decir, ya estamos en la primera publicación), no mostrar el botón "Atras"
-        if (offset3 < 1) {
-            arriba2.setVisible(false);  // Botón "Atras" (arriba)
-        } else {
-            arriba2.setVisible(true);
-        }
-        
-        // Conectar a la base de datos
+        String estadoAmistad = obtenerEstadoAmistad(IniciarSesion.idUsuario, idUsuarioSeleccionado);
+
         Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/facebook", "AlanMijares", "1");
 
-        // Consulta SQL para obtener la última publicación (ordenada por fecha descendente) de acuerdo al ID de usuario y el offset
-        String query = "SELECT ID_Publicacion, Imagen, Texto, Fecha_publicacion FROM publicacion WHERE ID_Usuario = ? ORDER BY Fecha_publicacion DESC LIMIT 1 OFFSET ?";
-        PreparedStatement pst = con.prepareStatement(query);
-        pst.setInt(1, idUsuarioSeleccionado);  // Ajustamos el ID del usuario en la consulta
-        pst.setInt(2, offset3);      // Ajustamos el OFFSET según la publicación que se quiere mostrar
+        String query;
+        PreparedStatement pst;
 
-        // Ejecutar la consulta
+        if (estadoAmistad.equals("aceptada")) {
+            query = "SELECT ID_Publicacion, Imagen, Texto, Fecha_publicacion FROM publicacion " +
+                    "WHERE ID_Usuario = ? AND (Privacidad = 'público' OR Privacidad = 'amigos') " +
+                    "ORDER BY Fecha_publicacion DESC LIMIT 1 OFFSET ?";
+            pst = con.prepareStatement(query);
+            pst.setInt(1, idUsuarioSeleccionado);
+            pst.setInt(2, offset3);
+        } else {
+            query = "SELECT ID_Publicacion, Imagen, Texto, Fecha_publicacion FROM publicacion " +
+                    "WHERE ID_Usuario = ? AND Privacidad = 'público' " +
+                    "ORDER BY Fecha_publicacion DESC LIMIT 1 OFFSET ?";
+            pst = con.prepareStatement(query);
+            pst.setInt(1, idUsuarioSeleccionado);
+            pst.setInt(2, offset3);
+        }
+
         ResultSet rs = pst.executeQuery();
 
-        // Comprobar si la consulta devuelve resultados
         if (rs.next()) {
-            // Obtener los datos de la publicación
             idPublicacion = rs.getInt("ID_Publicacion");
             String textoPublicacion = rs.getString("Texto");
             byte[] imagenPublicacion = rs.getBytes("Imagen");
-            Date fechaPublicacion = rs.getDate("Fecha_publicacion");
-
-            // Mostrar el texto de la publicación
             text2.setText(textoPublicacion);
 
-            // Si hay una imagen de la publicación, mostrarla
             if (imagenPublicacion != null) {
                 ImageIcon imageIcon = new ImageIcon(imagenPublicacion);
                 Image image = imageIcon.getImage();
-
-                // Escalar la imagen para que se ajuste al tamaño del JLabel 'ima'
-                int labelWidth = ima2.getWidth();
-                int labelHeight = ima2.getHeight();
-                Image scaledImage = image.getScaledInstance(labelWidth, labelHeight, Image.SCALE_SMOOTH);
-
-                ima2.setIcon(new ImageIcon(scaledImage));  // Se pone la imagen escalada en el JLabel correspondiente
+                Image scaledImage = image.getScaledInstance(ima2.getWidth(), ima2.getHeight(), Image.SCALE_SMOOTH);
+                ima2.setIcon(new ImageIcon(scaledImage));
             } else {
-                ima2.setIcon(null);  // Si no hay imagen, dejar el JLabel vacío
+                ima2.setIcon(null);
             }
 
-            // Ahora cargamos la información del usuario (foto de perfil y nombre)
             String queryUsuario = "SELECT Nombre, Apellido, Foto_perfil FROM perfil_usuario WHERE ID_Usuario = ?";
             PreparedStatement pstUsuario = con.prepareStatement(queryUsuario);
-            pstUsuario.setInt(1, idUsuarioSeleccionado);  // Usamos el ID de usuario
-
-            // Ejecutar la consulta de usuario
+            pstUsuario.setInt(1, idUsuarioSeleccionado);
             ResultSet rsUsuario = pstUsuario.executeQuery();
+
             if (rsUsuario.next()) {
-                String nombreUsuario = rsUsuario.getString("Nombre") + " " + rsUsuario.getString("Apellido");
+                user2.setText(rsUsuario.getString("Nombre") + " " + rsUsuario.getString("Apellido"));
                 byte[] fotoPerfil = rsUsuario.getBytes("Foto_perfil");
-
-                // Mostrar el nombre del usuario
-                user2.setText(nombreUsuario);
-
-                // Si hay una foto de perfil, mostrarla
                 if (fotoPerfil != null) {
                     ImageIcon perfilIcon = new ImageIcon(fotoPerfil);
                     Image perfilImage = perfilIcon.getImage();
-
-                    // Escalar la imagen para que se ajuste al tamaño del JButton 'foto'
-                    int buttonWidth = foto2.getWidth();
-                    int buttonHeight = foto2.getHeight();
-                    Image scaledPerfilImage = perfilImage.getScaledInstance(buttonWidth, buttonHeight, Image.SCALE_SMOOTH);
-
-                    foto2.setIcon(new ImageIcon(scaledPerfilImage));  // Se pone la foto de perfil escalada en el botón
+                    Image scaledPerfilImage = perfilImage.getScaledInstance(foto2.getWidth(), foto2.getHeight(), Image.SCALE_SMOOTH);
+                    foto2.setIcon(new ImageIcon(scaledPerfilImage));
                 } else {
-                    foto2.setIcon(null);  // Si no hay foto, dejar el botón vacío
+                    foto2.setIcon(null);
                 }
             }
 
-            // Si hay más publicaciones, mostrar el botón "Siguiente"
-            bajo2.setVisible(true);  // Botón "Siguiente" (bajo)
-
+            bajo2.setVisible(true);
         } else {
-            // Si no hay más publicaciones, deshabilitar los botones de "Atras" y "Siguiente"
-            bajo2.setVisible(false);  // Botón "Siguiente" (bajo)
-            
-            // Limpiar la información de la publicación
-            text2.setText("");  // Limpiar el texto de la publicación
-            ima2.setIcon(null);  // Limpiar la imagen de la publicación
-            user2.setText("");   // Limpiar el nombre del usuario
-            foto2.setIcon(null); // Limpiar la foto de perfil
-            corazon.setText("");
-            divierte.setText("");
-            triste.setText("");
-            triste.setIcon(null);
-            divierte.setIcon(null);
-            corazon.setIcon(null);
-            eliminar.setVisible(false);
-            
-            Comentar.setVisible(false);
-            Compartir.setVisible(false);
-
-            // Mostrar un mensaje indicando que no hay más publicaciones
-            text2.setText("");
+            bajo2.setVisible(false);
+            text2.setText("No hay publicaciones disponibles");
+            ima2.setIcon(null);
+            user2.setText("");
+            foto2.setIcon(null);
         }
 
         con.close();
@@ -1102,6 +1061,7 @@ public class Perfil_Amigo extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Error al cargar la publicación: " + ex.getMessage());
     }
 }
+
    
    
         public void manejarReaccion(String tipoReaccion) {
@@ -1489,7 +1449,7 @@ public class Perfil_Amigo extends javax.swing.JFrame {
         triste.setIcon(new ImageIcon(getClass().getResource("/me entristece1.png")));
         divierte.setIcon(new ImageIcon(getClass().getResource("/me divierte1.png")));
         Comentar.setVisible(true);
-        Compartir.setVisible(true);
+        
         eliminar.setVisible(true);
         cargarReacciones();
     }//GEN-LAST:event_arriba2ActionPerformed
@@ -1561,7 +1521,6 @@ public class Perfil_Amigo extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Comentar;
-    private javax.swing.JButton Compartir;
     private javax.swing.JButton amigos;
     private javax.swing.JButton arriba2;
     private javax.swing.JButton atras;

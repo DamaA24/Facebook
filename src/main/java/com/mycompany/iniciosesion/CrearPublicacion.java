@@ -117,7 +117,7 @@ public class CrearPublicacion extends javax.swing.JFrame {
                 switch (opcion) {
                     case "Público" -> setIcon(new ImageIcon(getClass().getResource("/publico1.png")));
                     case "Amigos" -> setIcon(new ImageIcon(getClass().getResource("/amigos3.png")));
-                    case "Solo yo" -> setIcon(new ImageIcon(getClass().getResource("/privado1.png")));
+                    case "Privado" -> setIcon(new ImageIcon(getClass().getResource("/privado1.png")));
                     default -> setIcon(null);
                 }
             }  
@@ -241,7 +241,7 @@ public class CrearPublicacion extends javax.swing.JFrame {
 
         usuario.setText("Nombre usuario");
 
-        priv.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Público", "Amigos", "Solo yo" }));
+        priv.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Público", "Amigos", "Privado" }));
         priv.setBorder(null);
         priv.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         priv.setFocusCycleRoot(true);

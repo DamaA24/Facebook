@@ -130,7 +130,6 @@ public class Perfil extends javax.swing.JFrame {
         bajo = new javax.swing.JButton();
         arriba = new javax.swing.JButton();
         Comentar = new javax.swing.JButton();
-        Compartir = new javax.swing.JButton();
         corazon = new javax.swing.JLabel();
         divierte = new javax.swing.JLabel();
         triste = new javax.swing.JLabel();
@@ -576,8 +575,6 @@ public class Perfil extends javax.swing.JFrame {
             }
         });
 
-        Compartir.setText("Compartir");
-
         corazon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/me encanta1.png"))); // NOI18N
         corazon.setText("1");
 
@@ -606,23 +603,24 @@ public class Perfil extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(text, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel6Layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(corazon)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(divierte)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(triste)
-                                .addGap(26, 26, 26)
-                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Comentar)
-                                    .addGroup(jPanel6Layout.createSequentialGroup()
-                                        .addGap(28, 28, 28)
-                                        .addComponent(bajo)))
-                                .addGap(18, 18, 18)
-                                .addComponent(Compartir))
                             .addComponent(ima, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 65, Short.MAX_VALUE))))
+                        .addGap(0, 65, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel6Layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(corazon)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(divierte)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(triste)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addGap(54, 54, 54)
+                                .addComponent(bajo)
+                                .addGap(32, 32, 32))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Comentar)
+                                .addGap(85, 85, 85))))))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -639,17 +637,14 @@ public class Perfil extends javax.swing.JFrame {
                 .addComponent(text, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ima, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addGap(31, 31, 31)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(Comentar)
-                        .addComponent(Compartir))
-                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(divierte)
-                            .addComponent(triste))
-                        .addComponent(corazon, javax.swing.GroupLayout.Alignment.TRAILING)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(divierte)
+                        .addComponent(triste)
+                        .addComponent(Comentar))
+                    .addComponent(corazon, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(7, 7, 7)
                 .addComponent(bajo)
                 .addContainerGap(41, Short.MAX_VALUE))
         );
@@ -1147,7 +1142,7 @@ public class Perfil extends javax.swing.JFrame {
             eliminar.setVisible(false);
             
             Comentar.setVisible(false);
-            Compartir.setVisible(false);
+            
 
             // Mostrar un mensaje indicando que no hay más publicaciones
             text.setText("");
@@ -1404,7 +1399,7 @@ public class Perfil extends javax.swing.JFrame {
         triste.setIcon(new ImageIcon(getClass().getResource("/me entristece1.png")));
         divierte.setIcon(new ImageIcon(getClass().getResource("/me divierte1.png")));
         Comentar.setVisible(true);
-        Compartir.setVisible(true);
+        
         eliminar.setVisible(true);
         cargarReacciones();
     }//GEN-LAST:event_arribaActionPerformed
@@ -1435,7 +1430,6 @@ public class Perfil extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Comentar;
-    private javax.swing.JButton Compartir;
     private javax.swing.JButton amigos;
     private javax.swing.JButton arriba;
     private javax.swing.JButton atras;
