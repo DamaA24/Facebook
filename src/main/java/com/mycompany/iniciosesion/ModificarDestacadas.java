@@ -33,7 +33,7 @@ public class ModificarDestacadas extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(0, 102, 255));
+        jPanel1.setBackground(new java.awt.Color(0, 153, 255));
 
         jButton4.setText("Volver");
         jButton4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
