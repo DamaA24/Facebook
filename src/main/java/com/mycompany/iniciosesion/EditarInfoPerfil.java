@@ -4,6 +4,15 @@
  */
 package com.mycompany.iniciosesion;
 
+import java.util.List;
+import java.util.ArrayList;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author User
@@ -28,10 +37,10 @@ public class EditarInfoPerfil extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        campoFormacion = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        campoResidencia = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         comboGenero = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
@@ -48,10 +57,10 @@ public class EditarInfoPerfil extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 255));
 
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        campoFormacion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        campoFormacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                campoFormacionActionPerformed(evt);
             }
         });
 
@@ -63,10 +72,10 @@ public class EditarInfoPerfil extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Editar lugar de residencia");
 
-        jTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        campoResidencia.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        campoResidencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                campoResidenciaActionPerformed(evt);
             }
         });
 
@@ -74,7 +83,7 @@ public class EditarInfoPerfil extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Editar Genero");
 
-        comboGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hombre", "Mujer", "Otro" }));
+        comboGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona género", "Hombre", "Mujer", "Otro", " ", " " }));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI Semibold", 2, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -131,9 +140,7 @@ public class EditarInfoPerfil extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addGap(82, 82, 82))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
-                            .addComponent(comboGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel3)
                         .addGap(141, 141, 141))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
@@ -157,9 +164,13 @@ public class EditarInfoPerfil extends javax.swing.JFrame {
                                 .addGap(68, 68, 68))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(campoFormacion, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(campoResidencia, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(66, 66, 66))))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(comboGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(122, 122, 122))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,11 +180,11 @@ public class EditarInfoPerfil extends javax.swing.JFrame {
                 .addGap(8, 8, 8)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(campoFormacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(campoResidencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -209,20 +220,95 @@ public class EditarInfoPerfil extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void campoFormacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoFormacionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_campoFormacionActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void campoResidenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoResidenciaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_campoResidenciaActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
+        Perfil P = new Perfil();
+        IniciarSesion IS = new IniciarSesion();
+        P.actualizarNombreUsuario(IS.idUsuario);
+        P.cargarImagenUsuario(IS.idUsuario);
+        P.cargarImagenPortada(IS.idUsuario, P.fotoportada);
+        P.cargarDestacadasPerfil(P.offset, IS.idUsuario);
+        P.cargarPublicacion(P.offset2, IS.idUsuario);
+        P.cargarReacciones();
+        P.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+           
+        int idUsuario = IniciarSesion.idUsuario;
 
+        String formacionAcademica = campoFormacion.getText().trim();  // Suponiendo que es un JTextField
+        String lugarResidencia = campoResidencia.getText().trim();
+        String genero = (String) comboGenero.getSelectedItem();
+        int dia = (int) spinnerDia.getValue();
+        int mes = (int) spinnerMes.getValue();
+        int año = (int) spinnerAño.getValue();
+        boolean actualizarFecha = !(dia == 0 || mes == 0 || año == 0);
+
+        String fechaNacimiento = null;
+        if (actualizarFecha) {
+            fechaNacimiento = String.format("%04d-%02d-%02d", año, mes, dia);
+        }
+
+        try {
+            Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/facebook", "AlanMijares", "1");
+
+            StringBuilder query = new StringBuilder("UPDATE perfil_usuario SET ");
+            List<Object> parametros = new ArrayList<>();
+
+            if (!formacionAcademica.isEmpty()) {
+                query.append("Formacion_academica = ?, ");
+                parametros.add(formacionAcademica);
+            }
+            if (!lugarResidencia.isEmpty()) {
+                query.append("Lugar_residencia = ?, ");
+                parametros.add(lugarResidencia);
+            }
+            if (genero != null && !genero.isEmpty() && !genero.equals("Selecciona género")) {
+                query.append("Genero = ?, ");
+                parametros.add(genero);
+            }
+            if (actualizarFecha) {
+                query.append("Fecha_nacimiento = ?, ");
+                parametros.add(Date.valueOf(fechaNacimiento));
+            }
+
+            // Si no hay nada que actualizar, salir
+            if (parametros.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "No se proporcionaron cambios para actualizar.");
+                return;
+            }
+
+            // Quitar última coma y espacio
+            query.setLength(query.length() - 2);
+            query.append(" WHERE ID_Usuario = ?");
+            parametros.add(idUsuario);  // Asegúrate de tener este ID
+
+            PreparedStatement st = con.prepareStatement(query.toString());
+            for (int i = 0; i < parametros.size(); i++) {
+                st.setObject(i + 1, parametros.get(i));
+            }
+
+            int filas = st.executeUpdate();
+            if (filas > 0) {
+                JOptionPane.showMessageDialog(this, "Perfil actualizado correctamente.");
+            } else {
+                JOptionPane.showMessageDialog(this, "No se actualizó ningún dato.");
+            }
+
+            con.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error en la base de datos: " + ex.getMessage());
+        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -261,6 +347,8 @@ public class EditarInfoPerfil extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField campoFormacion;
+    private javax.swing.JTextField campoResidencia;
     private javax.swing.JComboBox<String> comboGenero;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -272,8 +360,6 @@ public class EditarInfoPerfil extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JSpinner spinnerAño;
     private javax.swing.JSpinner spinnerDia;
     private javax.swing.JSpinner spinnerMes;

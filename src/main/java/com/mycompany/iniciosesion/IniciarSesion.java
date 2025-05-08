@@ -218,10 +218,13 @@ public class IniciarSesion extends javax.swing.JFrame {
             this.dispose();
             InicioF If = new InicioF();
             If.cargarImagenUsuario(idUsuario);
+            If.cargarPublicaciones(If.offset2, idUsuario);
             If.setVisible(true);
+            
         } else {
             JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
         }
+        
         
         
     }//GEN-LAST:event_jButton1ActionPerformed

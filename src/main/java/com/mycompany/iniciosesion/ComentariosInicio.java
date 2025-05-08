@@ -34,12 +34,12 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  *
  * @author Damaris
  */
-public class Comentarios extends javax.swing.JFrame {
+public class ComentariosInicio extends javax.swing.JFrame {
 
     /**
      * Creates new form Comentarios
      */
-    public Comentarios() {
+    public ComentariosInicio() {
         initComponents();
         Comentarioo.setText("Comentar...");
         Comentarioo.setForeground(new java.awt.Color(204, 204, 204)); // Gris claro por defecto
@@ -684,12 +684,14 @@ public class Comentarios extends javax.swing.JFrame {
 
     private void arribaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arribaActionPerformed
         offset3 -= 3;
-        cargarComentarios(offset3, idPublicacion);
+        InicioF IF = new InicioF();
+        cargarComentarios(offset3, IF.idSeleccionada);
     }//GEN-LAST:event_arribaActionPerformed
 
     private void bajoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bajoActionPerformed
        offset3 += 3;
-       cargarComentarios(offset3, idPublicacion);
+       InicioF IF = new InicioF();
+       cargarComentarios(offset3, IF.idSeleccionada);
     }//GEN-LAST:event_bajoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -713,20 +715,21 @@ public class Comentarios extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Comentarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ComentariosInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Comentarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ComentariosInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Comentarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ComentariosInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Comentarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ComentariosInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Comentarios().setVisible(true);
+                new ComentariosInicio().setVisible(true);
             }
         });
     }
