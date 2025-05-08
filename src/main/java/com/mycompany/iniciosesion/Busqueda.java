@@ -153,6 +153,7 @@ public class Busqueda extends javax.swing.JFrame {
         PA.cargarImagenPortada(idUsuarioSeleccionado, PA.fotoportada);
         PA.cargarDestacadasPerfil(PA .offset, idUsuarioSeleccionado);
         PA.cargarPublicacion(PA.offset3, idUsuarioSeleccionado);
+        PA.actualizarInfoPerfil(idUsuarioSeleccionado);
         PA.cargarReacciones();
         PA.actualizarBotonAmistad();
        

@@ -4,6 +4,7 @@
  */
 package com.mycompany.iniciosesion;
 
+import static com.mycompany.iniciosesion.Busqueda.idUsuarioSeleccionado;
 import java.awt.Color;
 
 /**
@@ -390,6 +391,7 @@ public class FotosAmigo extends javax.swing.JFrame {
         P.cargarImagenUsuario(B.idUsuarioSeleccionado);
         P.cargarImagenPortada(B.idUsuarioSeleccionado, P.fotoportada);
         P.cargarDestacadasPerfil(P.offset, B.idUsuarioSeleccionado);
+        P.actualizarInfoPerfil(idUsuarioSeleccionado);
         P.setVisible(true);
     }//GEN-LAST:event_B_PublicacionesActionPerformed
 
