@@ -36,9 +36,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class ComentariosInicio extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Comentarios
-     */
+    
+    InicioF IF = new InicioF();
     public ComentariosInicio() {
         initComponents();
         Comentarioo.setText("Comentar...");
@@ -605,7 +604,7 @@ public class ComentariosInicio extends javax.swing.JFrame {
 
             // Obtener el ID del usuario (ajústalo si es una clase estática)
             int idUsuario = IniciarSesion.idUsuario;
-            int idComentario = Perfil.idPublicacion;
+            int idComentario = InicioF.idSeleccionada;
 
             try {
                 Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/facebook", "AlanMijares", "1");
@@ -638,7 +637,7 @@ public class ComentariosInicio extends javax.swing.JFrame {
             }
             
             
-            cargarComentarios(offset3, idPublicacion);
+            cargarComentarios(IF.offset3, IF.idSeleccionada);
             
     }//GEN-LAST:event_jButton7ActionPerformed
 

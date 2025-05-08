@@ -1,11 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package com.mycompany.iniciosesion;
 
 import static com.mycompany.iniciosesion.IniciarSesion.idUsuario;
-
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -19,10 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
-/**
- *
- * @author Damaris
- */
+
 public class InicioF extends javax.swing.JFrame {
 
     public int idPubli1 = -1;
@@ -863,30 +855,48 @@ triste3.addMouseListener(new MouseAdapter() {
         arriba.setVisible(offset2 > 0);
         Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/facebook", "AlanMijares", "1");
 
-        String query = "SELECT ID_Publicacion, Imagen, Texto, Fecha_publicacion FROM publicacion WHERE ID_Usuario = ? ORDER BY RAND() LIMIT 2 OFFSET ?";
+        // Carga publicaciones propias y de amigos con privacidad 'amigos'
+        String query = """
+            SELECT p.ID_Publicacion, p.ID_Usuario, p.Imagen, p.Texto, p.Fecha_publicacion,
+                   u.Nombre, u.Apellido, u.Foto_perfil
+            FROM publicacion p
+            JOIN perfil_usuario u ON p.ID_Usuario = u.ID_Usuario
+            WHERE 
+                (
+                    p.ID_Usuario = ? 
+                    OR p.ID_Usuario IN (
+                        SELECT CASE
+                            WHEN ID_Usuario1 = ? THEN ID_Usuario2
+                            WHEN ID_Usuario2 = ? THEN ID_Usuario1
+                        END
+                        FROM amistad
+                        WHERE (ID_Usuario1 = ? OR ID_Usuario2 = ?) AND Estado = 'aceptada'
+                    )
+                )
+                AND (p.Privacidad = 'amigos' OR p.Privacidad = 'publico' OR p.ID_Usuario = ?)
+            ORDER BY RAND()
+            LIMIT 2 OFFSET ?""";
+
         PreparedStatement pst = con.prepareStatement(query);
-        pst.setInt(1, idUsuario);
-        pst.setInt(2, offset2);
+        pst.setInt(1, idUsuario); // para publicaciones propias
+        pst.setInt(2, idUsuario); // para obtener amigos
+        pst.setInt(3, idUsuario);
+        pst.setInt(4, idUsuario);
+        pst.setInt(5, idUsuario);
+        pst.setInt(6, idUsuario); // incluir propias aunque sean 'privado'
+        pst.setInt(7, offset2); // paginación
+
         ResultSet rs = pst.executeQuery();
 
         int contador = 0;
         while (rs.next()) {
             int idPublicacion = rs.getInt("ID_Publicacion");
+            int autor = rs.getInt("ID_Usuario");
             String texto = rs.getString("Texto");
             byte[] imagen = rs.getBytes("Imagen");
 
-            // Datos del autor
-            String queryUsuario = "SELECT Nombre, Apellido, Foto_perfil FROM perfil_usuario WHERE ID_Usuario = ?";
-            PreparedStatement pstUsuario = con.prepareStatement(queryUsuario);
-            pstUsuario.setInt(1, idUsuario);
-            ResultSet rsUsuario = pstUsuario.executeQuery();
-
-            String nombreUsuario = "";
-            byte[] fotoPerfil = null;
-            if (rsUsuario.next()) {
-                nombreUsuario = rsUsuario.getString("Nombre") + " " + rsUsuario.getString("Apellido");
-                fotoPerfil = rsUsuario.getBytes("Foto_perfil");
-            }
+            String nombreUsuario = rs.getString("Nombre") + " " + rs.getString("Apellido");
+            byte[] fotoPerfil = rs.getBytes("Foto_perfil");
 
             ImageIcon iconImagen = (imagen != null)
                     ? new ImageIcon(new ImageIcon(imagen).getImage().getScaledInstance(ima.getWidth(), ima.getHeight(), Image.SCALE_SMOOTH))
@@ -931,6 +941,8 @@ triste3.addMouseListener(new MouseAdapter() {
         JOptionPane.showMessageDialog(this, "Error al cargar publicaciones: " + ex.getMessage());
     }
 }
+
+
     
     public void manejarReaccion(int idPublicacion, String tipoReaccion, JLabel corazon, JLabel divierte, JLabel triste) {
     try {
