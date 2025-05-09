@@ -551,7 +551,7 @@ triste3.addMouseListener(new MouseAdapter() {
         jPanel7.setPreferredSize(new java.awt.Dimension(113, 54));
 
         jButton14.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jButton14.setText("No me interesa");
+        jButton14.setText("Eliminar");
         jButton14.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jButton14.setContentAreaFilled(false);
         jButton14.setFocusPainted(false);
@@ -706,7 +706,7 @@ triste3.addMouseListener(new MouseAdapter() {
         jPanel11.setPreferredSize(new java.awt.Dimension(113, 54));
 
         jButton3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jButton3.setText("No me interesa");
+        jButton3.setText("Eliminar");
         jButton3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jButton3.setContentAreaFilled(false);
         jButton3.setFocusPainted(false);
