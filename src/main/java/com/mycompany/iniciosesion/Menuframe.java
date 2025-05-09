@@ -152,6 +152,11 @@ public class Menuframe extends javax.swing.JFrame {
                 B_configMouseClicked(evt);
             }
         });
+        B_config.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_configActionPerformed(evt);
+            }
+        });
 
         usuario.setText("Desconocido");
 
@@ -495,6 +500,10 @@ private boolean isConfigVisible = false;
         IniciarSesion IS = new IniciarSesion();
         IS.setVisible(true);
     }//GEN-LAST:event_B_configContraseña1ActionPerformed
+
+    private void B_configActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_configActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_B_configActionPerformed
 
     /**
      * @param args the command line arguments
