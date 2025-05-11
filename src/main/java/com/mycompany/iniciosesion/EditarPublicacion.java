@@ -203,7 +203,7 @@ public class EditarPublicacion extends javax.swing.JFrame {
         btnPublicar.setBackground(new java.awt.Color(242, 242, 242));
         btnPublicar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         btnPublicar.setForeground(new java.awt.Color(204, 204, 204));
-        btnPublicar.setText("Publicar");
+        btnPublicar.setText("Guardar");
         btnPublicar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPublicarActionPerformed(evt);
@@ -512,90 +512,145 @@ public class EditarPublicacion extends javax.swing.JFrame {
     }
     }
     
+    public void cargarPublicaciones(int idPublicacion) {
+        try {
+        Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/facebook", "AlanMijares", "1");
+
+        String sql = "SELECT Texto, Imagen FROM publicacion WHERE ID_Publicacion = ?";
+        PreparedStatement pst = con.prepareStatement(sql);
+        pst.setInt(1, idPublicacion);
+        ResultSet rs = pst.executeQuery();
+
+        if (rs.next()) {
+            String texto = rs.getString("Texto");
+            byte[] imagenBytes = rs.getBytes("Imagen");
+
+            // Mostrar texto
+            textoo.setText(texto);
+
+            // Mostrar imagen en el botón
+            if (imagenBytes != null) {
+                ImageIcon icono = new ImageIcon(imagenBytes);
+                Image imagen = icono.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH); // ajusta el tamaño como necesites
+                jButton3.setIcon(new ImageIcon(imagen));
+                jButton3.setText(""); // quitar texto del botón si lo tiene
+            } else {
+                jButton3.setIcon(null);
+                jButton3.setText("Sin imagen");
+            }
+        }
+
+        con.close();
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(this, "Error al cargar contenido: " + ex.getMessage());
+    }
+}
+    
+    
+    
     
     private void btnPublicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPublicarActionPerformed
-    // Obtener el texto, la fecha y la privacidad
-String texto = textoo.getText();
-java.sql.Timestamp fechaSubida = new java.sql.Timestamp(System.currentTimeMillis());  // Cambiado a Timestamp
-String privacidad = (String) priv.getSelectedItem();
 
-// Validar que se haya escrito algo
-if (texto.trim().isEmpty()) {
-    JOptionPane.showMessageDialog(this, "Escribe algo para publicar.");
-    return;
-}
+    int idUsuario = IniciarSesion.idUsuario;
+    int idPublicacion = Perfil.idPublicacion;
+    String texto = textoo.getText();
+    java.sql.Timestamp fechaSubida = new java.sql.Timestamp(System.currentTimeMillis());
+    String privacidad = (String) priv.getSelectedItem();
 
-// Obtener la imagen del JLabel
-Icon icon = imag.getIcon();
-byte[] foto = null;
-
-if (icon != null && icon instanceof ImageIcon) {
-    ImageIcon icono = (ImageIcon) icon;
-    Image image = icono.getImage();
-    BufferedImage bufferedImage = new BufferedImage(
-        image.getWidth(null),
-        image.getHeight(null),
-        BufferedImage.TYPE_INT_ARGB
-    );
-
-    Graphics2D g2d = bufferedImage.createGraphics();
-    g2d.drawImage(image, 0, 0, null);
-    g2d.dispose();
-
-    // Convertir imagen a byte[]
-    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-    try {
-        ImageIO.write(bufferedImage, "png", baos);
-        baos.flush();
-        foto = baos.toByteArray();
-        baos.close();
-    } catch (IOException e) {
-        JOptionPane.showMessageDialog(this, "Error al convertir la imagen: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    if (texto.trim().isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Escribe algo para actualizar la publicación.");
         return;
     }
-}
 
-// Obtener el ID del usuario (ajústalo si es una clase estática)
-int idUsuario = IniciarSesion.idUsuario;
+    Icon icon = imag.getIcon();
+    byte[] foto = null;
+    boolean actualizarImagen = false;
 
-try {
-    Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/facebook", "AlanMijares", "1");
+    if (icon != null && icon instanceof ImageIcon) {
+        ImageIcon icono = (ImageIcon) icon;
+        Image image = icono.getImage();
+        BufferedImage bufferedImage = new BufferedImage(
+            image.getWidth(null),
+            image.getHeight(null),
+            BufferedImage.TYPE_INT_ARGB
+        );
 
-    String queryInsertar = "INSERT INTO publicacion (ID_Usuario, Texto, Imagen, Fecha_publicacion, Privacidad) VALUES (?, ?, ?, ?, ?)";
-    PreparedStatement stInsertar = con.prepareStatement(queryInsertar);
+        Graphics2D g2d = bufferedImage.createGraphics();
+        g2d.drawImage(image, 0, 0, null);
+        g2d.dispose();
 
-    stInsertar.setInt(1, idUsuario);
-    stInsertar.setString(2, texto);
-    if (foto != null) {
-        stInsertar.setBytes(3, foto);
-    } else {
-        stInsertar.setNull(3, java.sql.Types.BLOB);
+        try (ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
+            ImageIO.write(bufferedImage, "png", baos);
+            foto = baos.toByteArray();
+            actualizarImagen = true;
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Error al procesar imagen: " + e.getMessage());
+            return;
+        }
     }
-    stInsertar.setTimestamp(4, fechaSubida);  // Usamos setTimestamp para insertar la fecha y hora
-    stInsertar.setString(5, privacidad);
 
-    int filasAfectadas = stInsertar.executeUpdate();
+    try (Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/facebook", "AlanMijares", "1")) {
 
-    if (filasAfectadas > 0) {
-        JOptionPane.showMessageDialog(this, "Publicación subida correctamente.");
-    } else {
-        JOptionPane.showMessageDialog(this, "Hubo un error al subir la publicación.");
+        String query;
+        PreparedStatement st;
+
+        if (actualizarImagen) {
+            query = "UPDATE publicacion SET Texto = ?, Imagen = ?, Fecha_publicacion = ?, Privacidad = ? WHERE ID_Publicacion = ? AND ID_Usuario = ?";
+            st = con.prepareStatement(query);
+            st.setString(1, texto);
+            st.setBytes(2, foto);
+            st.setTimestamp(3, fechaSubida);
+            st.setString(4, privacidad);
+            st.setInt(5, idPublicacion);
+            st.setInt(6, idUsuario);
+        } else {
+            query = "UPDATE publicacion SET Texto = ?, Fecha_publicacion = ?, Privacidad = ? WHERE ID_Publicacion = ? AND ID_Usuario = ?";
+            st = con.prepareStatement(query);
+            st.setString(1, texto);
+            st.setTimestamp(2, fechaSubida);
+            st.setString(3, privacidad);
+            st.setInt(4, idPublicacion);
+            st.setInt(5, idUsuario);
+        }
+
+        int filasAfectadas = st.executeUpdate();
+        if (filasAfectadas > 0) {
+            JOptionPane.showMessageDialog(this, "Publicación actualizada correctamente.");
+        } else {
+            JOptionPane.showMessageDialog(this, "No se pudo actualizar. Verifica que la publicación sea tuya.");
+        }
+
+        st.close();
+
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(this, "Error en base de datos: " + ex.getMessage());
     }
 
-    stInsertar.close();
-    con.close();
-} catch (SQLException ex) {
-    JOptionPane.showMessageDialog(this, "Error en la base de datos: " + ex.getMessage());
-}
-
-
+        this.dispose();
+        Perfil P = new Perfil();
+        IniciarSesion IS = new IniciarSesion();
+        P.actualizarNombreUsuario(IS.idUsuario);
+        P.cargarImagenUsuario(IS.idUsuario);
+        P.cargarImagenPortada(IS.idUsuario, P.fotoportada);
+        P.cargarDestacadasPerfil(P.offset, IS.idUsuario);
+        P.cargarPublicacion(P.offset2, IS.idUsuario);
+        P.cargarReacciones();
+        P.actualizarInfoPerfil(IS.idUsuario);
+        P.setVisible(true);
     }//GEN-LAST:event_btnPublicarActionPerformed
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         this.dispose();
-        InicioF IF = new InicioF();
-        IF.cargarImagenUsuario(idUsuario);
-        IF.setVisible(true);
+        Perfil P = new Perfil();
+        IniciarSesion IS = new IniciarSesion();
+        P.actualizarNombreUsuario(IS.idUsuario);
+        P.cargarImagenUsuario(IS.idUsuario);
+        P.cargarImagenPortada(IS.idUsuario, P.fotoportada);
+        P.cargarDestacadasPerfil(P.offset, IS.idUsuario);
+        P.cargarPublicacion(P.offset2, IS.idUsuario);
+        P.cargarReacciones();
+        P.actualizarInfoPerfil(IS.idUsuario);
+        P.setVisible(true);
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

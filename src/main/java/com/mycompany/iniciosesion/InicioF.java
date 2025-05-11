@@ -563,6 +563,11 @@ triste3.addMouseListener(new MouseAdapter() {
                 jButton14MouseExited(evt);
             }
         });
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -718,6 +723,11 @@ triste3.addMouseListener(new MouseAdapter() {
                 jButton3MouseExited(evt);
             }
         });
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -835,13 +845,11 @@ triste3.addMouseListener(new MouseAdapter() {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 6, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 765, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 855, Short.MAX_VALUE)
         );
 
         pack();
@@ -1125,6 +1133,57 @@ triste3.addMouseListener(new MouseAdapter() {
 
     return nombres.toString().trim();
 }
+    
+    public void eliminarPublicacion(int idPublicacion) {
+    try {
+        Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/facebook", "AlanMijares", "1");
+
+        // Verificar si el usuario actual es el autor de la publicación
+        String verificarAutor = "SELECT ID_Usuario FROM publicacion WHERE ID_Publicacion = ?";
+        PreparedStatement pstVerificar = con.prepareStatement(verificarAutor);
+        pstVerificar.setInt(1, idPublicacion);
+        ResultSet rs = pstVerificar.executeQuery();
+
+        if (rs.next()) {
+            int autor = rs.getInt("ID_Usuario");
+            if (autor != idUsuario) {
+                JOptionPane.showMessageDialog(this, "No puedes eliminar esta publicación porque no te pertenece.");
+                con.close();
+                return;
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "La publicación no fue encontrada.");
+            con.close();
+            return;
+        }
+
+        int confirmacion = JOptionPane.showConfirmDialog(this, "¿Estás seguro de que deseas eliminar esta publicación?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
+        if (confirmacion == JOptionPane.YES_OPTION) {
+            String eliminarReacciones = "DELETE FROM reaccion WHERE ID_Publicacion = ?";
+            PreparedStatement pstReac = con.prepareStatement(eliminarReacciones);
+            pstReac.setInt(1, idPublicacion);
+            pstReac.executeUpdate();
+
+            String eliminarComentarios = "DELETE FROM comentario WHERE ID_Publicacion = ?";
+            PreparedStatement pstComent = con.prepareStatement(eliminarComentarios);
+            pstComent.setInt(1, idPublicacion);
+            pstComent.executeUpdate();
+
+            String eliminarPubli = "DELETE FROM publicacion WHERE ID_Publicacion = ?";
+            PreparedStatement pstEliminar = con.prepareStatement(eliminarPubli);
+            pstEliminar.setInt(1, idPublicacion);
+            pstEliminar.executeUpdate();
+
+            JOptionPane.showMessageDialog(this, "Publicación eliminada correctamente.");
+            cargarPublicaciones(offset2, idUsuario); // recargar publicaciones
+        }
+
+        con.close();
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(this, "Error al eliminar la publicación: " + ex.getMessage());
+    }
+}
+
 
 
     
@@ -1210,6 +1269,7 @@ triste3.addMouseListener(new MouseAdapter() {
     
     private void arribaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arribaActionPerformed
         offset2 -= 1;  // Decrementar el offset para obtener la publicación anterior
+        cargarPublicaciones(offset2, idUsuario);
         corazon.setIcon(new ImageIcon(getClass().getResource("/me encanta1.png")));
         triste.setIcon(new ImageIcon(getClass().getResource("/me entristece1.png")));
         divierte.setIcon(new ImageIcon(getClass().getResource("/me divierte1.png")));
@@ -1236,7 +1296,10 @@ triste3.addMouseListener(new MouseAdapter() {
     }//GEN-LAST:event_foto3ActionPerformed
 
     private void bajoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bajoActionPerformed
-        // TODO add your handling code here:
+        offset2 += 1;  // Aumentar el offset para obtener la siguiente publicación
+        cargarPublicaciones(offset2, idUsuario);
+        Perfil P = new Perfil();
+        P.cargarReacciones();
     }//GEN-LAST:event_bajoActionPerformed
 
     private void Comentar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Comentar3ActionPerformed
@@ -1269,6 +1332,16 @@ triste3.addMouseListener(new MouseAdapter() {
     private void jButton3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseExited
         jButton3.setForeground(new Color(0,0,0));// TODO add your handling code here:
     }//GEN-LAST:event_jButton3MouseExited
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        idSeleccionada = idPubli1;
+        eliminarPublicacion(idSeleccionada);
+    }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        idSeleccionada = idPubli2;
+        eliminarPublicacion(idSeleccionada);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -393,16 +393,11 @@ public class Perfil_Amigo extends javax.swing.JFrame {
                     .addComponent(solicitudAmistad)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(37, 37, 37)
-                        .addComponent(jLabel6))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(jLabel7))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(jLabel8))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(jLabel9)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel9))))
                 .addGap(21, 21, 21))
         );
         jPanel2Layout.setVerticalGroup(
@@ -643,13 +638,10 @@ public class Perfil_Amigo extends javax.swing.JFrame {
         text2.setText("Texto");
 
         corazon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/me encanta1.png"))); // NOI18N
-        corazon.setText("1");
 
         divierte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/me divierte1.png"))); // NOI18N
-        divierte.setText("2");
 
         triste.setIcon(new javax.swing.ImageIcon(getClass().getResource("/me entristece1.png"))); // NOI18N
-        triste.setText("3");
 
         Comentar.setText("Comentar");
         Comentar.addActionListener(new java.awt.event.ActionListener() {
@@ -694,15 +686,13 @@ public class Perfil_Amigo extends javax.swing.JFrame {
                 .addComponent(divierte)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(triste)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addComponent(bajo2)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Comentar)
-                        .addGap(57, 57, 57))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Comentar)
+                .addGap(57, 57, 57))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(bajo2)
+                .addGap(160, 160, 160))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -714,7 +704,6 @@ public class Perfil_Amigo extends javax.swing.JFrame {
                         .addComponent(arriba2))
                     .addComponent(foto2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -723,15 +712,14 @@ public class Perfil_Amigo extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ima2, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(divierte)
-                        .addComponent(triste)
-                        .addComponent(Comentar))
-                    .addComponent(corazon, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(7, 7, 7)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(divierte)
+                    .addComponent(triste)
+                    .addComponent(Comentar)
+                    .addComponent(corazon))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(bajo2)
-                .addGap(16, 16, 16))
+                .addGap(11, 11, 11))
         );
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -1085,6 +1073,12 @@ public class Perfil_Amigo extends javax.swing.JFrame {
    
    public void cargarPublicacion(int offset3, int idUsuarioSeleccionado) {
     try {
+        
+        if (offset3 < 1) {
+            arriba2.setVisible(false);  // Botón "Atras" (arriba)
+        } else {
+            arriba2.setVisible(true);
+        }
         String estadoAmistad = obtenerEstadoAmistad(IniciarSesion.idUsuario, idUsuarioSeleccionado);
 
         Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/facebook", "AlanMijares", "1");
@@ -1146,10 +1140,14 @@ public class Perfil_Amigo extends javax.swing.JFrame {
             bajo2.setVisible(true);
         } else {
             bajo2.setVisible(false);
-            text2.setText("No hay publicaciones disponibles");
+            text2.setText("");
             ima2.setIcon(null);
             user2.setText("");
             foto2.setIcon(null);
+            Comentar.setVisible(false);
+            corazon.setVisible(false);
+            divierte.setVisible(false);
+            triste.setVisible(false);
         }
 
         con.close();
@@ -1607,6 +1605,10 @@ public class Perfil_Amigo extends javax.swing.JFrame {
         triste.setIcon(new ImageIcon(getClass().getResource("/me entristece1.png")));
         divierte.setIcon(new ImageIcon(getClass().getResource("/me divierte1.png")));
         Comentar.setVisible(true);
+        Comentar.setVisible(true);
+        corazon.setVisible(true);
+        divierte.setVisible(true);
+        triste.setVisible(true);
         
         eliminar.setVisible(true);
         cargarReacciones();

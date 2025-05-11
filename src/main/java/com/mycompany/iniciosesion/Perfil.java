@@ -483,13 +483,10 @@ public class Perfil extends javax.swing.JFrame {
         text.setText("Texto");
 
         corazon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/me encanta1.png"))); // NOI18N
-        corazon.setText("1");
 
         divierte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/me divierte1.png"))); // NOI18N
-        divierte.setText("2");
 
         triste.setIcon(new javax.swing.ImageIcon(getClass().getResource("/me entristece1.png"))); // NOI18N
-        triste.setText("3");
 
         Comentar.setText("Comentar");
         Comentar.addActionListener(new java.awt.event.ActionListener() {
@@ -520,6 +517,11 @@ public class Perfil extends javax.swing.JFrame {
                 jButton2MouseExited(evt);
             }
         });
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jButton3.setText("Eliminar");
@@ -533,6 +535,11 @@ public class Perfil extends javax.swing.JFrame {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 jButton3MouseExited(evt);
+            }
+        });
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
             }
         });
 
@@ -617,12 +624,11 @@ public class Perfil extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ima, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(divierte)
-                        .addComponent(triste)
-                        .addComponent(Comentar))
-                    .addComponent(corazon, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(divierte)
+                    .addComponent(triste)
+                    .addComponent(Comentar)
+                    .addComponent(corazon))
                 .addGap(7, 7, 7)
                 .addComponent(bajo)
                 .addGap(0, 148, Short.MAX_VALUE))
@@ -1234,6 +1240,10 @@ public class Perfil extends javax.swing.JFrame {
             divierte.setIcon(null);
             corazon.setIcon(null);
             eliminar.setVisible(false);
+            Comentar.setVisible(false);
+            corazon.setVisible(false);
+            divierte.setVisible(false);
+            triste.setVisible(false);
             
             Comentar.setVisible(false);
             
@@ -1370,6 +1380,56 @@ public class Perfil extends javax.swing.JFrame {
     return nombres.toString().trim();
 }
    
+   public void eliminarPublicacion(int idPublicacion) {
+    try {
+        Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/facebook", "AlanMijares", "1");
+
+        // Verificar si el usuario actual es el autor de la publicación
+        String verificarAutor = "SELECT ID_Usuario FROM publicacion WHERE ID_Publicacion = ?";
+        PreparedStatement pstVerificar = con.prepareStatement(verificarAutor);
+        pstVerificar.setInt(1, idPublicacion);
+        ResultSet rs = pstVerificar.executeQuery();
+
+        if (rs.next()) {
+            int autor = rs.getInt("ID_Usuario");
+            if (autor != idUsuario) {
+                JOptionPane.showMessageDialog(this, "No puedes eliminar esta publicación porque no te pertenece.");
+                con.close();
+                return;
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "La publicación no fue encontrada.");
+            con.close();
+            return;
+        }
+
+        int confirmacion = JOptionPane.showConfirmDialog(this, "¿Estás seguro de que deseas eliminar esta publicación?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
+        if (confirmacion == JOptionPane.YES_OPTION) {
+            String eliminarReacciones = "DELETE FROM reaccion WHERE ID_Publicacion = ?";
+            PreparedStatement pstReac = con.prepareStatement(eliminarReacciones);
+            pstReac.setInt(1, idPublicacion);
+            pstReac.executeUpdate();
+
+            String eliminarComentarios = "DELETE FROM comentario WHERE ID_Publicacion = ?";
+            PreparedStatement pstComent = con.prepareStatement(eliminarComentarios);
+            pstComent.setInt(1, idPublicacion);
+            pstComent.executeUpdate();
+
+            String eliminarPubli = "DELETE FROM publicacion WHERE ID_Publicacion = ?";
+            PreparedStatement pstEliminar = con.prepareStatement(eliminarPubli);
+            pstEliminar.setInt(1, idPublicacion);
+            pstEliminar.executeUpdate();
+
+            JOptionPane.showMessageDialog(this, "Publicación eliminada correctamente.");
+            cargarPublicacion(offset3, idUsuario); // recargar publicaciones
+        }
+
+        con.close();
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(this, "Error al eliminar la publicación: " + ex.getMessage());
+    }
+}
+
    
 
         
@@ -1493,6 +1553,9 @@ public class Perfil extends javax.swing.JFrame {
         triste.setIcon(new ImageIcon(getClass().getResource("/me entristece1.png")));
         divierte.setIcon(new ImageIcon(getClass().getResource("/me divierte1.png")));
         Comentar.setVisible(true);
+        corazon.setVisible(true);
+        divierte.setVisible(true);
+        triste.setVisible(true);
 
         eliminar.setVisible(true);
         cargarReacciones();
@@ -1535,6 +1598,19 @@ public class Perfil extends javax.swing.JFrame {
     private void jButton3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseExited
         jButton3.setForeground(new Color(0,0,0));// TODO add your handling code here:
     }//GEN-LAST:event_jButton3MouseExited
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        eliminarPublicacion(idPublicacion);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.dispose();
+        EditarPublicacion EP = new EditarPublicacion();
+        EP.actualizarNombreUsuario(IS.idUsuario);
+        EP.cargarImagenUsuario(IS.idUsuario);
+        EP.cargarPublicaciones(idPublicacion);
+        EP.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
