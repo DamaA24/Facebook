@@ -16,12 +16,12 @@ import javax.swing.JOptionPane;
  *
  * @author User
  */
-public class CrearAlbum extends javax.swing.JFrame {
+public class CrearAlbum2 extends javax.swing.JFrame {
     private CrearPublicacion anterior;
     /**
      * Creates new form CrearAlbum
      */
-    public CrearAlbum() {
+    public CrearAlbum2() {
         initComponents();
         
                 // Código para el botón "Publicar"
@@ -111,7 +111,7 @@ public class CrearAlbum extends javax.swing.JFrame {
             });
         privv.setBackground(new Color(255, 255, 255)); // Fondo blanco
     } 
-    public CrearAlbum(CrearPublicacion anterior) {
+    public CrearAlbum2(CrearPublicacion anterior) {
     this();
     this.anterior = anterior;
 }
@@ -254,7 +254,7 @@ public class CrearAlbum extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        SeleccionarAlbum ventana = new SeleccionarAlbum(anterior); // ← sin parámetros
+        Album ventana = new Album(); // ← sin parámetros
         ventana.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -282,7 +282,7 @@ public class CrearAlbum extends javax.swing.JFrame {
         if (resultado > 0) {
             JOptionPane.showMessageDialog(this, "Álbum creado correctamente.");
             this.dispose();
-        SeleccionarAlbum seleccionar = new SeleccionarAlbum(anterior);
+        Album seleccionar = new Album();
         seleccionar.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(this, "No se pudo guardar el álbum.");
@@ -310,20 +310,21 @@ public class CrearAlbum extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CrearAlbum.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CrearAlbum2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CrearAlbum.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CrearAlbum2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CrearAlbum.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CrearAlbum2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CrearAlbum.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CrearAlbum2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CrearAlbum().setVisible(true);
+                new CrearAlbum2().setVisible(true);
             }
         });
     }

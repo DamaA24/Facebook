@@ -18,17 +18,18 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 /**
  *
  * @author Damaris
  */
-public class Fotos extends javax.swing.JFrame {
+public class FotosAlbum extends javax.swing.JFrame {
 
     /**
      * Creates new form Fotos
      */
-    public Fotos() {
+    public FotosAlbum() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -36,98 +37,124 @@ public class Fotos extends javax.swing.JFrame {
     public int offset = 0;
     IniciarSesion IS = new IniciarSesion();
     
-    public void cargarFotosPerfil(int offset, int idUsuario) {
+    public void cargarFotosAlbum(int offset, int idAlbum) {
     try {
-        // Si el offset es menor que 9, no mostrar el botón "Atras"
-        if (offset < 9) {
-            atras.setVisible(false);  // Botón "Atras"
-        } else {
-            atras.setVisible(true);   // Botón "Atras"
-        }
+        // Mostrar u ocultar el botón "Atras" según el offset
+        atras.setVisible(offset >= 9);
 
-        // Conectar a la base de datos
         Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/facebook", "AlanMijares", "1");
 
-        // Consulta SQL para obtener las imágenes desde la tabla 'publicacion' filtradas por el 'ID_Usuario'
-        String query = "SELECT ID_Publicacion, Imagen FROM publicacion WHERE ID_Usuario = ? LIMIT 9 OFFSET ?";
-        PreparedStatement pst = con.prepareStatement(query);
-        pst.setInt(1, idUsuario);  // Ajustamos el ID del usuario en la consulta
-        pst.setInt(2, offset);      // Ajustar el OFFSET según la página de publicaciones
+        String query = """
+            SELECT ID_Media, Contenido_media 
+            FROM media 
+            WHERE ID_Album = ? AND Tipo = 'imagen' 
+            ORDER BY Fecha DESC 
+            LIMIT 9 OFFSET ?""";
 
-        // Ejecutar la consulta
+        PreparedStatement pst = con.prepareStatement(query);
+        pst.setInt(1, idAlbum);
+        pst.setInt(2, offset);
         ResultSet rs = pst.executeQuery();
 
-        // Asignar las imágenes a los botones
         JButton[] botones = {foto1, foto2, foto3, foto4, foto5, foto6, foto7, foto8, foto9};
         int i = 0;
 
-        // Limpiar las imágenes en los botones antes de asignar nuevas
         for (JButton boton : botones) {
-            boton.setIcon(null);
+            boton.setIcon(null); // limpiar antes
         }
 
-        // Coloca las imágenes en orden inverso
-        // Primero, guarda todas las imágenes en una lista
         List<byte[]> imagenes = new ArrayList<>();
-        List<Integer> idsPublicacion = new ArrayList<>();
-        
+        List<Integer> idsMedia = new ArrayList<>();
+
         while (rs.next()) {
-            byte[] imagenPublicacion = rs.getBytes("Imagen");
-            if (imagenPublicacion != null) {
-                imagenes.add(imagenPublicacion);
-                idsPublicacion.add(rs.getInt("ID_Publicacion"));
+            byte[] img = rs.getBytes("Contenido_media");
+            int idMedia = rs.getInt("ID_Media");
+
+            if (img != null) {
+                imagenes.add(img);
+                idsMedia.add(idMedia);
             }
         }
 
-        // Ahora, recorremos la lista de imágenes de manera inversa
-        Collections.reverse(imagenes);
-        Collections.reverse(idsPublicacion);
-
-        // Asignar las imágenes a los botones en orden inverso
         for (int j = 0; j < imagenes.size() && i < botones.length; j++) {
-            byte[] imagenPublicacion = imagenes.get(j);
+            byte[] img = imagenes.get(j);
 
-            // Crear un ImageIcon a partir de los datos de la imagen
-            if (imagenPublicacion != null) {
-                ImageIcon originalImageIcon = new ImageIcon(imagenPublicacion);
-
-                // Obtener el tamaño del JButton (en este caso, el primer botón)
-                int buttonWidth = botones[i].getWidth();
-                int buttonHeight = botones[i].getHeight();
-
-                // Escalar la imagen para que se ajuste al tamaño del botón
-                Image originalImage = originalImageIcon.getImage();
-                Image scaledImage = originalImage.getScaledInstance(buttonWidth, buttonHeight, Image.SCALE_SMOOTH);
-
-                // Crear un nuevo ImageIcon con la imagen escalada
-                ImageIcon scaledImageIcon = new ImageIcon(scaledImage);
-
-                // Establecer la imagen escalada en el botón correspondiente
-                botones[i].setIcon(scaledImageIcon);
-            }
-
-            // Asignar el ID de la publicación a cada botón, si se necesita usarlo más tarde
-            botones[i].putClientProperty("ID_Publicacion", idsPublicacion.get(j));
+            ImageIcon iconoOriginal = new ImageIcon(img);
+            int w = botones[i].getWidth(), h = botones[i].getHeight();
+            Image imgEscalada = iconoOriginal.getImage().getScaledInstance(w, h, Image.SCALE_SMOOTH);
+            botones[i].setIcon(new ImageIcon(imgEscalada));
+            botones[i].putClientProperty("ID_Media", idsMedia.get(j));
 
             i++;
         }
 
-        // Si no hay suficientes publicaciones (menos de 9), deshabilitar el botón "Siguiente"
-        if (i < 9) {
-            sig.setVisible(false);  // Botón "Siguiente" desaparece si no hay suficientes fotos
-        } else {
-            sig.setVisible(true);   // Mostrar el botón "Siguiente" si hay más de 9 fotos
-        }
+        sig.setVisible(i == 9); // mostrar "siguiente" solo si hay 9 fotos
 
-        // Si no hay suficientes publicaciones, deshabilitar los botones restantes
+        // Desactivar los botones restantes
         while (i < botones.length) {
-            botones[i].setIcon(null);  // Limpiar las imágenes restantes
+            botones[i].setIcon(null);
             i++;
         }
 
         con.close();
     } catch (SQLException ex) {
-        JOptionPane.showMessageDialog(this, "Error al cargar las publicaciones: " + ex.getMessage());
+        JOptionPane.showMessageDialog(this, "Error al cargar fotos del álbum: " + ex.getMessage());
+    }
+}
+    
+    public void actualizarNombreUsuario(int idAlbum) {
+    final Connection conn;  // Hacer final la variable
+    final PreparedStatement stmt;  // Hacer final la variable
+    final ResultSet rs;  // Hacer final la variable
+
+    try {
+        // Configuración de la conexión a la base de datos
+        conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/facebook", "AlanMijares", "1");
+
+        // Consulta SQL para obtener el nombre del usuario usando la columna 'ID_Usuario'
+        String sql = "SELECT Nombre FROM album WHERE ID_Album = ?";
+        stmt = conn.prepareStatement(sql);
+        stmt.setInt(1, idAlbum); // Establecer el ID del usuario en la consulta
+
+        // Ejecutar la consulta
+        rs = stmt.executeQuery();
+
+        // Usar invokeLater para asegurar que el código se ejecute en el hilo de la interfaz gráfica
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    if (rs.next()) {  // Usar rs dentro del Runnable
+                        String nombre = rs.getString("Nombre");
+                        // Obtener el nombre del usuario
+                        usuario.setText(nombre); // Establecer el nombre en el JLabel
+                    } else {
+                        usuario.setText("Usuario no encontrado"); // Si no se encuentra el usuario
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    usuario.setText("Error al obtener el nombre del usuario."); // Si ocurre un error
+                } finally {
+                    // Cerrar recursos
+                    try {
+                        if (rs != null) rs.close();
+                        if (stmt != null) stmt.close();
+                        if (conn != null) conn.close();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                usuario.setText("Error al obtener el nombre del usuario."); // Si ocurre un error
+            }
+        });
     }
 }
 
@@ -144,12 +171,8 @@ public class Fotos extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         B_Publicaciones = new javax.swing.JButton();
         B_Fotos = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
+        usuario = new javax.swing.JLabel();
         foto3 = new javax.swing.JButton();
         foto1 = new javax.swing.JButton();
         foto5 = new javax.swing.JButton();
@@ -228,55 +251,10 @@ public class Fotos extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel1.setText("Tus fotos ");
-
-        jButton4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jButton4.setContentAreaFilled(false);
-        jButton4.setFocusPainted(false);
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-
-        jLabel4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel4.setText("Álbumes");
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jLabel4)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
-                .addContainerGap(12, Short.MAX_VALUE))
-        );
-
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel5.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel5.setText("Tus fotos ");
+        usuario.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        usuario.setText("Tus fotos ");
 
         foto3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         foto3.setContentAreaFilled(false);
@@ -380,15 +358,11 @@ public class Fotos extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(foto1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(foto7, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(foto4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(12, 12, 12)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(foto1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(foto7, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(foto4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
@@ -402,13 +376,14 @@ public class Fotos extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(foto9, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(foto6, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(33, 33, 33)
-                                .addComponent(atras))))
+                                    .addComponent(foto6, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(152, 152, 152)
-                        .addComponent(sig)))
+                        .addComponent(sig))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(atras)))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -417,7 +392,7 @@ public class Fotos extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
+                        .addComponent(usuario)
                         .addGap(40, 40, 40))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addComponent(atras)
@@ -441,7 +416,7 @@ public class Fotos extends javax.swing.JFrame {
                     .addComponent(foto8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(sig)
-                .addContainerGap(142, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -449,7 +424,6 @@ public class Fotos extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -459,10 +433,8 @@ public class Fotos extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(296, Short.MAX_VALUE))
         );
 
         jScrollPane1.setViewportView(jPanel1);
@@ -475,7 +447,7 @@ public class Fotos extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 607, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -517,13 +489,6 @@ public class Fotos extends javax.swing.JFrame {
     B_Fotos.setForeground(new Color(0,0,0));         // TODO add your handling code here:
     }//GEN-LAST:event_B_FotosMouseExited
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        this.dispose();
-        Album A = new Album();
-        A.cargarAlbumes();
-        A.setVisible(true);
-    }//GEN-LAST:event_jButton4ActionPerformed
-
     private void foto3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_foto3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_foto3ActionPerformed
@@ -563,13 +528,13 @@ public class Fotos extends javax.swing.JFrame {
     private void sigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sigActionPerformed
         offset += 9;  
         atras.setVisible(true);
-        cargarFotosPerfil(offset, IS.idUsuario); 
+        cargarFotosAlbum(offset, 1); 
     }//GEN-LAST:event_sigActionPerformed
 
     private void atrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasActionPerformed
         offset -= 9;  
         sig.setVisible(true);
-        cargarFotosPerfil(offset, IS.idUsuario);
+        cargarFotosAlbum(offset, 1);
     }//GEN-LAST:event_atrasActionPerformed
 
     /**
@@ -589,20 +554,21 @@ public class Fotos extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Fotos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FotosAlbum.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Fotos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FotosAlbum.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Fotos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FotosAlbum.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Fotos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FotosAlbum.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Fotos().setVisible(true);
+                new FotosAlbum().setVisible(true);
             }
         });
     }
@@ -620,15 +586,11 @@ public class Fotos extends javax.swing.JFrame {
     private javax.swing.JButton foto7;
     private javax.swing.JButton foto8;
     private javax.swing.JButton foto9;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton sig;
+    private javax.swing.JLabel usuario;
     // End of variables declaration//GEN-END:variables
 }

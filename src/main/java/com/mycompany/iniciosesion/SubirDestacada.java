@@ -201,7 +201,7 @@ public class SubirDestacada extends javax.swing.JFrame {
         byte[] fotoPerfil = baos.toByteArray();
         String texto = descripcion.getText();
         java.sql.Date fechaSubida = new java.sql.Date(System.currentTimeMillis());
-        Double si = 0.0;
+        
         // Obtener el ID del usuario desde la clase de sesión o variable global (suponiendo que 'idUsuario' está disponible)
         IniciarSesion IS = new IniciarSesion();
 
@@ -210,7 +210,7 @@ public class SubirDestacada extends javax.swing.JFrame {
             Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/facebook", "AlanMijares", "1");
 
             // Consulta SQL para actualizar la foto de perfil
-            String queryInsertar = "INSERT INTO media (ID_Usuario, Contenido_media, Descripcion, Fecha, Nombre_archivo, Tamaño, Formato, Privacidad)VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            String queryInsertar = "INSERT INTO media (ID_Usuario, Contenido_media, Descripcion, Fecha, Privacidad)VALUES (?, ?, ?, ?, ?)";
 
             PreparedStatement stInsertar = con.prepareStatement(queryInsertar);
 
@@ -219,10 +219,7 @@ public class SubirDestacada extends javax.swing.JFrame {
             stInsertar.setBytes(2, fotoPerfil);
             stInsertar.setString(3, texto);
             stInsertar.setDate(4, fechaSubida);
-            stInsertar.setString(5, "");
-            stInsertar.setDouble(6, si);
-            stInsertar.setString(7, "");
-            stInsertar.setString(8, "público");
+            stInsertar.setString(5, "público");
             
             
 
