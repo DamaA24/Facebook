@@ -409,7 +409,7 @@ public class AñadirDestacada extends javax.swing.JFrame {
                  descripcion = rsDescripcion.getString("Descripcion");
                 }
                 
-                String query = "INSERT INTO destacadas (ID_Usuario, ID_Media, Nombre, Icono_destacada, Nombre_archivo_icono) VALUES (?, ?, ?, ?, ?)";
+                String query = "INSERT INTO destacadas (ID_Usuario, ID_Media, Nombre, Icono_destacada) VALUES (?, ?, ?, ?)";
                 PreparedStatement pst = con.prepareStatement(query);
 
                 // Establecer los parámetros
@@ -417,7 +417,6 @@ public class AñadirDestacada extends javax.swing.JFrame {
                 pst.setInt(2, idMedia);
                 pst.setString(3, descripcion);
                 pst.setBytes(4, imageBytes);
-                pst.setString(5, nombreArchivoIcono);
 
                 // Ejecutar la consulta de inserción
                 int rowsAffected = pst.executeUpdate();

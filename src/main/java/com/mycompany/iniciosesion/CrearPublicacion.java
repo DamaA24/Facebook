@@ -23,27 +23,29 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.border.AbstractBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.plaf.basic.BasicComboBoxUI;
 
 /**
  *
  * @author User
  */
-public class CrearPublicacion extends javax.swing.JFrame { 
+public class CrearPublicacion extends javax.swing.JFrame {
+    private int idAlbumSeleccionado = -1;
     public CrearPublicacion() {
         initComponents();
-        // Código para el botón "Publicar"
+        actualizarNombreUsuario(IniciarSesion.idUsuario);
+        cargarImagenUsuario(IniciarSesion.idUsuario);
+        
+
+       
+    // Código para el botón "Publicar"
     btnPublicar.setEnabled(false);
     btnPublicar.setBackground(new java.awt.Color(242, 242, 242));
     btnPublicar.setForeground(new java.awt.Color(204, 204, 204));
@@ -124,12 +126,53 @@ public class CrearPublicacion extends javax.swing.JFrame {
             return this;
         }
     });
-    priv.setBorder(new RoundBorder(30)); // Borde redondeado
     priv.setBackground(new Color(255, 255, 255)); // Fondo blanco
+    btnÁlbum.setBackground(new java.awt.Color(255, 255, 255)); // Azul Facebook
+    priv.setBorder(new RoundBorder(30)); // Borde redondeado
+    
+    
     priv.setForeground(new Color(0, 0, 0));           // Color del texto
-    priv.setOpaque(true);  // Asegura que el fondo se vea correctamente
+    priv.setOpaque(true);  // Asegura que el fondo se vea correctamente  
     }
     
+    public javax.swing.JTextArea getTextoo() {
+        return textoo;
+    }
+
+    public javax.swing.JLabel getImag() {
+        return imag;
+    }
+
+    public javax.swing.JComboBox<String> getPrivacidadCombo() {
+        return priv;
+    }
+
+    CrearPublicacion(String texto, ImageIcon imagenActual, String nombreAlbum, int idAlbum, String privacidad) {
+        this(); // llama al constructor principal
+
+        // Restaurar texto
+        textoo.setText(texto);
+        textoo.setForeground(new java.awt.Color(0, 0, 0));
+
+        // Restaurar imagen
+        if (imagenActual != null) {
+            Image imagen = imagenActual.getImage().getScaledInstance(120, 125, Image.SCALE_SMOOTH);
+            imag.setIcon(new ImageIcon(imagen));
+            imag.setText("");
+        }
+
+        // Restaurar privacidad
+        priv.setSelectedItem(privacidad);
+
+        // Restaurar álbum
+        actualizarNombreAlbum(nombreAlbum, idAlbum);
+    }
+
+    public void actualizarNombreAlbum(String nombreAlbum, int idAlbum) {
+        NombreAlbum.setText(nombreAlbum); // Asegúrate de que este JLabel exista
+        this.idAlbumSeleccionado = idAlbum;
+    }
+   
     public class RoundBorder extends AbstractBorder {
         private final int radius;
 
@@ -171,6 +214,8 @@ public class CrearPublicacion extends javax.swing.JFrame {
         fotoperfil = new javax.swing.JLabel();
         usuario = new javax.swing.JLabel();
         priv = new javax.swing.JComboBox<>();
+        btnÁlbum = new javax.swing.JButton();
+        NombreAlbum = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         textoo = new javax.swing.JTextArea();
@@ -181,10 +226,10 @@ public class CrearPublicacion extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
         setBackground(new java.awt.Color(255, 255, 255));
+        setPreferredSize(new java.awt.Dimension(405, 420));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.setPreferredSize(new java.awt.Dimension(355, 100));
 
         jPanel2.setBackground(new java.awt.Color(229, 229, 229));
 
@@ -217,9 +262,9 @@ public class CrearPublicacion extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnCerrar)
-                .addGap(80, 80, 80)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(75, 75, 75)
                 .addComponent(btnPublicar)
                 .addContainerGap())
         );
@@ -254,6 +299,16 @@ public class CrearPublicacion extends javax.swing.JFrame {
             }
         });
 
+        btnÁlbum.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mas1.JPG"))); // NOI18N
+        btnÁlbum.setText("Álbum");
+        btnÁlbum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnÁlbumActionPerformed(evt);
+            }
+        });
+
+        NombreAlbum.setText("Álbum seleccionado");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -264,7 +319,12 @@ public class CrearPublicacion extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(usuario)
-                    .addComponent(priv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(priv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(NombreAlbum)
+                            .addComponent(btnÁlbum))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -276,8 +336,12 @@ public class CrearPublicacion extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                         .addComponent(usuario)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(priv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(22, 22, 22))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(priv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnÁlbum))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(NombreAlbum)
+                .addContainerGap())
         );
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -331,7 +395,7 @@ public class CrearPublicacion extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
             .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(113, 113, 113)
@@ -345,7 +409,7 @@ public class CrearPublicacion extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(imag, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE))
+                .addComponent(imag, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -354,9 +418,7 @@ public class CrearPublicacion extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -373,7 +435,7 @@ public class CrearPublicacion extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -558,6 +620,7 @@ if (icon != null && icon instanceof ImageIcon) {
 // Obtener el ID del usuario (ajústalo si es una clase estática)
 int idUsuario = IniciarSesion.idUsuario;
 
+
 try {
     Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/facebook", "AlanMijares", "1");
 
@@ -575,9 +638,28 @@ try {
     stInsertar.setString(5, privacidad);
 
     int filasAfectadas = stInsertar.executeUpdate();
+    
+    if (foto != null && idAlbumSeleccionado != -1) {
+        String sqlMedia = "INSERT INTO media (ID_Usuario, ID_Album, Tipo, Contenido_media, Fecha, Descripcion) VALUES (?, ?, ?, ?, ?, ?)";
+        PreparedStatement psMedia = con.prepareStatement(sqlMedia);
+
+        psMedia.setInt(1, idUsuario);
+        psMedia.setInt(2, idAlbumSeleccionado);
+        psMedia.setString(3, "imagen");
+        psMedia.setBytes(4, foto);
+        psMedia.setTimestamp(5, fechaSubida);
+        psMedia.setString(6, ""); // Descripción vacía por ahora
+        psMedia.executeUpdate();
+        psMedia.close();
+    }
+
 
     if (filasAfectadas > 0) {
         JOptionPane.showMessageDialog(this, "Publicación subida correctamente.");
+        this.dispose();  // Cierra la ventana actual
+        InicioF inicio = new InicioF();  // Abre la ventana de inicio
+        inicio.cargarImagenUsuario(IniciarSesion.idUsuario); // Si necesitas que cargue datos
+        inicio.setVisible(true);
     } else {
         JOptionPane.showMessageDialog(this, "Hubo un error al subir la publicación.");
     }
@@ -627,6 +709,12 @@ try {
         // TODO add your handling code here:
     }//GEN-LAST:event_privActionPerformed
 
+    private void btnÁlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnÁlbumActionPerformed
+        SeleccionarAlbum ventana = new SeleccionarAlbum(this); // ← sin parámetros
+        ventana.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnÁlbumActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -663,8 +751,10 @@ try {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel NombreAlbum;
     private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btnPublicar;
+    private javax.swing.JButton btnÁlbum;
     private javax.swing.JLabel fotoperfil;
     private javax.swing.JLabel imag;
     private javax.swing.JButton jButton3;
