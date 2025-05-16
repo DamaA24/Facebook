@@ -85,6 +85,7 @@ triste3.addMouseListener(new MouseAdapter() {
 corazon.addMouseListener(new MouseAdapter() {
     public void mouseClicked(MouseEvent e) {
         manejarReaccion(idPubli1, "me encanta", corazon, divierte, triste);
+        
     }
 });
 divierte.addMouseListener(new MouseAdapter() {
@@ -1329,12 +1330,14 @@ triste3.addMouseListener(new MouseAdapter() {
     try {
         Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/facebook", "AlanMijares", "1");
 
+        // Verificar si ya hay una reacción
         String consulta = "SELECT Tipo FROM reaccion WHERE ID_Publicacion = ? AND ID_Usuario = ?";
         PreparedStatement pst = con.prepareStatement(consulta);
         pst.setInt(1, idPublicacion);
         pst.setInt(2, idUsuario);
         ResultSet rs = pst.executeQuery();
 
+        boolean yaExiste = false;
         if (rs.next()) {
             String tipoActual = rs.getString("Tipo");
             if (tipoActual.equals(tipoReaccion)) {
@@ -1350,11 +1353,40 @@ triste3.addMouseListener(new MouseAdapter() {
             }
         }
 
+        // Insertar nueva reacción
         pst = con.prepareStatement("INSERT INTO reaccion (ID_Publicacion, ID_Usuario, Tipo) VALUES (?, ?, ?)");
         pst.setInt(1, idPublicacion);
         pst.setInt(2, idUsuario);
         pst.setString(3, tipoReaccion);
         pst.executeUpdate();
+
+        // Obtener el autor de la publicación
+        int idAutor = -1;
+        pst = con.prepareStatement("SELECT ID_Usuario FROM publicacion WHERE ID_Publicacion = ?");
+        pst.setInt(1, idPublicacion);
+        rs = pst.executeQuery();
+        if (rs.next()) {
+            idAutor = rs.getInt("ID_Usuario");
+        }
+
+        // Obtener el nombre del usuario que reacciona
+        String nombreUsuario = "";
+        pst = con.prepareStatement("SELECT Nombre FROM perfil_usuario WHERE ID_Usuario = ?");
+        pst.setInt(1, idUsuario);
+        rs = pst.executeQuery();
+        if (rs.next()) {
+            nombreUsuario = rs.getString("Nombre");
+        }
+
+        // Insertar la notificación (si no se reacciona a uno mismo)
+        if (idAutor != idUsuario && idAutor != -1) {
+            pst = con.prepareStatement(
+                "INSERT INTO notificaciones (ID_Usuario, Mensaje, Tipo, Referencia) VALUES (?, ?, 'reaccion', ?)");
+            pst.setInt(1, idAutor);
+            pst.setString(2, nombreUsuario + " reaccionó a tu publicación.");
+            pst.setInt(3, idPublicacion);
+            pst.executeUpdate();
+        }
 
         cargarReacciones(idPublicacion, corazon, divierte, triste);
         con.close();
@@ -1363,6 +1395,7 @@ triste3.addMouseListener(new MouseAdapter() {
         ex.printStackTrace();
     }
 }
+
 
     
     public void cargarReacciones(int idPublicacion, JLabel corazon, JLabel divierte, JLabel triste) {

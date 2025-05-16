@@ -1320,11 +1320,36 @@ public class Perfil_Amigo extends javax.swing.JFrame {
             pst.setInt(1, emisor);
             pst.setInt(2, receptor);
             pst.executeUpdate();
+            
+            String nombreUsuario = obtenerNombreUsuario(emisor, con); // quien envía
+        if (nombreUsuario != null && receptor != emisor) {
+            pst = con.prepareStatement(
+                "INSERT INTO notificaciones (ID_Usuario, Mensaje, Tipo, Referencia) VALUES (?, ?, 'amistad', ?)");
+            pst.setInt(1, receptor); // Notificar al receptor
+            pst.setString(2, nombreUsuario + " te envió una solicitud de amistad.");
+            pst.setInt(3, emisor); // Referencia puede ser el ID del que envía
+            pst.executeUpdate();
+        }
             JOptionPane.showMessageDialog(this, "Solicitud enviada.");
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+    
+    private String obtenerNombreUsuario(int idUsuario, Connection con) {
+    try {
+        String sql = "SELECT Nombre FROM perfil_usuario WHERE ID_Usuario = ?";
+        PreparedStatement pst = con.prepareStatement(sql);
+        pst.setInt(1, idUsuario);
+        ResultSet rs = pst.executeQuery();
+        if (rs.next()) {
+            return rs.getString("Nombre");
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return null;
+}
 
     public void aceptarSolicitud(int emisor, int receptor) {
         try (Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/facebook", "AlanMijares", "1")) {
@@ -1333,6 +1358,16 @@ public class Perfil_Amigo extends javax.swing.JFrame {
             pst.setInt(1, emisor);
             pst.setInt(2, receptor);
             pst.executeUpdate();
+            
+            String nombreUsuario = obtenerNombreUsuario(receptor, con); // quien acepta
+        if (nombreUsuario != null && emisor != receptor) {
+            pst = con.prepareStatement(
+                "INSERT INTO notificaciones (ID_Usuario, Mensaje, Tipo, Referencia) VALUES (?, ?, 'amistad', ?)");
+            pst.setInt(1, emisor); // Notificar al emisor
+            pst.setString(2, nombreUsuario + " aceptó tu solicitud de amistad.");
+            pst.setInt(3, receptor); // Referencia puede ser el ID del que acepta
+            pst.executeUpdate();
+        }
             JOptionPane.showMessageDialog(this, "Ahora son amigos.");
         } catch (SQLException e) {
             e.printStackTrace();
@@ -1471,6 +1506,8 @@ public class Perfil_Amigo extends javax.swing.JFrame {
         e.printStackTrace();
     }
 }
+    
+    
 
 
     private void fotoperfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fotoperfilActionPerformed

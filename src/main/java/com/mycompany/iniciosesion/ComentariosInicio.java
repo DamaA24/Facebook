@@ -172,6 +172,22 @@ public class ComentariosInicio extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Error al cargar los comentarios: " + ex.getMessage());
     }
 }
+    
+    private String obtenerNombreUsuario(int idUsuario, Connection con) {
+    try {
+        String sql = "SELECT Nombre FROM perfil_usuario WHERE ID_Usuario = ?";
+        PreparedStatement pst = con.prepareStatement(sql);
+        pst.setInt(1, idUsuario);
+        ResultSet rs = pst.executeQuery();
+        if (rs.next()) {
+            return rs.getString("Nombre");
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return "Alguien";
+}
+
 
     
 
@@ -625,17 +641,41 @@ public class ComentariosInicio extends javax.swing.JFrame {
 
                 int filasAfectadas = stInsertar.executeUpdate();
 
-                if (filasAfectadas > 0) {
-                    JOptionPane.showMessageDialog(this, "Comentario subido correctamente.");
-                } else {
-                    JOptionPane.showMessageDialog(this, "Hubo un error al subir el comentario.");
-                }
+if (filasAfectadas > 0) {
+    // Obtener ID del autor de la publicación
+    PreparedStatement pstAutor = con.prepareStatement("SELECT ID_Usuario FROM publicacion WHERE ID_Publicacion = ?");
+    pstAutor.setInt(1, idComentario);
+    ResultSet rsAutor = pstAutor.executeQuery();
+
+    if (rsAutor.next()) {
+        int idAutor = rsAutor.getInt("ID_Usuario");
+
+        // Verificamos que no se notifique a uno mismo
+        if (idAutor != idUsuario && idAutor != -1) {
+            // Obtener nombre del usuario que comentó
+            String nombreUsuario = obtenerNombreUsuario(idUsuario, con);
+
+            // Insertar la notificación
+            PreparedStatement pstNotif = con.prepareStatement(
+                "INSERT INTO notificaciones (ID_Usuario, Mensaje, Tipo, Referencia) VALUES (?, ?, 'comentario', ?)");
+            pstNotif.setInt(1, idAutor); // autor recibe la notificación
+            pstNotif.setString(2, nombreUsuario + " comentó tu publicación.");
+            pstNotif.setInt(3, idComentario); // ID de la publicación comentada
+            pstNotif.executeUpdate();
+        }
+    }
+
+        JOptionPane.showMessageDialog(this, "Comentario subido correctamente.");
+    } else {
+        JOptionPane.showMessageDialog(this, "Hubo un error al subir el comentario.");
+    }
 
                 stInsertar.close();
                 con.close();
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(this, "Error en la base de datos: " + ex.getMessage());
             }
+            
             
             
             cargarComentarios(IF.offset3, IF.idSeleccionada);
