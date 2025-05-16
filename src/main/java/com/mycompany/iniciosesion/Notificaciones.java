@@ -1,12 +1,19 @@
 
 package com.mycompany.iniciosesion;
 
+import static com.mycompany.iniciosesion.Busqueda.idUsuarioSeleccionado;
 import java.awt.Color;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.sound.sampled.*;
+
+
 
 
 public class Notificaciones extends javax.swing.JFrame {
@@ -16,14 +23,127 @@ public class Notificaciones extends javax.swing.JFrame {
     public Notificaciones() {
         
         initComponents();
+        cargarNotificaciones(IniciarSesion.idUsuario);
         setLocationRelativeTo(null);
         
         }
     
     
 
+    private void reproducirSonido(String ruta) {
+    try {
+        AudioInputStream audio = AudioSystem.getAudioInputStream(getClass().getResource(ruta));
+        Clip clip = AudioSystem.getClip();
+        clip.open(audio);
+        clip.start();
+    } catch (Exception e) {
+        System.out.println("Error al reproducir sonido: " + e.getMessage());
+    }
+}
     
-   
+   public void cargarNotificaciones(int idUsuario) {
+    try {
+        Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/facebook", "AlanMijares", "1");
+
+        String query = "SELECT ID_Notificacion, Tipo, Mensaje, Leida, Fecha, Referencia FROM notificaciones " +
+                       "WHERE ID_Usuario = ? ORDER BY Fecha DESC";
+        PreparedStatement pst = con.prepareStatement(query);
+        pst.setInt(1, idUsuario);
+        ResultSet rs = pst.executeQuery();
+
+        contenedorNotis.removeAll();
+
+        while (rs.next()) {
+            int idNotif = rs.getInt("ID_Notificacion");
+            String tipo = rs.getString("Tipo");
+            String mensaje = rs.getString("Mensaje");
+            int leida = rs.getInt("Leida");
+            int referencia = rs.getInt("Referencia");
+
+            // Panel individual para la notificación
+            JPanel panelNotif = new JPanel();
+            panelNotif.setLayout(new java.awt.BorderLayout());
+            panelNotif.setBorder(javax.swing.BorderFactory.createLineBorder(Color.LIGHT_GRAY));
+            panelNotif.setBackground(leida == 1 ? Color.WHITE : new Color(230, 245, 255)); // No leída = azul claro
+
+            // Ícono según el tipo
+            JLabel icono = new JLabel();
+            switch (tipo) {
+                case "reaccion":
+                    icono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icono_reaccion.png")));
+                    break;
+                case "comentario":
+                    icono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icono_comentario.png")));
+                    break;
+                case "amistad":
+                    icono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icono_amistad.png")));
+                    break;
+            }
+            icono.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+            panelNotif.add(icono, java.awt.BorderLayout.WEST);
+
+            // Texto del mensaje
+            JLabel texto = new JLabel(mensaje);
+            texto.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+            panelNotif.add(texto, java.awt.BorderLayout.CENTER);
+
+            // Botón "ver"
+            JButton btnVer = new JButton("Ver");
+            btnVer.addActionListener(e -> {
+                marcarNotificacionComoLeida(idNotif);
+                if (tipo.equals("comentario") || tipo.equals("reaccion")) {
+                    abrirPublicacion(referencia);
+                } else if (tipo.equals("amistad")) {
+                    abrirPerfil(referencia);
+                }
+            });
+            panelNotif.add(btnVer, java.awt.BorderLayout.EAST);
+
+            contenedorNotis.add(panelNotif);
+        }
+
+        contenedorNotis.revalidate();
+        contenedorNotis.repaint();
+        con.close();
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Error al cargar notificaciones: " + e.getMessage());
+    }
+}
+
+   private void marcarNotificacionComoLeida(int idNotif) {
+    try {
+        Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/facebook", "AlanMijares", "1");
+        PreparedStatement pst = con.prepareStatement("UPDATE notificaciones SET Leida = 1 WHERE ID_Notificacion = ?");
+        pst.setInt(1, idNotif);
+        pst.executeUpdate();
+        con.close();
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Error al marcar como leída: " + e.getMessage());
+    }
+}
+
+private void abrirPublicacion(int idPublicacion) {
+    ComentariosInicio ci = new ComentariosInicio();
+    Perfil p = new Perfil();
+    InicioF.idSeleccionada = idPublicacion;
+    ci.cargarComentarios(p.offset3, idPublicacion);
+    ci.setVisible(true);
+}
+
+private void abrirPerfil(int idUsuarioSeleccionado) {
+    Perfil_Amigo PA = new Perfil_Amigo();
+    PA.setVisible(true);
+    PA.actualizarNombreUsuario(idUsuarioSeleccionado);
+    PA.cargarImagenUsuario(idUsuarioSeleccionado);
+    PA.cargarImagenPortada(idUsuarioSeleccionado, PA.fotoportada);
+    PA.cargarDestacadasPerfil(PA .offset, idUsuarioSeleccionado);
+    PA.cargarPublicacion(PA.offset3, idUsuarioSeleccionado);
+    PA.cargarReacciones();
+    PA.actualizarBotonAmistad();
+}
+
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -177,7 +297,9 @@ public class Notificaciones extends javax.swing.JFrame {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -201,7 +323,7 @@ public class Notificaciones extends javax.swing.JFrame {
                 .addComponent(panelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(284, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
