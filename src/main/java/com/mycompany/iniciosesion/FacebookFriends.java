@@ -14,7 +14,8 @@ import javax.swing.SwingUtilities;
 public class FacebookFriends extends javax.swing.JFrame {
 
     public FacebookFriends() {
-        initComponents(); // Esto lo genera NetBeans automáticamente
+        initComponents(); 
+        setLocationRelativeTo(null);
     }
     
     public static void main(String[] args) {

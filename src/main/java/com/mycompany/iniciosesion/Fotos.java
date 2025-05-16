@@ -30,7 +30,7 @@ public class Fotos extends javax.swing.JFrame {
      */
     public Fotos() {
         initComponents();
-        this.setLocationRelativeTo(null);
+        setLocationRelativeTo(null);
     }
     
     public int offset = 0;

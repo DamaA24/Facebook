@@ -15,6 +15,7 @@ public class EditarImagenes extends javax.swing.JFrame {
      */
     public EditarImagenes() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

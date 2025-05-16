@@ -1,19 +1,34 @@
 package com.mycompany.iniciosesion;
 
 import static com.mycompany.iniciosesion.IniciarSesion.idUsuario;
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Desktop;
+import java.awt.FlowLayout;
 import java.awt.Image;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+
 
 
 public class InicioF extends javax.swing.JFrame {
@@ -23,6 +38,8 @@ public class InicioF extends javax.swing.JFrame {
     public int offset2 = 0;
     public int offset3 = 0;
     public static int idSeleccionada;
+    private byte[][] historiasContenido = new byte[3][];
+    private String[] nombresUsuarios = new String[3];
 
     public InicioF() {
         initComponents();
@@ -95,10 +112,21 @@ triste3.addMouseListener(new MouseAdapter() {
         manejarReaccion(idPubli2, "me entristece", corazon3, divierte3, triste3);
     }
 });
-
+    
+    setLocationRelativeTo(null);
+    
     jPanel7.setVisible(false);
     jPanel11.setVisible(false);
+    cargarHistoriasRecientes();
        }
+    
+    
+
+    
+
+    
+
+    
         
     
         
@@ -119,14 +147,14 @@ triste3.addMouseListener(new MouseAdapter() {
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jButton6 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jButton11 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jButton12 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jButton13 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        der = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         fotoperfil = new javax.swing.JButton();
         jButton20 = new javax.swing.JButton();
@@ -272,21 +300,23 @@ triste3.addMouseListener(new MouseAdapter() {
                         .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(8, 8, 8))
                     .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(52, 52, 52)
                 .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20))
                     .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
                         .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(20, 20, 20))
+                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31))))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -309,32 +339,6 @@ triste3.addMouseListener(new MouseAdapter() {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/plus.png"))); // NOI18N
-        jButton6.setBorder(null);
-        jButton6.setBorderPainted(false);
-        jButton6.setContentAreaFilled(false);
-        jButton6.setFocusPainted(false);
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(57, Short.MAX_VALUE)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23))
-        );
-
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -343,22 +347,21 @@ triste3.addMouseListener(new MouseAdapter() {
         jButton11.setBorderPainted(false);
         jButton11.setContentAreaFilled(false);
         jButton11.setFocusPainted(false);
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+            .addComponent(jButton11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jButton11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -369,22 +372,21 @@ triste3.addMouseListener(new MouseAdapter() {
         jButton12.setBorderPainted(false);
         jButton12.setContentAreaFilled(false);
         jButton12.setFocusPainted(false);
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+            .addComponent(jButton12, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jButton12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
@@ -395,23 +397,36 @@ triste3.addMouseListener(new MouseAdapter() {
         jButton13.setBorderPainted(false);
         jButton13.setContentAreaFilled(false);
         jButton13.setFocusPainted(false);
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+            .addComponent(jButton13, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jButton13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/plus.png"))); // NOI18N
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        der.setText(">");
+        der.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                derActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -419,25 +434,31 @@ triste3.addMouseListener(new MouseAdapter() {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addComponent(der)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(47, 47, 47)
+                .addComponent(der)
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
@@ -816,14 +837,11 @@ triste3.addMouseListener(new MouseAdapter() {
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel13, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -845,16 +863,192 @@ triste3.addMouseListener(new MouseAdapter() {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 855, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        idSeleccionada = idPubli2;
+        eliminarPublicacion(idSeleccionada);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseExited
+        jButton3.setForeground(new Color(0,0,0));// TODO add your handling code here:
+    }//GEN-LAST:event_jButton3MouseExited
+
+    private void jButton3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseEntered
+        jButton3.setForeground(new Color(51,153,255));// TODO add your handling code here:
+    }//GEN-LAST:event_jButton3MouseEntered
+
+    private void eliminar3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eliminar3MouseClicked
+        jPanel11.setVisible(!jPanel11.isVisible());   // TODO add your handling code here:
+    }//GEN-LAST:event_eliminar3MouseClicked
+
+    private void Comentar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Comentar3ActionPerformed
+        ComentariosInicio C = new ComentariosInicio();
+        C.cargarComentarios(offset3, idPubli2);
+        idSeleccionada = idPubli2;
+        C.setVisible(true);
+    }//GEN-LAST:event_Comentar3ActionPerformed
+
+    private void foto3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_foto3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_foto3ActionPerformed
+
+    private void bajoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bajoActionPerformed
+        offset2 += 1;  // Aumentar el offset para obtener la siguiente publicación
+        cargarPublicaciones(offset2, idUsuario);
+        Perfil P = new Perfil();
+        P.cargarReacciones();
+    }//GEN-LAST:event_bajoActionPerformed
+
+    private void user3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_user3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_user3ActionPerformed
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        idSeleccionada = idPubli1;
+        eliminarPublicacion(idSeleccionada);
+    }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void jButton14MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton14MouseExited
+        jButton14.setForeground(new Color(0,0,0));// TODO add your handling code here:
+    }//GEN-LAST:event_jButton14MouseExited
+
+    private void jButton14MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton14MouseEntered
+        jButton14.setForeground(new Color(51,153,255)); // TODO add your handling code here:
+    }//GEN-LAST:event_jButton14MouseEntered
+
+    private void ComentarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComentarActionPerformed
+        ComentariosInicio C = new ComentariosInicio();
+        C.cargarComentarios(offset3, idPubli1);
+        idSeleccionada = idPubli1;
+        C.setVisible(true);
+    }//GEN-LAST:event_ComentarActionPerformed
+
+    private void arribaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arribaActionPerformed
+        offset2 -= 1;  // Decrementar el offset para obtener la publicación anterior
+        cargarPublicaciones(offset2, idUsuario);
+        corazon.setIcon(new ImageIcon(getClass().getResource("/me encanta1.png")));
+        triste.setIcon(new ImageIcon(getClass().getResource("/me entristece1.png")));
+        divierte.setIcon(new ImageIcon(getClass().getResource("/me divierte1.png")));
+        Comentar.setVisible(true);
+
+        eliminar.setVisible(true);
+        Perfil P = new Perfil();
+        P.cargarReacciones();
+    }//GEN-LAST:event_arribaActionPerformed
+
+    private void fotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fotoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fotoActionPerformed
+
+    private void eliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eliminarMouseClicked
+        jPanel7.setVisible(!jPanel7.isVisible());  // TODO add your handling code here:
+    }//GEN-LAST:event_eliminarMouseClicked
+
+    private void userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_userActionPerformed
+
+    private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
+        this.dispose();
+        CrearPublicacion CP = new CrearPublicacion();
+        IniciarSesion IS = new IniciarSesion();
+        CP.actualizarNombreUsuario(IS.idUsuario);
+        CP.cargarImagenUsuario(IS.idUsuario);
+        CP.setVisible(true);
+    }//GEN-LAST:event_jButton20ActionPerformed
+
+    private void fotoperfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fotoperfilActionPerformed
+        this.dispose();
+        Perfil P = new Perfil();
+        IniciarSesion IS = new IniciarSesion();
+        P.actualizarNombreUsuario(IS.idUsuario);
+        P.cargarImagenUsuario(IS.idUsuario);
+        P.cargarImagenPortada(IS.idUsuario, P.fotoportada);
+        P.cargarDestacadasPerfil(P.offset, IS.idUsuario);
+        P.setVisible(true);
+    }//GEN-LAST:event_fotoperfilActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        this.dispose();
+        Perfil P = new Perfil();
+        IniciarSesion IS = new IniciarSesion();
+        P.actualizarNombreUsuario(IS.idUsuario);
+        P.cargarImagenUsuario(IS.idUsuario);
+        P.cargarImagenPortada(IS.idUsuario, P.fotoportada);
+        P.cargarDestacadasPerfil(P.offset, IS.idUsuario);
+        P.cargarPublicacion(P.offset, IS.idUsuario);
+        P.cargarReacciones();
+        P.actualizarInfoPerfil(IS.idUsuario);
+        P.setVisible(true);
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        this.dispose();
+        IniciarSesion IS = new IniciarSesion();
+        Menuframe Mf = new Menuframe();
+        Mf.actualizarNombreUsuario(IS.idUsuario);
+        Mf.setVisible(true);
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        this.dispose();
+        Notificaciones N = new Notificaciones();
+        N.setVisible(true);
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        this.dispose();
+        FacebookFriends FF = new FacebookFriends();
+        FF.setVisible(true);
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        this.dispose();
+        InicioF If = new InicioF();
+        If.cargarImagenUsuario(idUsuario);
+        If.cargarPublicaciones(If.offset2, idUsuario);
+        If.setVisible(true);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.dispose();
+        Busqueda B = new Busqueda();
+        B.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        this.dispose();
+        SubirFotoHistoria SFH = new SubirFotoHistoria();
+        SFH.setVisible(true);
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void derActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_derActionPerformed
+        cargarHistoriasRecientes();
+    }//GEN-LAST:event_derActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+
+    }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton13ActionPerformed
     private void limpiarPublicacion1() {
     text.setText("");
     ima.setIcon(null);
@@ -1183,6 +1377,113 @@ triste3.addMouseListener(new MouseAdapter() {
         JOptionPane.showMessageDialog(this, "Error al eliminar la publicación: " + ex.getMessage());
     }
 }
+    
+    
+public void cargarHistoriasRecientes() {
+    try {
+        Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/facebook", "AlanMijares", "1");
+
+        String query = """
+            SELECT h.ID_Usuario, h.Contenido_historia, u.Foto_perfil, u.Nombre
+            FROM historia h
+            JOIN perfil_usuario u ON h.ID_Usuario = u.ID_Usuario
+            WHERE 
+                h.Fecha >= NOW() - INTERVAL 24 HOUR AND
+                (
+                    h.ID_Usuario = ? OR
+                    h.ID_Usuario IN (
+                        SELECT CASE
+                            WHEN ID_Usuario1 = ? THEN ID_Usuario2
+                            WHEN ID_Usuario2 = ? THEN ID_Usuario1
+                        END
+                        FROM amistad
+                        WHERE (ID_Usuario1 = ? OR ID_Usuario2 = ?) AND Estado = 'aceptada'
+                    )
+                )
+            ORDER BY RAND()
+            LIMIT 3
+        """;
+
+        PreparedStatement pst = con.prepareStatement(query);
+        for (int i = 1; i <= 5; i++) pst.setInt(i, idUsuario);
+
+        ResultSet rs = pst.executeQuery();
+
+        JButton[] botones = {jButton11, jButton12, jButton13};
+        JPanel[] paneles = {jPanel3, jPanel4, jPanel5};
+
+        int i = 0;
+        while (rs.next() && i < 3) {
+            byte[] historiaImg = rs.getBytes("Contenido_historia");
+            byte[] fotoPerfil = rs.getBytes("Foto_perfil");
+            String nombre = rs.getString("Nombre");
+
+            if (historiaImg != null && fotoPerfil != null) {
+                historiasContenido[i] = historiaImg;
+                nombresUsuarios[i] = nombre;
+
+                ImageIcon icono = new ImageIcon(new ImageIcon(fotoPerfil).getImage().getScaledInstance(
+                        botones[i].getWidth(), botones[i].getHeight(), Image.SCALE_SMOOTH));
+                botones[i].setIcon(icono);
+                botones[i].setText("");
+                botones[i].setContentAreaFilled(false);
+                botones[i].setBorderPainted(false);
+                botones[i].setFocusPainted(false);
+                paneles[i].setVisible(true);
+
+                int index = i;
+                for (ActionListener al : botones[i].getActionListeners()) {
+                    botones[i].removeActionListener(al);
+                }
+                botones[i].addActionListener(e -> abrirHistoria(index));
+                i++;
+            }
+        }
+
+        for (; i < 3; i++) {
+            historiasContenido[i] = null;
+            nombresUsuarios[i] = null;
+            paneles[i].setVisible(false);
+        }
+
+        con.close();
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(this, "Error al cargar historias: " + ex.getMessage());
+    }
+}
+
+    public void abrirHistoria(int index) {
+    if (historiasContenido[index] == null) return;
+
+    JFrame visor = new JFrame("Historia de " + nombresUsuarios[index]);
+    visor.setSize(450, 500);
+    visor.setLocationRelativeTo(this);
+    visor.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    visor.setLayout(new BorderLayout());
+
+    JLabel historia = new JLabel();
+    ImageIcon icono = new ImageIcon(historiasContenido[index]);
+    Image imagen = icono.getImage().getScaledInstance(430, 400, Image.SCALE_SMOOTH);
+    historia.setIcon(new ImageIcon(imagen));
+    historia.setHorizontalAlignment(JLabel.CENTER);
+
+    visor.add(historia, BorderLayout.CENTER);
+
+    JButton cerrar = new JButton("Cerrar");
+    cerrar.addActionListener(e -> visor.dispose());
+
+    JPanel abajo = new JPanel();
+    abajo.add(cerrar);
+
+    visor.add(abajo, BorderLayout.SOUTH);
+    visor.setVisible(true);
+}
+
+
+
+
+
+
 
 
 
@@ -1190,159 +1491,7 @@ triste3.addMouseListener(new MouseAdapter() {
     
     
     
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        this.dispose();
-        InicioF If = new InicioF();
-        If.cargarImagenUsuario(idUsuario);
-        If.cargarPublicaciones(If.offset2, idUsuario);
-        If.setVisible(true);
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        this.dispose();
-        FacebookFriends FF = new FacebookFriends();
-        FF.setVisible(true);
-    }//GEN-LAST:event_jButton7ActionPerformed
-
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        this.dispose();
-        Perfil P = new Perfil();
-        IniciarSesion IS = new IniciarSesion();
-        P.actualizarNombreUsuario(IS.idUsuario);
-        P.cargarImagenUsuario(IS.idUsuario);
-        P.cargarImagenPortada(IS.idUsuario, P.fotoportada);
-        P.cargarDestacadasPerfil(P.offset, IS.idUsuario);
-        P.cargarPublicacion(P.offset, IS.idUsuario);
-        P.cargarReacciones();
-        P.actualizarInfoPerfil(IS.idUsuario);
-        P.setVisible(true);
-    }//GEN-LAST:event_jButton10ActionPerformed
-
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        this.dispose();
-        Notificaciones N = new Notificaciones();
-        N.setVisible(true);
-    }//GEN-LAST:event_jButton8ActionPerformed
-
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        this.dispose();
-        IniciarSesion IS = new IniciarSesion();
-        Menuframe Mf = new Menuframe();
-        Mf.actualizarNombreUsuario(IS.idUsuario);
-        Mf.setVisible(true);
-    }//GEN-LAST:event_jButton9ActionPerformed
-
-    private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
-       this.dispose();
-       CrearPublicacion CP = new CrearPublicacion();
-       IniciarSesion IS = new IniciarSesion();
-       CP.actualizarNombreUsuario(IS.idUsuario);
-       CP.cargarImagenUsuario(IS.idUsuario);
-       CP.setVisible(true);
-    }//GEN-LAST:event_jButton20ActionPerformed
-
-    private void fotoperfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fotoperfilActionPerformed
-        this.dispose();
-        Perfil P = new Perfil();
-        IniciarSesion IS = new IniciarSesion();
-        P.actualizarNombreUsuario(IS.idUsuario);
-        P.cargarImagenUsuario(IS.idUsuario);
-        P.cargarImagenPortada(IS.idUsuario, P.fotoportada);
-        P.cargarDestacadasPerfil(P.offset, IS.idUsuario);
-        P.setVisible(true);
-    }//GEN-LAST:event_fotoperfilActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.dispose();
-        Busqueda B = new Busqueda();
-        B.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userActionPerformed
-
-    private void fotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fotoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_fotoActionPerformed
-
     
-    private void arribaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arribaActionPerformed
-        offset2 -= 1;  // Decrementar el offset para obtener la publicación anterior
-        cargarPublicaciones(offset2, idUsuario);
-        corazon.setIcon(new ImageIcon(getClass().getResource("/me encanta1.png")));
-        triste.setIcon(new ImageIcon(getClass().getResource("/me entristece1.png")));
-        divierte.setIcon(new ImageIcon(getClass().getResource("/me divierte1.png")));
-        Comentar.setVisible(true);
-        
-        eliminar.setVisible(true);
-        Perfil P = new Perfil();
-        P.cargarReacciones();
-    }//GEN-LAST:event_arribaActionPerformed
-
-    private void ComentarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComentarActionPerformed
-        ComentariosInicio C = new ComentariosInicio();
-        C.cargarComentarios(offset3, idPubli1);
-        idSeleccionada = idPubli1;
-        C.setVisible(true);
-    }//GEN-LAST:event_ComentarActionPerformed
-
-    private void user3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_user3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_user3ActionPerformed
-
-    private void foto3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_foto3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_foto3ActionPerformed
-
-    private void bajoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bajoActionPerformed
-        offset2 += 1;  // Aumentar el offset para obtener la siguiente publicación
-        cargarPublicaciones(offset2, idUsuario);
-        Perfil P = new Perfil();
-        P.cargarReacciones();
-    }//GEN-LAST:event_bajoActionPerformed
-
-    private void Comentar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Comentar3ActionPerformed
-        ComentariosInicio C = new ComentariosInicio();
-        C.cargarComentarios(offset3, idPubli2);
-        idSeleccionada = idPubli2;
-        C.setVisible(true);
-    }//GEN-LAST:event_Comentar3ActionPerformed
-
-    private void eliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eliminarMouseClicked
-      jPanel7.setVisible(!jPanel7.isVisible());  // TODO add your handling code here:
-    }//GEN-LAST:event_eliminarMouseClicked
-
-    private void eliminar3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eliminar3MouseClicked
-     jPanel11.setVisible(!jPanel11.isVisible());   // TODO add your handling code here:
-    }//GEN-LAST:event_eliminar3MouseClicked
-
-    private void jButton14MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton14MouseEntered
-       jButton14.setForeground(new Color(51,153,255)); // TODO add your handling code here:
-    }//GEN-LAST:event_jButton14MouseEntered
-
-    private void jButton14MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton14MouseExited
-        jButton14.setForeground(new Color(0,0,0));// TODO add your handling code here:
-    }//GEN-LAST:event_jButton14MouseExited
-
-    private void jButton3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseEntered
-        jButton3.setForeground(new Color(51,153,255));// TODO add your handling code here:
-    }//GEN-LAST:event_jButton3MouseEntered
-
-    private void jButton3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseExited
-        jButton3.setForeground(new Color(0,0,0));// TODO add your handling code here:
-    }//GEN-LAST:event_jButton3MouseExited
-
-    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-        idSeleccionada = idPubli1;
-        eliminarPublicacion(idSeleccionada);
-    }//GEN-LAST:event_jButton14ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        idSeleccionada = idPubli2;
-        eliminarPublicacion(idSeleccionada);
-    }//GEN-LAST:event_jButton3ActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -1386,6 +1535,7 @@ triste3.addMouseListener(new MouseAdapter() {
     private javax.swing.JButton bajo;
     private javax.swing.JLabel corazon;
     private javax.swing.JLabel corazon3;
+    private javax.swing.JButton der;
     private javax.swing.JLabel divierte;
     private javax.swing.JLabel divierte3;
     private javax.swing.JButton eliminar;
@@ -1416,7 +1566,6 @@ triste3.addMouseListener(new MouseAdapter() {
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel13;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;

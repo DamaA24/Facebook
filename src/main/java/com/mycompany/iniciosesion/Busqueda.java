@@ -19,6 +19,7 @@ public class Busqueda extends javax.swing.JFrame {
 
     public Busqueda() {
         initComponents();
+        setLocationRelativeTo(null);
         listaAmigos.setModel(modeloLista);
         txtBuscar.setBackground(new Color(240, 240, 240)); // Gris claro
 

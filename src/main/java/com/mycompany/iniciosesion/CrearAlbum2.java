@@ -23,6 +23,7 @@ public class CrearAlbum2 extends javax.swing.JFrame {
      */
     public CrearAlbum2() {
         initComponents();
+        setLocationRelativeTo(null);
         
                 // Código para el botón "Publicar"
         btnGuardar.setEnabled(false);

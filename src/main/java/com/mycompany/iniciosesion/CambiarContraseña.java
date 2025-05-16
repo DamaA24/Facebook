@@ -21,6 +21,7 @@ public class CambiarContraseña extends javax.swing.JFrame {
      */
     public CambiarContraseña() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

@@ -4,6 +4,7 @@
  */
 package com.mycompany.iniciosesion;
 
+import static com.mycompany.iniciosesion.IniciarSesion.idUsuario;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -32,8 +33,11 @@ public class SubirFotoHistoria extends javax.swing.JFrame {
      */
     public SubirFotoHistoria() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
+    private File archivoSeleccionado = null;
+    private String tipoArchivo = null;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -122,7 +126,7 @@ public class SubirFotoHistoria extends javax.swing.JFrame {
     }
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        JFileChooser fileChooser = new JFileChooser();
+         JFileChooser fileChooser = new JFileChooser();
         
         // Filtrar para solo mostrar archivos de imagen
         FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos de imagen", "jpg", "png", "gif");
@@ -184,43 +188,43 @@ public class SubirFotoHistoria extends javax.swing.JFrame {
 
         // Conectar a la base de datos
         try {
-            Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/facebook", "AlanMijares", "1");
+    Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/facebook", "AlanMijares", "1");
 
-            // Consulta SQL para actualizar la foto de perfil
-            String queryActualizar = "UPDATE perfil_usuario SET Foto_perfil = ? WHERE ID_Usuario = ?";
-            PreparedStatement stActualizar = con.prepareStatement(queryActualizar);
+    // Consulta SQL para insertar una nueva historia
+    String queryInsertar = "INSERT INTO historia (ID_Usuario, Contenido_historia, Fecha) VALUES (?, ?, NOW())";
+    PreparedStatement stInsertar = con.prepareStatement(queryInsertar);
 
-            // Establecer los parámetros para la consulta
-            stActualizar.setBytes(1, fotoPerfil);  // Subir la imagen en formato BLOB
-            stActualizar.setInt(2, IS.idUsuario);  // ID del usuario a actualizar
+    // Establecer los parámetros para la consulta
+    stInsertar.setInt(1, IS.idUsuario); // ID del usuario que sube la historia
+    stInsertar.setBytes(2, fotoPerfil);    // o "video" según el tipo de archivo que subas
+ // contenido en formato BLOB (byte[])
 
-            // Ejecutar la actualización
-            int filasAfectadas = stActualizar.executeUpdate();
+    // Ejecutar la inserción
+    int filasAfectadas = stInsertar.executeUpdate();
 
-            // Mostrar mensaje de éxito o error
-            if (filasAfectadas > 0) {
-                JOptionPane.showMessageDialog(this, "Imagen de perfil actualizada correctamente.");
-            } else {
-                JOptionPane.showMessageDialog(this, "Hubo un error al actualizar la imagen.");
-            }
+    // Mostrar mensaje de éxito o error
+    if (filasAfectadas > 0) {
+        JOptionPane.showMessageDialog(this, "Historia subida correctamente.");
+    } else {
+        JOptionPane.showMessageDialog(this, "Hubo un error al subir la historia.");
+    }
 
-            // Cerrar la conexión a la base de datos
-            con.close();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, "Error en la base de datos: " + ex.getMessage());
-        }
+    // Cerrar la conexión a la base de datos
+    con.close();
+} catch (SQLException ex) {
+    JOptionPane.showMessageDialog(this, "Error en la base de datos: " + ex.getMessage());
+}
 
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         this.dispose();
-        Perfil P = new Perfil();
-        IniciarSesion IS = new IniciarSesion();
-        P.actualizarNombreUsuario(IS.idUsuario);
-        P.cargarImagenUsuario(IS.idUsuario);
-        P.cargarImagenPortada(IS.idUsuario, P.fotoportada);
-        P.setVisible(true);
+        this.dispose();
+        InicioF If = new InicioF();
+        If.cargarImagenUsuario(idUsuario);
+        If.cargarPublicaciones(If.offset2, idUsuario);
+        If.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

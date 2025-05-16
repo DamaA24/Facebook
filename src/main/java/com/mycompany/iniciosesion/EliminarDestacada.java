@@ -30,6 +30,7 @@ public class EliminarDestacada extends javax.swing.JFrame {
     public int idDestacada;
     public EliminarDestacada() {
         initComponents();
+        setLocationRelativeTo(null);
         cargarDestacadas(offset, IS.idUsuario);
     }
 

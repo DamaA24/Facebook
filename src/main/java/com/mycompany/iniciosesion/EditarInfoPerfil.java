@@ -24,6 +24,7 @@ public class EditarInfoPerfil extends javax.swing.JFrame {
      */
     public EditarInfoPerfil() {
         initComponents();
+        setLocationRelativeTo(null);
 
     }
 

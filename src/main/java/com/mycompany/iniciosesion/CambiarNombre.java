@@ -21,6 +21,7 @@ public class CambiarNombre extends javax.swing.JFrame {
      */
     public CambiarNombre() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

@@ -32,6 +32,7 @@ public class SubirPortada extends javax.swing.JFrame {
      */
     public SubirPortada() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

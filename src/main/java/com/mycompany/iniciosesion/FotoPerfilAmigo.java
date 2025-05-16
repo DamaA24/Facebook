@@ -33,6 +33,7 @@ public class FotoPerfilAmigo extends javax.swing.JFrame {
      */
     public FotoPerfilAmigo() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

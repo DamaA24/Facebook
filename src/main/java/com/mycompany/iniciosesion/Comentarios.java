@@ -41,6 +41,7 @@ public class Comentarios extends javax.swing.JFrame {
      */
     public Comentarios() {
         initComponents();
+        setLocationRelativeTo(null);
         Comentarioo.setText("Comentar...");
         Comentarioo.setForeground(new java.awt.Color(204, 204, 204)); // Gris claro por defecto
     

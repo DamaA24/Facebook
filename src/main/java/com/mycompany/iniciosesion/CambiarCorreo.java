@@ -21,6 +21,7 @@ public class CambiarCorreo extends javax.swing.JFrame {
      */
     public CambiarCorreo() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

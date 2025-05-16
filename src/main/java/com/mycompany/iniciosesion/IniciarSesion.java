@@ -16,6 +16,7 @@ public class IniciarSesion extends javax.swing.JFrame {
     // Método para obtener el idUsuario después de la verificación
     public IniciarSesion() {
         initComponents();
+        setLocationRelativeTo(null);
 
     }
 

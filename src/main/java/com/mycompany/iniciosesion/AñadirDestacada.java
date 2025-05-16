@@ -32,6 +32,7 @@ public class AñadirDestacada extends javax.swing.JFrame {
     public AñadirDestacada() {
         initComponents();
         cargarDestacadas(offset, IS.idUsuario);
+        setLocationRelativeTo(null);
     }
 
     

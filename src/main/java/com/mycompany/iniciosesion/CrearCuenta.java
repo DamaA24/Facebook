@@ -13,6 +13,7 @@ public class CrearCuenta extends javax.swing.JFrame {
 
     public CrearCuenta() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")

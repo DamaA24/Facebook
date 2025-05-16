@@ -18,7 +18,7 @@ public class FotosAmigo extends javax.swing.JFrame {
      */
     public FotosAmigo() {
         initComponents();
-        this.setLocationRelativeTo(null);
+        setLocationRelativeTo(null);
     }
 
     /**

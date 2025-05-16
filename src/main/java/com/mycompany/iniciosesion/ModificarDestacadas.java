@@ -15,6 +15,7 @@ public class ModificarDestacadas extends javax.swing.JFrame {
      */
     public ModificarDestacadas() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

@@ -50,6 +50,7 @@ public class Album extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         cargarAlbumes();
+        setLocationRelativeTo(null);
         
     }
 

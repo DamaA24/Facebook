@@ -33,6 +33,7 @@ public class SubirDestacada extends javax.swing.JFrame {
      */
     public SubirDestacada() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

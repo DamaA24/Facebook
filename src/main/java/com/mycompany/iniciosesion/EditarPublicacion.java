@@ -43,7 +43,7 @@ import javax.swing.plaf.basic.BasicComboBoxUI;
 public class EditarPublicacion extends javax.swing.JFrame { 
     public EditarPublicacion() {
         initComponents();
-        // Código para el botón "Publicar"
+        setLocationRelativeTo(null);
     btnPublicar.setEnabled(false);
     btnPublicar.setBackground(new java.awt.Color(242, 242, 242));
     btnPublicar.setForeground(new java.awt.Color(204, 204, 204));

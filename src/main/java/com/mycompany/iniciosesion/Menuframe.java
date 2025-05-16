@@ -16,6 +16,7 @@ public class Menuframe extends javax.swing.JFrame {
  
     public Menuframe() {
         initComponents();
+        setLocationRelativeTo(null);
         P_config.setVisible(false);
     }
 

@@ -31,7 +31,7 @@ public class FotosAlbum extends javax.swing.JFrame {
      */
     public FotosAlbum() {
         initComponents();
-        this.setLocationRelativeTo(null);
+        setLocationRelativeTo(null);
     }
     
     public int offset = 0;

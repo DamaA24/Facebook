@@ -32,6 +32,7 @@ public class SubirFoto extends javax.swing.JFrame {
      */
     public SubirFoto() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

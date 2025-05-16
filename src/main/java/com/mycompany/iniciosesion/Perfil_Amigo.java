@@ -37,6 +37,7 @@ public class Perfil_Amigo extends javax.swing.JFrame {
     private Image background_image;
     public Perfil_Amigo() {
         initComponents();
+        setLocationRelativeTo(null);
         cargarReacciones();
         actualizarBotonAmistad();
         corazon.addMouseListener(new MouseAdapter() {
@@ -712,11 +713,12 @@ public class Perfil_Amigo extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ima2, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(divierte)
-                    .addComponent(triste)
-                    .addComponent(Comentar)
-                    .addComponent(corazon))
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(corazon)
+                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(divierte)
+                        .addComponent(triste)
+                        .addComponent(Comentar)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(bajo2)
                 .addGap(11, 11, 11))
@@ -1512,10 +1514,10 @@ public class Perfil_Amigo extends javax.swing.JFrame {
 
     private void inicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inicioActionPerformed
         this.dispose();
-        InicioF IF = new InicioF();
-        IniciarSesion IS = new IniciarSesion();
-        IF.cargarImagenUsuario(IS.idUsuario);
-        IF.setVisible(true);
+        InicioF If = new InicioF();
+        If.cargarImagenUsuario(idUsuario);
+        If.cargarPublicaciones(If.offset2, idUsuario);
+        If.setVisible(true);
     }//GEN-LAST:event_inicioActionPerformed
 
     private void fotoperfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fotoperfilActionPerformed

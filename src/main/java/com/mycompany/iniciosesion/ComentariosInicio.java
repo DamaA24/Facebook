@@ -40,6 +40,7 @@ public class ComentariosInicio extends javax.swing.JFrame {
     InicioF IF = new InicioF();
     public ComentariosInicio() {
         initComponents();
+        setLocationRelativeTo(null);
         Comentarioo.setText("Comentar...");
         Comentarioo.setForeground(new java.awt.Color(204, 204, 204)); // Gris claro por defecto
     

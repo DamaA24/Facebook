@@ -8,6 +8,7 @@ public class Notificaciones extends javax.swing.JFrame {
     
     public Notificaciones() {
         initComponents();
+        setLocationRelativeTo(null);
         } 
 
     
