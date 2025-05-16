@@ -37,6 +37,8 @@ public class InicioF extends javax.swing.JFrame {
     public int idPubli2 = -1;
     public int offset2 = 0;
     public int offset3 = 0;
+    public int autor1 = -1;
+    public int autor2 = -1;
     public static int idSeleccionada;
     private byte[][] historiasContenido = new byte[3][];
     private String[] nombresUsuarios = new String[3];
@@ -901,7 +903,28 @@ triste3.addMouseListener(new MouseAdapter() {
     }//GEN-LAST:event_Comentar3ActionPerformed
 
     private void foto3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_foto3ActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
+        if (autor2 == IniciarSesion.idUsuario) {
+            Perfil P = new Perfil();
+            P.actualizarNombreUsuario(autor2);
+            P.cargarImagenUsuario(autor2);
+            P.cargarImagenPortada(autor2, P.fotoportada);
+            P.cargarDestacadasPerfil(P.offset, autor2);
+            P.cargarPublicacion(P.offset, autor2);
+            P.cargarReacciones();
+            P.actualizarInfoPerfil(autor2);
+            P.setVisible(true);
+        } else {
+            Perfil_Amigo P = new Perfil_Amigo();
+            P.actualizarNombreUsuario(autor2);
+            P.cargarImagenUsuario(autor2);
+            P.cargarImagenPortada(autor2, P.fotoportada);
+            P.cargarDestacadasPerfil(P.offset, autor2);
+            P.cargarPublicacion(P.offset, autor2);
+            P.cargarReacciones();
+            P.actualizarInfoPerfil(autor2);
+            P.setVisible(true);
+        }
     }//GEN-LAST:event_foto3ActionPerformed
 
     private void bajoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bajoActionPerformed
@@ -912,7 +935,32 @@ triste3.addMouseListener(new MouseAdapter() {
     }//GEN-LAST:event_bajoActionPerformed
 
     private void user3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_user3ActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
+        IniciarSesion IS = new IniciarSesion();
+        int idSeleccionado;
+        idSeleccionado = idPubli2;
+        if(idSeleccionado == IS.idUsuario){
+            Perfil P = new Perfil();
+            P.actualizarNombreUsuario(IS.idUsuario);
+            P.cargarImagenUsuario(IS.idUsuario);
+            P.cargarImagenPortada(IS.idUsuario, P.fotoportada);
+            P.cargarDestacadasPerfil(P.offset, IS.idUsuario);
+            P.cargarPublicacion(P.offset, IS.idUsuario);
+            P.cargarReacciones();
+            P.actualizarInfoPerfil(IS.idUsuario);
+            P.setVisible(true);
+        }
+        else{
+            Perfil_Amigo P = new Perfil_Amigo();
+            P.actualizarNombreUsuario(idSeleccionado);
+            P.cargarImagenUsuario(idSeleccionado);
+            P.cargarImagenPortada(idSeleccionado, P.fotoportada);
+            P.cargarDestacadasPerfil(P.offset, idSeleccionado);
+            P.cargarPublicacion(P.offset, idSeleccionado);
+            P.cargarReacciones();
+            P.actualizarInfoPerfil(idSeleccionado);
+            P.setVisible(true);
+        }
     }//GEN-LAST:event_user3ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
@@ -949,7 +997,28 @@ triste3.addMouseListener(new MouseAdapter() {
     }//GEN-LAST:event_arribaActionPerformed
 
     private void fotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fotoActionPerformed
-        // TODO add your handling code here:
+       this.dispose();
+        if (autor1 == IniciarSesion.idUsuario) {
+            Perfil P = new Perfil();
+            P.actualizarNombreUsuario(autor1);
+            P.cargarImagenUsuario(autor1);
+            P.cargarImagenPortada(autor1, P.fotoportada);
+            P.cargarDestacadasPerfil(P.offset, autor1);
+            P.cargarPublicacion(P.offset, autor1);
+            P.cargarReacciones();
+            P.actualizarInfoPerfil(autor1);
+            P.setVisible(true);
+        } else {
+            Perfil_Amigo P = new Perfil_Amigo();
+            P.actualizarNombreUsuario(autor1);
+            P.cargarImagenUsuario(autor1);
+            P.cargarImagenPortada(autor1, P.fotoportada);
+            P.cargarDestacadasPerfil(P.offset, autor1);
+            P.cargarPublicacion(P.offset, autor1);
+            P.cargarReacciones();
+            P.actualizarInfoPerfil(autor1);
+            P.setVisible(true);
+        }
     }//GEN-LAST:event_fotoActionPerformed
 
     private void eliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eliminarMouseClicked
@@ -957,7 +1026,32 @@ triste3.addMouseListener(new MouseAdapter() {
     }//GEN-LAST:event_eliminarMouseClicked
 
     private void userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
+        IniciarSesion IS = new IniciarSesion();
+        int idSeleccionado;
+        idSeleccionado = idPubli1;
+        if(idSeleccionado == IS.idUsuario){
+            Perfil P = new Perfil();
+            P.actualizarNombreUsuario(IS.idUsuario);
+            P.cargarImagenUsuario(IS.idUsuario);
+            P.cargarImagenPortada(IS.idUsuario, P.fotoportada);
+            P.cargarDestacadasPerfil(P.offset, IS.idUsuario);
+            P.cargarPublicacion(P.offset, IS.idUsuario);
+            P.cargarReacciones();
+            P.actualizarInfoPerfil(IS.idUsuario);
+            P.setVisible(true);
+        }
+        else{
+            Perfil_Amigo P = new Perfil_Amigo();
+            P.actualizarNombreUsuario(idSeleccionado);
+            P.cargarImagenUsuario(idSeleccionado);
+            P.cargarImagenPortada(idSeleccionado, P.fotoportada);
+            P.cargarDestacadasPerfil(P.offset, idSeleccionado);
+            P.cargarPublicacion(P.offset, idSeleccionado);
+            P.cargarReacciones();
+            P.actualizarInfoPerfil(idSeleccionado);
+            P.setVisible(true);
+        }
     }//GEN-LAST:event_userActionPerformed
 
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
@@ -1193,6 +1287,7 @@ triste3.addMouseListener(new MouseAdapter() {
 
             if (contador == 0) {
                 idPubli1 = idPublicacion;
+                autor1 = autor;
                 text.setText(texto);
                 ima.setIcon(iconImagen);
                 user.setText(nombreUsuario);
@@ -1200,6 +1295,7 @@ triste3.addMouseListener(new MouseAdapter() {
                 cargarReacciones(idPubli1, corazon, divierte, triste);
             } else if (contador == 1) {
                 idPubli2 = idPublicacion;
+                autor2 = autor;
                 text3.setText(texto);
                 ima3.setIcon(iconImagen);
                 user3.setText(nombreUsuario);

@@ -228,26 +228,24 @@ public class Perfil_Amigo extends javax.swing.JFrame {
             .addGroup(menuLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(inicio)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                 .addComponent(amigos)
-                .addGap(47, 47, 47)
+                .addGap(18, 18, 18)
                 .addComponent(perfil_u, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(perfil, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(49, 49, 49)
-                .addComponent(notificaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(notificaciones)
                 .addGap(57, 57, 57)
                 .addComponent(menu_u, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
-            .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(menuLayout.createSequentialGroup()
-                    .addGap(163, 163, 163)
-                    .addComponent(perfil, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(173, Short.MAX_VALUE)))
         );
         menuLayout.setVerticalGroup(
             menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(perfil)
                     .addComponent(notificaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(perfil_u)
                     .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -256,11 +254,6 @@ public class Perfil_Amigo extends javax.swing.JFrame {
                             .addComponent(menu_u, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(13, 13, 13)))
                     .addComponent(amigos)))
-            .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(menuLayout.createSequentialGroup()
-                    .addGap(9, 9, 9)
-                    .addComponent(perfil)
-                    .addContainerGap(10, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -673,7 +666,7 @@ public class Perfil_Amigo extends javax.swing.JFrame {
                                 .addComponent(user2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(24, 24, 24)
                                 .addComponent(arriba2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 160, Short.MAX_VALUE)
                                 .addComponent(eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel7Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
@@ -730,11 +723,11 @@ public class Perfil_Amigo extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(fotoportada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(fotoportada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 131, Short.MAX_VALUE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 103, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -756,8 +749,8 @@ public class Perfil_Amigo extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1480,46 +1473,6 @@ public class Perfil_Amigo extends javax.swing.JFrame {
 }
 
 
-    private void amigosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amigosActionPerformed
-        this.dispose();
-        FacebookFriends FF = new FacebookFriends();
-        FF.setVisible(true);
-    }//GEN-LAST:event_amigosActionPerformed
-
-    private void perfil_uActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_perfil_uActionPerformed
-        this.dispose();
-        Perfil_Amigo P = new Perfil_Amigo();
-        IniciarSesion IS = new IniciarSesion();
-        P.actualizarNombreUsuario(IS.idUsuario);
-        P.cargarImagenUsuario(IS.idUsuario);
-        P.cargarImagenPortada(IS.idUsuario, P.fotoportada);
-        P.cargarDestacadasPerfil(P.offset, IS.idUsuario);
-        P.setVisible(true);
-    }//GEN-LAST:event_perfil_uActionPerformed
-
-    private void menu_uActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_uActionPerformed
-        this.dispose();
-        Perfil_Amigo P = new Perfil_Amigo();
-        IniciarSesion IS = new IniciarSesion();
-        Menuframe Mf = new Menuframe();
-        Mf.actualizarNombreUsuario(IS.idUsuario);
-        Mf.setVisible(true);
-    }//GEN-LAST:event_menu_uActionPerformed
-
-    private void notificacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notificacionesActionPerformed
-        this.dispose();
-        Notificaciones N = new Notificaciones();
-        N.setVisible(true);
-    }//GEN-LAST:event_notificacionesActionPerformed
-
-    private void inicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inicioActionPerformed
-        this.dispose();
-        InicioF If = new InicioF();
-        If.cargarImagenUsuario(idUsuario);
-        If.cargarPublicaciones(If.offset2, idUsuario);
-        If.setVisible(true);
-    }//GEN-LAST:event_inicioActionPerformed
-
     private void fotoperfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fotoperfilActionPerformed
         this.dispose();
         FotoPerfil FP = new FotoPerfil();
@@ -1564,18 +1517,6 @@ public class Perfil_Amigo extends javax.swing.JFrame {
     private void fotosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fotosMouseExited
     fotos.setForeground(new Color(0,0,0));   // TODO add your handling code here:
     }//GEN-LAST:event_fotosMouseExited
-
-    private void perfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_perfilActionPerformed
-        this.dispose();
-        Perfil P = new Perfil();
-        IniciarSesion IS = new IniciarSesion();
-        P.actualizarNombreUsuario(IS.idUsuario);
-        P.cargarImagenUsuario(IS.idUsuario);
-        P.cargarImagenPortada(IS.idUsuario, P.fotoportada);
-        P.cargarDestacadasPerfil(P.offset, IS.idUsuario);
-        P.cargarPublicacion(P.offset2, IS.idUsuario);
-        P.setVisible(true);
-    }//GEN-LAST:event_perfilActionPerformed
 
     private void atrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasActionPerformed
         offset -= 4;
@@ -1686,6 +1627,58 @@ public class Perfil_Amigo extends javax.swing.JFrame {
     private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
        jButton1.setForeground(new Color(0,0,0)); // TODO add your handling code here:
     }//GEN-LAST:event_jButton1MouseExited
+
+    private void perfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_perfilActionPerformed
+        this.dispose();
+        Perfil P = new Perfil();
+        IniciarSesion IS = new IniciarSesion();
+        P.actualizarNombreUsuario(IS.idUsuario);
+        P.cargarImagenUsuario(IS.idUsuario);
+        P.cargarImagenPortada(IS.idUsuario, P.fotoportada);
+        P.cargarDestacadasPerfil(P.offset, IS.idUsuario);
+        P.cargarPublicacion(P.offset2, IS.idUsuario);
+        P.setVisible(true);
+    }//GEN-LAST:event_perfilActionPerformed
+
+    private void inicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inicioActionPerformed
+        this.dispose();
+        InicioF If = new InicioF();
+        If.cargarImagenUsuario(idUsuario);
+        If.cargarPublicaciones(If.offset2, idUsuario);
+        If.setVisible(true);
+    }//GEN-LAST:event_inicioActionPerformed
+
+    private void notificacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notificacionesActionPerformed
+        this.dispose();
+        Notificaciones N = new Notificaciones();
+        N.setVisible(true);
+    }//GEN-LAST:event_notificacionesActionPerformed
+
+    private void menu_uActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_uActionPerformed
+        this.dispose();
+        Perfil_Amigo P = new Perfil_Amigo();
+        IniciarSesion IS = new IniciarSesion();
+        Menuframe Mf = new Menuframe();
+        Mf.actualizarNombreUsuario(IS.idUsuario);
+        Mf.setVisible(true);
+    }//GEN-LAST:event_menu_uActionPerformed
+
+    private void perfil_uActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_perfil_uActionPerformed
+        this.dispose();
+        Perfil_Amigo P = new Perfil_Amigo();
+        IniciarSesion IS = new IniciarSesion();
+        P.actualizarNombreUsuario(IS.idUsuario);
+        P.cargarImagenUsuario(IS.idUsuario);
+        P.cargarImagenPortada(IS.idUsuario, P.fotoportada);
+        P.cargarDestacadasPerfil(P.offset, IS.idUsuario);
+        P.setVisible(true);
+    }//GEN-LAST:event_perfil_uActionPerformed
+
+    private void amigosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amigosActionPerformed
+        this.dispose();
+        FacebookFriends FF = new FacebookFriends();
+        FF.setVisible(true);
+    }//GEN-LAST:event_amigosActionPerformed
 
     /**
      * @param args the command line arguments

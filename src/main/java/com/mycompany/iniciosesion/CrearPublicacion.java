@@ -22,6 +22,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.imageio.ImageIO;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.Icon;
@@ -32,20 +36,18 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.AbstractBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-/**
- *
- * @author User
- */
+
+
+
 public class CrearPublicacion extends javax.swing.JFrame {
     private int idAlbumSeleccionado = -1;
+    private HashMap<String, Integer> mapaNombreIdAmigo = new HashMap<>();
     public CrearPublicacion() {
-        initComponents();
-        setLocationRelativeTo(null);
-        actualizarNombreUsuario(IniciarSesion.idUsuario);
-        cargarImagenUsuario(IniciarSesion.idUsuario);
-        
+    initComponents();
+    setLocationRelativeTo(null);
+    actualizarNombreUsuario(IniciarSesion.idUsuario);
+    cargarImagenUsuario(IniciarSesion.idUsuario);
 
-       
     // Código para el botón "Publicar"
     btnPublicar.setEnabled(false);
     btnPublicar.setBackground(new java.awt.Color(242, 242, 242));
@@ -133,7 +135,9 @@ public class CrearPublicacion extends javax.swing.JFrame {
     
     
     priv.setForeground(new Color(0, 0, 0));           // Color del texto
-    priv.setOpaque(true);  // Asegura que el fondo se vea correctamente  
+    priv.setOpaque(true);
+   
+
     }
     
     public javax.swing.JTextArea getTextoo() {
@@ -326,7 +330,7 @@ public class CrearPublicacion extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(NombreAlbum)
                             .addComponent(btnÁlbum))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(120, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -445,8 +449,8 @@ public class CrearPublicacion extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
     
+
     
     
     public void cargarImagenUsuario(int userId) {
@@ -519,6 +523,10 @@ public class CrearPublicacion extends javax.swing.JFrame {
     }
 }
     
+    
+
+
+    
     public void actualizarNombreUsuario(int userId) {
     final Connection conn;  // Hacer final la variable
     final PreparedStatement stmt;  // Hacer final la variable
@@ -576,6 +584,9 @@ public class CrearPublicacion extends javax.swing.JFrame {
     }
     
     
+
+    
+    
     private void btnPublicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPublicarActionPerformed
     // Obtener el texto, la fecha y la privacidad
 String texto = textoo.getText();
@@ -628,6 +639,7 @@ try {
     String queryInsertar = "INSERT INTO publicacion (ID_Usuario, Texto, Imagen, Fecha_publicacion, Privacidad) VALUES (?, ?, ?, ?, ?)";
     PreparedStatement stInsertar = con.prepareStatement(queryInsertar);
 
+
     stInsertar.setInt(1, idUsuario);
     stInsertar.setString(2, texto);
     if (foto != null) {
@@ -639,6 +651,7 @@ try {
     stInsertar.setString(5, privacidad);
 
     int filasAfectadas = stInsertar.executeUpdate();
+    
     
     if (foto != null && idAlbumSeleccionado != -1) {
         String sqlMedia = "INSERT INTO media (ID_Usuario, ID_Album, Tipo, Contenido_media, Fecha, Descripcion) VALUES (?, ?, ?, ?, ?, ?)";
@@ -670,7 +683,6 @@ try {
 } catch (SQLException ex) {
     JOptionPane.showMessageDialog(this, "Error en la base de datos: " + ex.getMessage());
 }
-
 
     }//GEN-LAST:event_btnPublicarActionPerformed
 
@@ -749,6 +761,7 @@ try {
                 new CrearPublicacion().setVisible(true);
             }
         });
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
