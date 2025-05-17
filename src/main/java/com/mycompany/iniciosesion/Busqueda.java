@@ -169,8 +169,9 @@ public class Busqueda extends javax.swing.JFrame {
         listaAmigos = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(372, 580));
 
-        txtBuscar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtBuscar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         txtBuscar.setText("Buscar en Facebook");
         txtBuscar.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         txtBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -184,6 +185,9 @@ public class Busqueda extends javax.swing.JFrame {
             }
         });
 
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(372, 580));
+
+        listaAmigos.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         listaAmigos.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Juan Perez", "Carlos Lopez", "Maria Diaz", "Fernando Sandoval", "Heidi Garcia" };
             public int getSize() { return strings.length; }
@@ -195,20 +199,15 @@ public class Busqueda extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1)
-                    .addComponent(txtBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE))
-                .addContainerGap())
+            .addComponent(txtBuscar)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 

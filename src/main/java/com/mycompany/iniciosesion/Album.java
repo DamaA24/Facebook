@@ -193,6 +193,8 @@ public class Album extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
         jPanel4.setBackground(new java.awt.Color(204, 204, 204));
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
