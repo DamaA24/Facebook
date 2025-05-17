@@ -247,11 +247,11 @@ public class CrearPublicacion extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jLabel1.setText("Crear publicación");
 
         btnPublicar.setBackground(new java.awt.Color(242, 242, 242));
-        btnPublicar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        btnPublicar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btnPublicar.setForeground(new java.awt.Color(204, 204, 204));
         btnPublicar.setText("Publicar");
         btnPublicar.addActionListener(new java.awt.event.ActionListener() {
@@ -267,11 +267,11 @@ public class CrearPublicacion extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnCerrar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
+                .addGap(69, 69, 69)
                 .addComponent(jLabel1)
-                .addGap(75, 75, 75)
+                .addGap(48, 48, 48)
                 .addComponent(btnPublicar)
-                .addContainerGap())
+                .addContainerGap(56, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -289,8 +289,10 @@ public class CrearPublicacion extends javax.swing.JFrame {
 
         fotoperfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/usuario.png"))); // NOI18N
 
+        usuario.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         usuario.setText("Nombre usuario");
 
+        priv.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         priv.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Público", "Amigos", "Privado" }));
         priv.setBorder(null);
         priv.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -304,6 +306,7 @@ public class CrearPublicacion extends javax.swing.JFrame {
             }
         });
 
+        btnÁlbum.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btnÁlbum.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mas1.JPG"))); // NOI18N
         btnÁlbum.setText("Álbum");
         btnÁlbum.addActionListener(new java.awt.event.ActionListener() {
@@ -312,6 +315,7 @@ public class CrearPublicacion extends javax.swing.JFrame {
             }
         });
 
+        NombreAlbum.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         NombreAlbum.setText("Álbum seleccionado");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -330,7 +334,7 @@ public class CrearPublicacion extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(NombreAlbum)
                             .addComponent(btnÁlbum))))
-                .addContainerGap(120, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -359,7 +363,7 @@ public class CrearPublicacion extends javax.swing.JFrame {
         jScrollPane1.setHorizontalScrollBar(null);
 
         textoo.setColumns(20);
-        textoo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        textoo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         textoo.setForeground(new java.awt.Color(204, 204, 204));
         textoo.setRows(5);
         textoo.setText("¿Qué estás pensando?");
@@ -414,16 +418,18 @@ public class CrearPublicacion extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(imag, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE))
+                .addComponent(imag, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -440,7 +446,9 @@ public class CrearPublicacion extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
