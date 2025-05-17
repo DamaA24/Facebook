@@ -1,6 +1,7 @@
 
 package com.mycompany.iniciosesion;
 
+import static com.mycompany.iniciosesion.IniciarSesion.idUsuario;
 import java.awt.Color;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -53,6 +54,8 @@ public class Menuframe extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(372, 580));
+
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         InicioBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/inicio.png"))); // NOI18N
@@ -62,6 +65,11 @@ public class Menuframe extends javax.swing.JFrame {
         InicioBtn.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/homeS.png"))); // NOI18N
         InicioBtn.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/homeS.png"))); // NOI18N
         InicioBtn.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/homeS.png"))); // NOI18N
+        InicioBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InicioBtnActionPerformed(evt);
+            }
+        });
 
         AmigosBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/amigos.png"))); // NOI18N
         AmigosBtn.setBorder(null);
@@ -70,6 +78,11 @@ public class Menuframe extends javax.swing.JFrame {
         AmigosBtn.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/amigosS.png"))); // NOI18N
         AmigosBtn.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/amigosS.png"))); // NOI18N
         AmigosBtn.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/amigosS.png"))); // NOI18N
+        AmigosBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AmigosBtnActionPerformed(evt);
+            }
+        });
 
         PerfilBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/usuario.png"))); // NOI18N
         PerfilBtn.setBorder(null);
@@ -91,6 +104,11 @@ public class Menuframe extends javax.swing.JFrame {
         NotificacionesBtn.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/NotificacionS.png"))); // NOI18N
         NotificacionesBtn.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/NotificacionS.png"))); // NOI18N
         NotificacionesBtn.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/NotificacionS.png"))); // NOI18N
+        NotificacionesBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NotificacionesBtnActionPerformed(evt);
+            }
+        });
 
         MenuBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menuS.png"))); // NOI18N
         MenuBtn.setBorder(null);
@@ -505,6 +523,26 @@ private boolean isConfigVisible = false;
     private void B_configActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_configActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_B_configActionPerformed
+
+    private void InicioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InicioBtnActionPerformed
+       this.dispose();
+        InicioF IF = new InicioF();
+        IF.cargarImagenUsuario(idUsuario);
+        IF.cargarPublicaciones(IF.offset2, idUsuario);
+        IF.setVisible(true);
+    }//GEN-LAST:event_InicioBtnActionPerformed
+
+    private void AmigosBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AmigosBtnActionPerformed
+        this.dispose();
+        FacebookFriends FF = new FacebookFriends();
+        FF.setVisible(true);// TODO add your handling code here:
+    }//GEN-LAST:event_AmigosBtnActionPerformed
+
+    private void NotificacionesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NotificacionesBtnActionPerformed
+        this.dispose();
+        Notificaciones N = new Notificaciones();
+        N.setVisible(true);// TODO add your handling code here:
+    }//GEN-LAST:event_NotificacionesBtnActionPerformed
 
     /**
      * @param args the command line arguments

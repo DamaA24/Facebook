@@ -197,7 +197,7 @@ public class EditarPublicacion extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jLabel1.setText("Editar publicación");
 
         btnPublicar.setBackground(new java.awt.Color(242, 242, 242));
@@ -219,9 +219,9 @@ public class EditarPublicacion extends javax.swing.JFrame {
                 .addComponent(btnCerrar)
                 .addGap(80, 80, 80)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(btnPublicar)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -239,6 +239,7 @@ public class EditarPublicacion extends javax.swing.JFrame {
 
         fotoperfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/usuario.png"))); // NOI18N
 
+        usuario.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         usuario.setText("Nombre usuario");
 
         priv.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Público", "Amigos", "Privado" }));
