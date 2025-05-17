@@ -417,14 +417,32 @@ triste3.addMouseListener(new MouseAdapter() {
             .addComponent(jButton13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/plus.png"))); // NOI18N
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/plusNuevo.png"))); // NOI18N
+        jButton6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jButton6.setContentAreaFilled(false);
+        jButton6.setFocusPainted(false);
+        jButton6.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/plusNuevoS.png"))); // NOI18N
+        jButton6.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/plusNuevoS.png"))); // NOI18N
+        jButton6.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/plusNuevoS.png"))); // NOI18N
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
             }
         });
 
+        der.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         der.setText(">");
+        der.setBorderPainted(false);
+        der.setContentAreaFilled(false);
+        der.setFocusPainted(false);
+        der.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                derMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                derMouseExited(evt);
+            }
+        });
         der.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 derActionPerformed(evt);
@@ -444,7 +462,7 @@ triste3.addMouseListener(new MouseAdapter() {
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addComponent(der)
                 .addContainerGap())
         );
@@ -534,6 +552,11 @@ triste3.addMouseListener(new MouseAdapter() {
                 eliminarMouseClicked(evt);
             }
         });
+        eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarActionPerformed(evt);
+            }
+        });
 
         foto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/usuario.png"))); // NOI18N
         foto.setBorder(null);
@@ -546,16 +569,41 @@ triste3.addMouseListener(new MouseAdapter() {
             }
         });
 
+        text.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         text.setText("Texto");
 
-        arriba.setText("^");
+        arriba.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        arriba.setText("ʌ");
+        arriba.setBorderPainted(false);
+        arriba.setContentAreaFilled(false);
+        arriba.setFocusPainted(false);
+        arriba.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                arribaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                arribaMouseExited(evt);
+            }
+        });
         arriba.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 arribaActionPerformed(evt);
             }
         });
 
+        Comentar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         Comentar.setText("Comentar");
+        Comentar.setBorderPainted(false);
+        Comentar.setContentAreaFilled(false);
+        Comentar.setFocusPainted(false);
+        Comentar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                ComentarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ComentarMouseExited(evt);
+            }
+        });
         Comentar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ComentarActionPerformed(evt);
@@ -622,15 +670,16 @@ triste3.addMouseListener(new MouseAdapter() {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(16, 16, 16))
+                            .addGroup(jPanel6Layout.createSequentialGroup()
                                 .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(28, 28, 28)
                                 .addComponent(arriba)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(16, 16, 16))
+                                .addComponent(eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(38, 38, 38))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel6Layout.createSequentialGroup()
@@ -639,7 +688,7 @@ triste3.addMouseListener(new MouseAdapter() {
                                 .addComponent(divierte)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(triste)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 151, Short.MAX_VALUE)
                                 .addComponent(Comentar)
                                 .addGap(11, 11, 11))
                             .addComponent(ima, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -649,17 +698,19 @@ triste3.addMouseListener(new MouseAdapter() {
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(foto, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(arriba)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(foto, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(text, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -676,6 +727,7 @@ triste3.addMouseListener(new MouseAdapter() {
 
         jPanel13.setBackground(new java.awt.Color(255, 255, 255));
 
+        user3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         user3.setText("Usuario");
         user3.setBorder(null);
         user3.addActionListener(new java.awt.event.ActionListener() {
@@ -684,7 +736,19 @@ triste3.addMouseListener(new MouseAdapter() {
             }
         });
 
+        bajo.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         bajo.setText("v");
+        bajo.setBorderPainted(false);
+        bajo.setContentAreaFilled(false);
+        bajo.setFocusPainted(false);
+        bajo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bajoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bajoMouseExited(evt);
+            }
+        });
         bajo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bajoActionPerformed(evt);
@@ -713,7 +777,19 @@ triste3.addMouseListener(new MouseAdapter() {
         divierte3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/me divierte1.png"))); // NOI18N
         divierte3.setText("2");
 
+        Comentar3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         Comentar3.setText("Comentar");
+        Comentar3.setBorderPainted(false);
+        Comentar3.setContentAreaFilled(false);
+        Comentar3.setFocusPainted(false);
+        Comentar3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                Comentar3MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                Comentar3MouseExited(evt);
+            }
+        });
         Comentar3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Comentar3ActionPerformed(evt);
@@ -778,16 +854,6 @@ triste3.addMouseListener(new MouseAdapter() {
                 .addContainerGap()
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel13Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(corazon3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(divierte3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(triste3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Comentar3)
-                        .addGap(20, 20, 20))
-                    .addGroup(jPanel13Layout.createSequentialGroup()
                         .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel13Layout.createSequentialGroup()
                                 .addComponent(foto3, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -802,11 +868,18 @@ triste3.addMouseListener(new MouseAdapter() {
                             .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(text3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(ima3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(bajo)
-                .addGap(156, 156, 156))
+                        .addGap(0, 15, Short.MAX_VALUE))
+                    .addGroup(jPanel13Layout.createSequentialGroup()
+                        .addComponent(corazon3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(divierte3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(triste3)
+                        .addGap(61, 61, 61)
+                        .addComponent(bajo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Comentar3)))
+                .addContainerGap())
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -820,7 +893,7 @@ triste3.addMouseListener(new MouseAdapter() {
                             .addComponent(user3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(text3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(ima3, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -829,11 +902,10 @@ triste3.addMouseListener(new MouseAdapter() {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(divierte3)
                         .addComponent(triste3)
-                        .addComponent(Comentar3))
+                        .addComponent(Comentar3)
+                        .addComponent(bajo))
                     .addComponent(corazon3, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bajo)
-                .addContainerGap())
+                .addGap(35, 35, 35))
         );
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
@@ -857,7 +929,8 @@ triste3.addMouseListener(new MouseAdapter() {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jScrollPane1.setViewportView(jPanel9);
@@ -866,13 +939,13 @@ triste3.addMouseListener(new MouseAdapter() {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -1144,6 +1217,50 @@ triste3.addMouseListener(new MouseAdapter() {
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void derMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_derMouseEntered
+        der.setForeground(new Color(51,153,255));// TODO add your handling code here:
+    }//GEN-LAST:event_derMouseEntered
+
+    private void derMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_derMouseExited
+       der.setForeground(new Color(0,0,0));// TODO add your handling code here:
+    }//GEN-LAST:event_derMouseExited
+
+    private void arribaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arribaMouseEntered
+        arriba.setForeground(new Color(51,153,255));// TODO add your handling code here:
+    }//GEN-LAST:event_arribaMouseEntered
+
+    private void arribaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arribaMouseExited
+        arriba.setForeground(new Color(0,0,0));// TODO add your handling code here:
+    }//GEN-LAST:event_arribaMouseExited
+
+    private void ComentarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ComentarMouseEntered
+        Comentar.setForeground(new Color(51,153,255));// TODO add your handling code here:
+    }//GEN-LAST:event_ComentarMouseEntered
+
+    private void ComentarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ComentarMouseExited
+        Comentar.setForeground(new Color(0,0,0));// TODO add your handling code here:
+    }//GEN-LAST:event_ComentarMouseExited
+
+    private void bajoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bajoMouseEntered
+        bajo.setForeground(new Color(51,153,255));// TODO add your handling code here:
+    }//GEN-LAST:event_bajoMouseEntered
+
+    private void bajoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bajoMouseExited
+        bajo.setForeground(new Color(0,0,0));// TODO add your handling code here:
+    }//GEN-LAST:event_bajoMouseExited
+
+    private void Comentar3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Comentar3MouseEntered
+        Comentar3.setForeground(new Color(51,153,255));// TODO add your handling code here:
+    }//GEN-LAST:event_Comentar3MouseEntered
+
+    private void Comentar3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Comentar3MouseExited
+         Comentar3.setForeground(new Color(0,0,0));// TODO add your handling code here:
+    }//GEN-LAST:event_Comentar3MouseExited
+
+    private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_eliminarActionPerformed
     private void limpiarPublicacion1() {
     text.setText("");
     ima.setIcon(null);
