@@ -13,6 +13,7 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -136,6 +137,7 @@ public class Perfil extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        Privacidad = new javax.swing.JLabel();
         menu = new javax.swing.JPanel();
         amigos = new javax.swing.JButton();
         perfil_u = new javax.swing.JButton();
@@ -533,6 +535,7 @@ public class Perfil extends javax.swing.JFrame {
         );
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         foto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/usuario.png"))); // NOI18N
         foto.setBorder(null);
@@ -544,6 +547,7 @@ public class Perfil extends javax.swing.JFrame {
                 fotoActionPerformed(evt);
             }
         });
+        jPanel4.add(foto, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 44, 42));
 
         user.setText("Usuario");
         user.setBorder(null);
@@ -552,6 +556,7 @@ public class Perfil extends javax.swing.JFrame {
                 userActionPerformed(evt);
             }
         });
+        jPanel4.add(user, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 4, 85, -1));
 
         arriba.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         arriba.setText(" ʌ");
@@ -572,6 +577,7 @@ public class Perfil extends javax.swing.JFrame {
                 arribaActionPerformed(evt);
             }
         });
+        jPanel4.add(arriba, new org.netbeans.lib.awtextra.AbsoluteConstraints(172, 6, -1, -1));
 
         eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu2.png"))); // NOI18N
         eliminar.setBorder(null);
@@ -583,15 +589,21 @@ public class Perfil extends javax.swing.JFrame {
                 eliminarMouseClicked(evt);
             }
         });
+        jPanel4.add(eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(303, 4, 53, 24));
 
         text.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         text.setText("Texto");
+        jPanel4.add(text, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 106, 333, 47));
+        jPanel4.add(ima, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 159, 333, 144));
 
         corazon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/me encanta1.png"))); // NOI18N
+        jPanel4.add(corazon, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 321, -1, -1));
 
         divierte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/me divierte1.png"))); // NOI18N
+        jPanel4.add(divierte, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 321, -1, -1));
 
         triste.setIcon(new javax.swing.ImageIcon(getClass().getResource("/me entristece1.png"))); // NOI18N
+        jPanel4.add(triste, new org.netbeans.lib.awtextra.AbsoluteConstraints(58, 321, -1, -1));
 
         Comentar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         Comentar.setText("Comentar");
@@ -611,6 +623,7 @@ public class Perfil extends javax.swing.JFrame {
                 ComentarActionPerformed(evt);
             }
         });
+        jPanel4.add(Comentar, new org.netbeans.lib.awtextra.AbsoluteConstraints(269, 321, -1, -1));
 
         bajo.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         bajo.setText("v");
@@ -630,6 +643,7 @@ public class Perfil extends javax.swing.JFrame {
                 bajoActionPerformed(evt);
             }
         });
+        jPanel4.add(bajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 349, -1, -1));
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -693,75 +707,8 @@ public class Perfil extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(166, 166, 166)
-                .addComponent(bajo)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(foto, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(37, 37, 37)
-                                .addComponent(arriba)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(text, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(ima, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 15, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                .addComponent(corazon)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(divierte)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(triste)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(Comentar)))))
-                .addContainerGap())
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(foto, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(8, 8, 8)
-                                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(arriba)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(text, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ima, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(divierte)
-                    .addComponent(triste)
-                    .addComponent(Comentar)
-                    .addComponent(corazon))
-                .addGap(7, 7, 7)
-                .addComponent(bajo))
-        );
+        jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 46, -1, -1));
+        jPanel4.add(Privacidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(273, 4, 24, 30));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -769,10 +716,10 @@ public class Perfil extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(fotoportada, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(fotoportada, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 376, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -1282,15 +1229,15 @@ public class Perfil extends javax.swing.JFrame {
         } else {
             arriba.setVisible(true);
         }
-        
+
         // Conectar a la base de datos
         Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/facebook", "AlanMijares", "1");
 
         // Consulta SQL para obtener la última publicación (ordenada por fecha descendente) de acuerdo al ID de usuario y el offset
-        String query = "SELECT ID_Publicacion, Imagen, Texto, Fecha_publicacion FROM publicacion WHERE ID_Usuario = ? ORDER BY Fecha_publicacion DESC LIMIT 1 OFFSET ?";
+        String query = "SELECT ID_Publicacion, Imagen, Texto, Fecha_publicacion, Privacidad FROM publicacion WHERE ID_Usuario = ? ORDER BY Fecha_publicacion DESC LIMIT 1 OFFSET ?";
         PreparedStatement pst = con.prepareStatement(query);
-        pst.setInt(1, idUsuario);  // Ajustamos el ID del usuario en la consulta
-        pst.setInt(2, offset2);      // Ajustamos el OFFSET según la publicación que se quiere mostrar
+        pst.setInt(1, idUsuario);   // Ajustamos el ID del usuario en la consulta
+        pst.setInt(2, offset2);     // Ajustamos el OFFSET según la publicación que se quiere mostrar
 
         // Ejecutar la consulta
         ResultSet rs = pst.executeQuery();
@@ -1302,6 +1249,7 @@ public class Perfil extends javax.swing.JFrame {
             String textoPublicacion = rs.getString("Texto");
             byte[] imagenPublicacion = rs.getBytes("Imagen");
             Date fechaPublicacion = rs.getDate("Fecha_publicacion");
+            String privacidadPublicacion = rs.getString("Privacidad"); // Obtener la privacidad
 
             // Mostrar el texto de la publicación
             text.setText(textoPublicacion);
@@ -1321,10 +1269,43 @@ public class Perfil extends javax.swing.JFrame {
                 ima.setIcon(null);  // Si no hay imagen, dejar el JLabel vacío
             }
 
+            // Asignar el icono de privacidad
+            ImageIcon iconPriv;
+            switch (privacidadPublicacion) {
+                case "privado" -> {
+                    URL urlPrivado = getClass().getResource("/lock.png");
+                    if (urlPrivado != null) {
+                        iconPriv = new ImageIcon(urlPrivado);
+                    } else {
+                        System.err.println("Error: No se pudo encontrar la imagen: /lock.png");
+                        iconPriv = null;
+                    }
+                }
+                case "amigos" -> {
+                    URL urlAmigos = getClass().getResource("/FriendsP.png");
+                    if (urlAmigos != null) {
+                        iconPriv = new ImageIcon(urlAmigos);
+                    } else {
+                        System.err.println("Error: No se pudo encontrar la imagen: /FriendsPpng");
+                        iconPriv = null;
+                    }
+                }
+                default -> { // público
+                    URL urlPublico = getClass().getResource("/world.png");
+                    if (urlPublico != null) {
+                        iconPriv = new ImageIcon(urlPublico);
+                    } else {
+                        System.err.println("Error: No se pudo encontrar la imagen: /world.png");
+                        iconPriv = null;
+                    }
+                }
+            }
+            Privacidad.setIcon(iconPriv); // Asignar el icono al JLabel llamado Privacidad
+
             // Ahora cargamos la información del usuario (foto de perfil y nombre)
             String queryUsuario = "SELECT Nombre, Apellido, Foto_perfil FROM perfil_usuario WHERE ID_Usuario = ?";
             PreparedStatement pstUsuario = con.prepareStatement(queryUsuario);
-            pstUsuario.setInt(1, idUsuario);  // Usamos el ID de usuario
+            pstUsuario.setInt(1, idUsuario);   // Usamos el ID de usuario
 
             // Ejecutar la consulta de usuario
             ResultSet rsUsuario = pstUsuario.executeQuery();
@@ -1357,12 +1338,12 @@ public class Perfil extends javax.swing.JFrame {
         } else {
             // Si no hay más publicaciones, deshabilitar los botones de "Atras" y "Siguiente"
             bajo.setVisible(false);  // Botón "Siguiente" (bajo)
-            
+
             // Limpiar la información de la publicación
-            text.setText("");  // Limpiar el texto de la publicación
-            ima.setIcon(null);  // Limpiar la imagen de la publicación
-            user.setText("");   // Limpiar el nombre del usuario
-            foto.setIcon(null); // Limpiar la foto de perfil
+            text.setText("");    // Limpiar el texto de la publicación
+            ima.setIcon(null);    // Limpiar la imagen de la publicación
+            user.setText("");     // Limpiar el nombre del usuario
+            foto.setIcon(null);    // Limpiar la foto de perfil
             corazon.setText("");
             divierte.setText("");
             triste.setText("");
@@ -1374,12 +1355,12 @@ public class Perfil extends javax.swing.JFrame {
             corazon.setVisible(false);
             divierte.setVisible(false);
             triste.setVisible(false);
-            
+
             Comentar.setVisible(false);
-            
 
             // Mostrar un mensaje indicando que no hay más publicaciones
             text.setText("");
+            Privacidad.setIcon(null); // Limpiar el icono de privacidad
         }
 
         con.close();
@@ -1826,6 +1807,7 @@ public class Perfil extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Comentar;
+    private javax.swing.JLabel Privacidad;
     private javax.swing.JButton amigos;
     private javax.swing.JButton arriba;
     private javax.swing.JButton atras;
