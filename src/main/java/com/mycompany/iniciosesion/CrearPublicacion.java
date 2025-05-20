@@ -679,9 +679,17 @@ try {
     if (filasAfectadas > 0) {
         JOptionPane.showMessageDialog(this, "Publicación subida correctamente.");
         this.dispose();  // Cierra la ventana actual
-        InicioF inicio = new InicioF();  // Abre la ventana de inicio
-        inicio.cargarImagenUsuario(IniciarSesion.idUsuario); // Si necesitas que cargue datos
-        inicio.setVisible(true);
+        this.dispose();
+        Perfil P = new Perfil();
+        IniciarSesion IS = new IniciarSesion();
+        P.actualizarNombreUsuario(IS.idUsuario);
+        P.cargarImagenUsuario(IS.idUsuario);
+        P.cargarImagenPortada(IS.idUsuario, P.fotoportada);
+        P.cargarDestacadasPerfil(P.offset, IS.idUsuario);
+        P.cargarPublicacion(P.offset2, IS.idUsuario);
+        P.cargarReacciones();
+        P.actualizarInfoPerfil(IS.idUsuario);
+        P.setVisible(true);
     } else {
         JOptionPane.showMessageDialog(this, "Hubo un error al subir la publicación.");
     }
@@ -696,9 +704,10 @@ try {
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         this.dispose();
-        InicioF IF = new InicioF();
-        IF.cargarImagenUsuario(idUsuario);
-        IF.setVisible(true);
+        InicioF If = new InicioF();
+        If.cargarImagenUsuario(idUsuario);
+        If.cargarPublicaciones(If.offset2, idUsuario);
+        If.setVisible(true);
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

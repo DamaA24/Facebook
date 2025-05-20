@@ -45,6 +45,7 @@ public class InicioF extends javax.swing.JFrame {
 
     public InicioF() {
         initComponents();
+        Busqueda B = new Busqueda();
         corazon.addMouseListener(new MouseAdapter() {
     @Override
     public void mouseEntered(MouseEvent e) {
@@ -143,7 +144,6 @@ triste3.addMouseListener(new MouseAdapter() {
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
@@ -220,12 +220,6 @@ triste3.addMouseListener(new MouseAdapter() {
                 jButton2ActionPerformed(evt);
             }
         });
-
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/plusp.png"))); // NOI18N
-        jButton4.setBorder(null);
-        jButton4.setBorderPainted(false);
-        jButton4.setContentAreaFilled(false);
-        jButton4.setFocusPainted(false);
 
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/homeS.png"))); // NOI18N
         jButton5.setBorder(null);
@@ -311,8 +305,6 @@ triste3.addMouseListener(new MouseAdapter() {
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -320,7 +312,7 @@ triste3.addMouseListener(new MouseAdapter() {
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addGap(46, 46, 46)
                         .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                         .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(31, 31, 31))))
         );
@@ -329,7 +321,6 @@ triste3.addMouseListener(new MouseAdapter() {
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -889,6 +880,8 @@ triste3.addMouseListener(new MouseAdapter() {
             P.setVisible(true);
         } else {
             Perfil_Amigo P = new Perfil_Amigo();
+            Busqueda B = new Busqueda();
+            B.idUsuarioSeleccionado = autor2;
             P.actualizarNombreUsuario(autor2);
             P.cargarImagenUsuario(autor2);
             P.cargarImagenPortada(autor2, P.fotoportada);
@@ -983,6 +976,8 @@ triste3.addMouseListener(new MouseAdapter() {
             P.setVisible(true);
         } else {
             Perfil_Amigo P = new Perfil_Amigo();
+            Busqueda B = new Busqueda();
+            B.idUsuarioSeleccionado = autor1;
             P.actualizarNombreUsuario(autor1);
             P.cargarImagenUsuario(autor1);
             P.cargarImagenPortada(autor1, P.fotoportada);
@@ -1044,6 +1039,9 @@ triste3.addMouseListener(new MouseAdapter() {
         P.cargarImagenUsuario(IS.idUsuario);
         P.cargarImagenPortada(IS.idUsuario, P.fotoportada);
         P.cargarDestacadasPerfil(P.offset, IS.idUsuario);
+        P.cargarPublicacion(P.offset2, IS.idUsuario);
+        P.cargarReacciones();
+        P.actualizarInfoPerfil(IS.idUsuario);
         P.setVisible(true);
     }//GEN-LAST:event_fotoperfilActionPerformed
 
@@ -1725,7 +1723,6 @@ public void cargarHistoriasRecientes() {
     private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton21;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;

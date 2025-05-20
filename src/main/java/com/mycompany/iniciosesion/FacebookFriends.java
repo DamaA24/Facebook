@@ -9,6 +9,7 @@ package com.mycompany.iniciosesion;
  *
  * @author User
  */
+import static com.mycompany.iniciosesion.IniciarSesion.idUsuario;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -401,13 +402,18 @@ public class FacebookFriends extends javax.swing.JFrame {
         P.actualizarNombreUsuario(IS.idUsuario);
         P.cargarImagenUsuario(IS.idUsuario);
         P.cargarImagenPortada(IS.idUsuario, P.fotoportada);
-        P.cargarPublicacion(P.offset, IS.idUsuario);
+        P.cargarDestacadasPerfil(P.offset, IS.idUsuario);
+        P.cargarPublicacion(P.offset2, IS.idUsuario);
+        P.cargarReacciones();
+        P.actualizarInfoPerfil(IS.idUsuario);
         P.setVisible(true);
     }//GEN-LAST:event_jButton26ActionPerformed
 
     private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
         this.dispose();
+        IniciarSesion IS = new IniciarSesion();
         Menuframe Mf = new Menuframe();
+        Mf.actualizarNombreUsuario(IS.idUsuario);
         Mf.setVisible(true);
     }//GEN-LAST:event_jButton27ActionPerformed
 
@@ -429,8 +435,10 @@ public class FacebookFriends extends javax.swing.JFrame {
 
     private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
         this.dispose();
-        InicioF IF = new InicioF();
-        IF.setVisible(true);
+        InicioF If = new InicioF();
+        If.cargarImagenUsuario(idUsuario);
+        If.cargarPublicaciones(If.offset2, idUsuario);
+        If.setVisible(true);
     }//GEN-LAST:event_jButton22ActionPerformed
 
     /**

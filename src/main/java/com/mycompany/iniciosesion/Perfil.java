@@ -600,10 +600,10 @@ public class Perfil extends javax.swing.JFrame {
         jPanel4.add(corazon, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 321, -1, -1));
 
         divierte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/me divierte1.png"))); // NOI18N
-        jPanel4.add(divierte, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 321, -1, -1));
+        jPanel4.add(divierte, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, -1, -1));
 
         triste.setIcon(new javax.swing.ImageIcon(getClass().getResource("/me entristece1.png"))); // NOI18N
-        jPanel4.add(triste, new org.netbeans.lib.awtextra.AbsoluteConstraints(58, 321, -1, -1));
+        jPanel4.add(triste, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 320, -1, -1));
 
         Comentar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         Comentar.setText("Comentar");

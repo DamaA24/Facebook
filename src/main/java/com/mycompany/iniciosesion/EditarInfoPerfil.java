@@ -270,6 +270,7 @@ public class EditarInfoPerfil extends javax.swing.JFrame {
         P.cargarDestacadasPerfil(P.offset, IS.idUsuario);
         P.cargarPublicacion(P.offset2, IS.idUsuario);
         P.cargarReacciones();
+        P.actualizarInfoPerfil(IS.idUsuario);
         P.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 

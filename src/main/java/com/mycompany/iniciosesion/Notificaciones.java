@@ -2,6 +2,7 @@
 package com.mycompany.iniciosesion;
 
 import static com.mycompany.iniciosesion.Busqueda.idUsuarioSeleccionado;
+import static com.mycompany.iniciosesion.IniciarSesion.idUsuario;
 import java.awt.Color;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -332,13 +333,17 @@ private void abrirPerfil(int idUsuarioSeleccionado) {
     
     private void inicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inicioActionPerformed
         this.dispose();
-        InicioF IF = new InicioF();
-        IF.setVisible(true);
+        InicioF If = new InicioF();
+        If.cargarImagenUsuario(idUsuario);
+        If.cargarPublicaciones(If.offset2, idUsuario);
+        If.setVisible(true);
     }//GEN-LAST:event_inicioActionPerformed
 
     private void menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuActionPerformed
         this.dispose();
+        IniciarSesion IS = new IniciarSesion();
         Menuframe Mf = new Menuframe();
+        Mf.actualizarNombreUsuario(IS.idUsuario);
         Mf.setVisible(true);
     }//GEN-LAST:event_menuActionPerformed
 
@@ -349,7 +354,10 @@ private void abrirPerfil(int idUsuarioSeleccionado) {
         P.actualizarNombreUsuario(IS.idUsuario);
         P.cargarImagenUsuario(IS.idUsuario);
         P.cargarImagenPortada(IS.idUsuario, P.fotoportada);
-        P.cargarPublicacion(P.offset, IS.idUsuario);
+        P.cargarDestacadasPerfil(P.offset, IS.idUsuario);
+        P.cargarPublicacion(P.offset2, IS.idUsuario);
+        P.cargarReacciones();
+        P.actualizarInfoPerfil(IS.idUsuario);
         P.setVisible(true);
     }//GEN-LAST:event_perfilActionPerformed
 

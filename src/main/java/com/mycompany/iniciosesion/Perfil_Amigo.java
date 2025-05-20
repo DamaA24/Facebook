@@ -132,9 +132,7 @@ public class Perfil_Amigo extends javax.swing.JFrame {
         foto2 = new javax.swing.JButton();
         user2 = new javax.swing.JTextField();
         arriba2 = new javax.swing.JButton();
-        eliminar = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
         text2 = new javax.swing.JLabel();
         ima2 = new javax.swing.JLabel();
         corazon = new javax.swing.JLabel();
@@ -650,54 +648,18 @@ public class Perfil_Amigo extends javax.swing.JFrame {
         });
         jPanel7.add(arriba2, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 6, -1, -1));
 
-        eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu2.png"))); // NOI18N
-        eliminar.setBorder(null);
-        eliminar.setBorderPainted(false);
-        eliminar.setContentAreaFilled(false);
-        eliminar.setFocusPainted(false);
-        eliminar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                eliminarMouseClicked(evt);
-            }
-        });
-        eliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eliminarActionPerformed(evt);
-            }
-        });
-        jPanel7.add(eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(313, 6, 24, 24));
-
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setPreferredSize(new java.awt.Dimension(113, 54));
-
-        jButton1.setText("Guardar");
-        jButton1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jButton1.setContentAreaFilled(false);
-        jButton1.setFocusPainted(false);
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton1MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton1MouseExited(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGap(0, 113, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(9, Short.MAX_VALUE))
+            .addGap(0, 35, Short.MAX_VALUE)
         );
 
         jPanel7.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(242, 36, -1, 35));
@@ -711,10 +673,10 @@ public class Perfil_Amigo extends javax.swing.JFrame {
         jPanel7.add(corazon, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 368, -1, -1));
 
         divierte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/me divierte1.png"))); // NOI18N
-        jPanel7.add(divierte, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 368, -1, -1));
+        jPanel7.add(divierte, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, -1, -1));
 
         triste.setIcon(new javax.swing.ImageIcon(getClass().getResource("/me entristece1.png"))); // NOI18N
-        jPanel7.add(triste, new org.netbeans.lib.awtextra.AbsoluteConstraints(52, 368, -1, -1));
+        jPanel7.add(triste, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 370, -1, -1));
 
         Comentar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         Comentar.setText("Comentar");
@@ -1658,7 +1620,7 @@ public class Perfil_Amigo extends javax.swing.JFrame {
         divierte.setVisible(true);
         triste.setVisible(true);
         
-        eliminar.setVisible(true);
+        
         cargarReacciones();
     }//GEN-LAST:event_arriba2ActionPerformed
 
@@ -1717,22 +1679,6 @@ public class Perfil_Amigo extends javax.swing.JFrame {
     actualizarBotonAmistad();
     }//GEN-LAST:event_solicitudAmistadActionPerformed
 
-    private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_eliminarActionPerformed
-
-    private void eliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eliminarMouseClicked
-         jPanel5.setVisible(!jPanel5.isVisible());   // TODO add your handling code here:
-    }//GEN-LAST:event_eliminarMouseClicked
-
-    private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
-        jButton1.setForeground(new Color(51,153,255));// TODO add your handling code here:
-    }//GEN-LAST:event_jButton1MouseEntered
-
-    private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
-       jButton1.setForeground(new Color(0,0,0)); // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1MouseExited
-
     private void perfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_perfilActionPerformed
         this.dispose();
         Perfil P = new Perfil();
@@ -1742,6 +1688,8 @@ public class Perfil_Amigo extends javax.swing.JFrame {
         P.cargarImagenPortada(IS.idUsuario, P.fotoportada);
         P.cargarDestacadasPerfil(P.offset, IS.idUsuario);
         P.cargarPublicacion(P.offset2, IS.idUsuario);
+        P.cargarReacciones();
+        P.actualizarInfoPerfil(IS.idUsuario);
         P.setVisible(true);
     }//GEN-LAST:event_perfilActionPerformed
 
@@ -1852,14 +1800,12 @@ public class Perfil_Amigo extends javax.swing.JFrame {
     private javax.swing.JButton destacada3;
     private javax.swing.JButton destacada4;
     private javax.swing.JLabel divierte;
-    private javax.swing.JButton eliminar;
     private javax.swing.JButton foto2;
     private javax.swing.JButton fotoperfil;
     public javax.swing.JPanel fotoportada;
     private javax.swing.JButton fotos;
     private javax.swing.JLabel ima2;
     private javax.swing.JButton inicio;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

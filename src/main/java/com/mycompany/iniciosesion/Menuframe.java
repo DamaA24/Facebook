@@ -3,11 +3,13 @@ package com.mycompany.iniciosesion;
 
 import static com.mycompany.iniciosesion.IniciarSesion.idUsuario;
 import java.awt.Color;
+import java.awt.Image;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.ImageIcon;
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 
@@ -18,6 +20,8 @@ public class Menuframe extends javax.swing.JFrame {
     public Menuframe() {
         initComponents();
         setLocationRelativeTo(null);
+        cargarImagenUsuario(IniciarSesion.idUsuario);
+        actualizarNombreUsuario(IniciarSesion.idUsuario);
         P_config.setVisible(false);
     }
 
@@ -36,16 +40,10 @@ public class Menuframe extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         B_config = new javax.swing.JButton();
         usuario = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        fotoperfil = new javax.swing.JLabel();
         P_config = new javax.swing.JPanel();
         B_configNom = new javax.swing.JButton();
         B_configCorreo = new javax.swing.JButton();
@@ -133,36 +131,6 @@ public class Menuframe extends javax.swing.JFrame {
         jButton7.setBorderPainted(false);
         jButton7.setContentAreaFilled(false);
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel2.setText("Tus accesos directos");
-
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grupos.png"))); // NOI18N
-        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-
-        jLabel3.setText("Gente de CU");
-
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/marcador.png"))); // NOI18N
-        jButton2.setText("Guardado");
-        jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
-        jButton2.setContentAreaFilled(false);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/grupos24.png"))); // NOI18N
-        jButton4.setText("Grupos");
-        jButton4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
-        jButton4.setContentAreaFilled(false);
-
-        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buscaramigo.png"))); // NOI18N
-        jButton10.setText("Buscar amigos");
-        jButton10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
-        jButton10.setContentAreaFilled(false);
-
         B_config.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         B_config.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ajustes.png"))); // NOI18N
         B_config.setText("Configuración y privacidad");
@@ -179,7 +147,7 @@ public class Menuframe extends javax.swing.JFrame {
 
         usuario.setText("Desconocido");
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/usuario.png"))); // NOI18N
+        fotoperfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/usuario.png"))); // NOI18N
 
         P_config.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -289,13 +257,9 @@ public class Menuframe extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(52, 52, 52)
                         .addComponent(jButton7)
                         .addGap(14, 14, 14))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel2)
-                        .addContainerGap(247, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(InicioBtn)
                         .addGap(50, 50, 50)
@@ -304,32 +268,21 @@ public class Menuframe extends javax.swing.JFrame {
                         .addComponent(PerfilBtn)
                         .addGap(49, 49, 49)
                         .addComponent(NotificacionesBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(51, 51, 51)
                         .addComponent(MenuBtn)
-                        .addGap(40, 40, 40))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(B_config, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
                             .addComponent(P_config, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 59, Short.MAX_VALUE))))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(115, 115, 115)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(usuario))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(92, 92, 92)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(115, 115, 115)
+                .addComponent(fotoperfil)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(usuario)
+                .addContainerGap(165, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -348,29 +301,17 @@ public class Menuframe extends javax.swing.JFrame {
                     .addComponent(jButton6)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton7))
-                .addGap(28, 28, 28)
+                .addGap(60, 60, 60)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(usuario)
-                    .addComponent(jLabel5))
-                .addGap(55, 55, 55)
-                .addComponent(jLabel2)
+                    .addComponent(fotoperfil))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(B_config)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(P_config, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(550, Short.MAX_VALUE))
+                .addContainerGap(785, Short.MAX_VALUE))
         );
 
         jScrollPane1.setViewportView(jPanel1);
@@ -381,6 +322,76 @@ public class Menuframe extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    public void cargarImagenUsuario(int userId) {
+    final Connection conn;  // Hacer final la variable
+    final PreparedStatement stmt;  // Hacer final la variable
+    final ResultSet rs;  // Hacer final la variable
+
+    try {
+        // Configuración de la conexión a la base de datos
+        conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/facebook", "AlanMijares", "1");
+
+        // Consulta SQL para obtener la imagen del usuario usando la columna 'ID_Usuario'
+        String sql = "SELECT Foto_perfil FROM perfil_usuario WHERE ID_Usuario = ?";
+        stmt = conn.prepareStatement(sql);
+        stmt.setInt(1, userId); // Establecer el ID del usuario en la consulta
+
+        // Ejecutar la consulta
+        rs = stmt.executeQuery();
+
+        // Usar invokeLater para asegurar que el código se ejecute en el hilo de la interfaz gráfica
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    if (rs.next()) {  // Si hay una imagen para el usuario
+                        byte[] fotoPerfil = rs.getBytes("Foto_perfil"); // Obtener el arreglo de bytes de la imagen
+
+                        // Si la imagen no es nula
+                        if (fotoPerfil != null) {
+                            ImageIcon imageIcon = new ImageIcon(fotoPerfil); // Convertir el arreglo de bytes en una imagen
+                            Image image = imageIcon.getImage(); // Obtener la imagen
+
+                            // Escalar la imagen (opcional)
+                            Image imagenEscalada = image.getScaledInstance(70, 70, Image.SCALE_SMOOTH);
+
+                            // Establecer la imagen escalada en el botón
+                            fotoperfil.setIcon(new ImageIcon(imagenEscalada));
+                            fotoperfil.setText(""); // Limpiar el texto del botón si existe
+                        } else {
+                            fotoperfil.setText("Sin imagen");
+                        }
+                    } else {
+                        // Si no se encuentra el usuario en la base de datos
+                        fotoperfil.setText("Usuario no encontrado");
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    fotoperfil.setText("Error al cargar la imagen.");
+                } finally {
+                    // Cerrar recursos
+                    try {
+                        if (rs != null) rs.close();
+                        if (stmt != null) stmt.close();
+                        if (conn != null) conn.close();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                fotoperfil.setText("Error al cargar la imagen.");
+            }
+        });
+    }
+}
+    
     public void actualizarNombreUsuario(int userId) {
     final Connection conn;  // Hacer final la variable
     final PreparedStatement stmt;  // Hacer final la variable
@@ -438,10 +449,6 @@ public class Menuframe extends javax.swing.JFrame {
 }
 
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     private void MenuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuBtnActionPerformed
         this.dispose();
         IniciarSesion IS = new IniciarSesion();
@@ -457,6 +464,10 @@ public class Menuframe extends javax.swing.JFrame {
         P.actualizarNombreUsuario(IS.idUsuario);
         P.cargarImagenUsuario(IS.idUsuario);
         P.cargarImagenPortada(IS.idUsuario, P.fotoportada);
+        P.cargarDestacadasPerfil(P.offset, IS.idUsuario);
+        P.cargarPublicacion(P.offset2, IS.idUsuario);
+        P.cargarReacciones();
+        P.actualizarInfoPerfil(IS.idUsuario);
         P.setVisible(true);
     }//GEN-LAST:event_PerfilBtnActionPerformed
 private boolean isConfigVisible = false;
@@ -526,16 +537,16 @@ private boolean isConfigVisible = false;
 
     private void InicioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InicioBtnActionPerformed
        this.dispose();
-        InicioF IF = new InicioF();
-        IF.cargarImagenUsuario(idUsuario);
-        IF.cargarPublicaciones(IF.offset2, idUsuario);
-        IF.setVisible(true);
+        InicioF If = new InicioF();
+        If.cargarImagenUsuario(idUsuario);
+        If.cargarPublicaciones(If.offset2, idUsuario);
+        If.setVisible(true);
     }//GEN-LAST:event_InicioBtnActionPerformed
 
     private void AmigosBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AmigosBtnActionPerformed
         this.dispose();
         FacebookFriends FF = new FacebookFriends();
-        FF.setVisible(true);// TODO add your handling code here:
+        FF.setVisible(true);
     }//GEN-LAST:event_AmigosBtnActionPerformed
 
     private void NotificacionesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NotificacionesBtnActionPerformed
@@ -592,16 +603,10 @@ private boolean isConfigVisible = false;
     private javax.swing.JButton NotificacionesBtn;
     private javax.swing.JPanel P_config;
     private javax.swing.JButton PerfilBtn;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JLabel fotoperfil;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
